@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.DoHoldItem" table="do_hold_item" catalog="pms" optimistic-lock="version">
+        <id name="iddoHoldItem" type="java.lang.Integer">
+            <column name="iddo_hold_item" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="doItem" class="POJOS.DoItem" fetch="select">
+            <column name="do_item_iddo_item" not-null="true" />
+        </many-to-one>
+        <many-to-one name="holdInvoiceItem" class="POJOS.HoldInvoiceItem" fetch="select">
+            <column name="hold_invoice_item" not-null="true" />
+        </many-to-one>
+        <property name="qty" type="java.lang.Double">
+            <column name="qty" precision="22" scale="0" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.PayEmployee" table="pay_employee" catalog="pms" optimistic-lock="version">
+        <id name="idpayEmployee" type="java.lang.Integer">
+            <column name="idpay_employee" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="employeeAccount" class="POJOS.EmployeeAccount" fetch="select">
+            <column name="employee_account" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="POJOS.User" fetch="select">
+            <column name="user_iduser" not-null="true" />
+        </many-to-one>
+        <property name="amount" type="java.lang.Double">
+            <column name="amount" precision="22" scale="0" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="addedDate" type="string">
+            <column name="added_date" length="45" />
+        </property>
+        <property name="addedTime" type="string">
+            <column name="added_time" length="45" />
+        </property>
+        <property name="remark" type="string">
+            <column name="remark" length="150" />
+        </property>
+    </class>
+</hibernate-mapping>

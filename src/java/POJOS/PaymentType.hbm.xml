@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.PaymentType" table="payment_type" catalog="pms" optimistic-lock="version">
+        <id name="idpaymentType" type="java.lang.Integer">
+            <column name="idpayment_type" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="45" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <set name="purchusInvoices" table="purchus_invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="payment_type" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.PurchusInvoice" />
+        </set>
+        <set name="quotationInvoices" table="quotation_invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="payment_type" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.QuotationInvoice" />
+        </set>
+        <set name="holdInvoices" table="hold_invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="payment_type" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.HoldInvoice" />
+        </set>
+        <set name="invoiceRecipts" table="invoice_recipt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpayment_type" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.InvoiceRecipt" />
+        </set>
+        <set name="purchusInvoiceRecipts" table="purchus_invoice_recipt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="payment_type" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.PurchusInvoiceRecipt" />
+        </set>
+        <set name="otherTranses" table="other_trans" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="payment_type" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.OtherTrans" />
+        </set>
+        <set name="saleInvoices" table="sale_invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="payment_type" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.SaleInvoice" />
+        </set>
+        <set name="holdRecipts" table="hold_recipt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpayment_type" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.HoldRecipt" />
+        </set>
+    </class>
+</hibernate-mapping>

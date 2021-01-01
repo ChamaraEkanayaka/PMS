@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.ItemReorder" table="item_reorder" catalog="pms" optimistic-lock="version">
+        <id name="iditemReorder" type="java.lang.Integer">
+            <column name="iditem_reorder" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="items" class="POJOS.Items" fetch="select">
+            <column name="item" not-null="true" />
+        </many-to-one>
+        <property name="rol" type="java.lang.Double">
+            <column name="rol" precision="22" scale="0" />
+        </property>
+        <property name="addIsEmpty" type="java.lang.Double">
+            <column name="add_is_empty" precision="22" scale="0" />
+        </property>
+        <property name="addReOrderPassed" type="java.lang.Double">
+            <column name="add_re_order_passed" precision="22" scale="0" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Items" table="items" catalog="pms" optimistic-lock="version">
+        <id name="itemId" type="java.lang.Integer">
+            <column name="item_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="account" class="POJOS.Account" fetch="select">
+            <column name="account" not-null="true" />
+        </many-to-one>
+        <many-to-one name="brand" class="POJOS.Brand" fetch="select">
+            <column name="idbrand" not-null="true" />
+        </many-to-one>
+        <many-to-one name="category" class="POJOS.Category" fetch="select">
+            <column name="idcategory" not-null="true" />
+        </many-to-one>
+        <many-to-one name="type" class="POJOS.Type" fetch="select">
+            <column name="type_id" not-null="true" />
+        </many-to-one>
+        <property name="barcodeId" type="string">
+            <column name="barcode_id" length="45" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="150" not-null="true" />
+        </property>
+        <property name="date" type="string">
+            <column name="date" length="45" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="he" type="java.lang.Double">
+            <column name="he" precision="22" scale="0" />
+        </property>
+        <property name="wi" type="java.lang.Double">
+            <column name="wi" precision="22" scale="0" />
+        </property>
+        <property name="image" type="string">
+            <column name="image" length="250" />
+        </property>
+        <set name="itemReorders" table="item_reorder" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="item" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.ItemReorder" />
+        </set>
+        <set name="stockHistories" table="stock_history" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="items_item_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.StockHistory" />
+        </set>
+        <set name="salesReturnItemses" table="sales_return_items" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="items" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.SalesReturnItems" />
+        </set>
+        <set name="itemThirds" table="item_third" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="items_item_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.ItemThird" />
+        </set>
+        <set name="holdInvoiceItems" table="hold_invoice_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="item_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.HoldInvoiceItem" />
+        </set>
+        <set name="saleInvoiceItems" table="sale_invoice_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="item_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.SaleInvoiceItem" />
+        </set>
+        <set name="typeCalcs" table="type_calc" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="item" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.TypeCalc" />
+        </set>
+        <set name="stockTransfers" table="stock_transfer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="request_item" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.StockTransfer" />
+        </set>
+        <set name="poOrderItemses" table="po_order_items" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="items_item_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.PoOrderItems" />
+        </set>
+        <set name="purchusInvoiceItems" table="purchus_invoice_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="items" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.PurchusInvoiceItem" />
+        </set>
+        <set name="itemSubs" table="item_sub" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="items_item_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.ItemSub" />
+        </set>
+        <set name="holdReturnItemses" table="hold_return_items" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="items" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.HoldReturnItems" />
+        </set>
+        <set name="stocks" table="stock" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="item_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Stock" />
+        </set>
+        <set name="quotationInvoiceItems" table="quotation_invoice_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="item_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.QuotationInvoiceItem" />
+        </set>
+    </class>
+</hibernate-mapping>

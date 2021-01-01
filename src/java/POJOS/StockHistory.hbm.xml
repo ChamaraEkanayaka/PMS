@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.StockHistory" table="stock_history" catalog="pms" optimistic-lock="version">
+        <id name="idstockHistory" type="java.lang.Integer">
+            <column name="idstock_history" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="branch" class="POJOS.Branch" fetch="select">
+            <column name="branch_idbranch" not-null="true" />
+        </many-to-one>
+        <many-to-one name="items" class="POJOS.Items" fetch="select">
+            <column name="items_item_id" not-null="true" />
+        </many-to-one>
+        <property name="qty" type="java.lang.Double">
+            <column name="qty" precision="22" scale="0" />
+        </property>
+        <property name="beforeT" type="java.lang.Double">
+            <column name="before_t" precision="22" scale="0" />
+        </property>
+        <property name="afterT" type="java.lang.Double">
+            <column name="after_t" precision="22" scale="0" />
+        </property>
+        <property name="date" type="string">
+            <column name="date" length="45" />
+        </property>
+        <property name="time" type="string">
+            <column name="time" length="45" />
+        </property>
+        <property name="details" type="string">
+            <column name="details" length="150" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+    </class>
+</hibernate-mapping>

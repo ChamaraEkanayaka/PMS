@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.TypeCalc" table="type_calc" catalog="pms" optimistic-lock="version">
+        <id name="idtypeCalc" type="java.lang.Integer">
+            <column name="idtype_calc" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="items" class="POJOS.Items" fetch="select">
+            <column name="item" not-null="true" />
+        </many-to-one>
+        <many-to-one name="typeByType2" class="POJOS.Type" fetch="select">
+            <column name="type_2" not-null="true" />
+        </many-to-one>
+        <many-to-one name="typeByType1" class="POJOS.Type" fetch="select">
+            <column name="type_1" not-null="true" />
+        </many-to-one>
+        <property name="formula" type="string">
+            <column name="formula" length="250" />
+        </property>
+    </class>
+</hibernate-mapping>

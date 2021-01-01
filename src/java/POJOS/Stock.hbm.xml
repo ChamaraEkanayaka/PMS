@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Stock" table="stock" catalog="pms" optimistic-lock="version">
+        <id name="stockId" type="java.lang.Integer">
+            <column name="stock_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="branch" class="POJOS.Branch" fetch="select">
+            <column name="branch" not-null="true" />
+        </many-to-one>
+        <many-to-one name="items" class="POJOS.Items" fetch="select">
+            <column name="item_id" not-null="true" />
+        </many-to-one>
+        <property name="qty" type="double">
+            <column name="qty" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="status" type="int">
+            <column name="status" not-null="true" />
+        </property>
+        <property name="date" type="string">
+            <column name="date" length="45" />
+        </property>
+        <property name="cost" type="java.lang.Double">
+            <column name="cost" precision="22" scale="0" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="price" precision="22" scale="0" />
+        </property>
+        <property name="time" type="string">
+            <column name="time" length="45" />
+        </property>
+        <set name="prescriptionItems" table="prescription_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stock_stock_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.PrescriptionItem" />
+        </set>
+        <set name="saleInvoiceItems" table="sale_invoice_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stock_stock_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.SaleInvoiceItem" />
+        </set>
+        <set name="holdInvoiceItems" table="hold_invoice_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stock_stock_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.HoldInvoiceItem" />
+        </set>
+        <set name="returnItems" table="return_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stock_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.ReturnItem" />
+        </set>
+        <set name="quotationInvoiceItems" table="quotation_invoice_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stock_stock_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.QuotationInvoiceItem" />
+        </set>
+        <set name="stockTransfers" table="stock_transfer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="accepted_stock" />
+            </key>
+            <one-to-many class="POJOS.StockTransfer" />
+        </set>
+        <set name="stockDamages" table="stock_damage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stock_stock_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.StockDamage" />
+        </set>
+        <set name="stockPrices" table="stock_price" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stock_stock_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.StockPrice" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.SaleInvoice" table="sale_invoice" catalog="pms" optimistic-lock="version">
+        <id name="idsaleInvoice" type="java.lang.Integer">
+            <column name="idsale_invoice" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="account" class="POJOS.Account" fetch="select">
+            <column name="account_idaccount" not-null="true" />
+        </many-to-one>
+        <many-to-one name="branch" class="POJOS.Branch" fetch="select">
+            <column name="branch" not-null="true" />
+        </many-to-one>
+        <many-to-one name="paymentType" class="POJOS.PaymentType" fetch="select">
+            <column name="payment_type" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="POJOS.User" fetch="select">
+            <column name="user" not-null="true" />
+        </many-to-one>
+        <property name="date" type="string">
+            <column name="date" length="45" />
+        </property>
+        <property name="netTotal" type="java.lang.Double">
+            <column name="net_total" precision="22" scale="0" />
+        </property>
+        <property name="descount" type="java.lang.Double">
+            <column name="descount" precision="22" scale="0" />
+        </property>
+        <property name="total" type="java.lang.Double">
+            <column name="total" precision="22" scale="0" />
+        </property>
+        <property name="transport" type="java.lang.Double">
+            <column name="transport" precision="22" scale="0" />
+        </property>
+        <property name="paid" type="java.lang.Double">
+            <column name="paid" precision="22" scale="0" />
+        </property>
+        <property name="paible" type="java.lang.Double">
+            <column name="paible" precision="22" scale="0" />
+        </property>
+        <property name="returnAmount" type="java.lang.Double">
+            <column name="return_amount" precision="22" scale="0" />
+        </property>
+        <property name="totalCost" type="java.lang.Double">
+            <column name="total_cost" precision="22" scale="0" />
+        </property>
+        <property name="totalProfit" type="java.lang.Double">
+            <column name="total_profit" precision="22" scale="0" />
+        </property>
+        <property name="time" type="string">
+            <column name="time" length="45" />
+        </property>
+        <set name="saleInvoiceItems" table="sale_invoice_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idsale_invoice" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.SaleInvoiceItem" />
+        </set>
+        <set name="invoiceRecipts" table="invoice_recipt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sale_invoice" />
+            </key>
+            <one-to-many class="POJOS.InvoiceRecipt" />
+        </set>
+    </class>
+</hibernate-mapping>

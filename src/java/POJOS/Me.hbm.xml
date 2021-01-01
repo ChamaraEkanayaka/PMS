@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Me" table="me" catalog="pms" optimistic-lock="version">
+        <id name="idme" type="java.lang.Integer">
+            <column name="idme" />
+            <generator class="identity" />
+        </id>
+        <property name="cname" type="string">
+            <column name="cname" length="150" not-null="true" />
+        </property>
+        <property name="user" type="string">
+            <column name="user" length="150" not-null="true" />
+        </property>
+        <property name="status" type="int">
+            <column name="status" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

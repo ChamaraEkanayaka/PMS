@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.UseCycle" table="use_cycle" catalog="pms" optimistic-lock="version">
+        <id name="iduseCycle" type="java.lang.Integer">
+            <column name="iduse_cycle" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="45" />
+        </property>
+        <property name="tabsPerDate" type="java.lang.Double">
+            <column name="tabs_per_date" precision="22" scale="0" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <set name="prescriptionItems" table="prescription_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="use_cycle_iduse_cycle" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.PrescriptionItem" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.HoldReturnItems" table="hold_return_items" catalog="pms" optimistic-lock="version">
+        <id name="idholdReturnItems" type="java.lang.Integer">
+            <column name="idhold_return_items" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="holdInvoiceItem" class="POJOS.HoldInvoiceItem" fetch="select">
+            <column name="idhold_invoice_item" not-null="true" />
+        </many-to-one>
+        <many-to-one name="holdReturn" class="POJOS.HoldReturn" fetch="select">
+            <column name="hold_return_idhold_return" not-null="true" />
+        </many-to-one>
+        <many-to-one name="items" class="POJOS.Items" fetch="select">
+            <column name="items" not-null="true" />
+        </many-to-one>
+        <property name="qty" type="java.lang.Double">
+            <column name="qty" precision="22" scale="0" />
+        </property>
+        <property name="total" type="java.lang.Double">
+            <column name="total" precision="22" scale="0" />
+        </property>
+        <property name="type" type="string">
+            <column name="type" length="45" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="price" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

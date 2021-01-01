@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.PrescriptionItem" table="prescription_item" catalog="pms" optimistic-lock="version">
+        <id name="idprescriptionItem" type="java.lang.Integer">
+            <column name="idprescription_item" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="mealType" class="POJOS.MealType" fetch="select">
+            <column name="meal_type_idmeal_type" not-null="true" />
+        </many-to-one>
+        <many-to-one name="prescription" class="POJOS.Prescription" fetch="select">
+            <column name="prescription_idprescription" not-null="true" />
+        </many-to-one>
+        <many-to-one name="stock" class="POJOS.Stock" fetch="select">
+            <column name="stock_stock_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="useCycle" class="POJOS.UseCycle" fetch="select">
+            <column name="use_cycle_iduse_cycle" not-null="true" />
+        </many-to-one>
+        <many-to-one name="useMethod" class="POJOS.UseMethod" fetch="select">
+            <column name="use_method_iduse_method" not-null="true" />
+        </many-to-one>
+        <property name="dosage" type="java.lang.Double">
+            <column name="dosage" precision="22" scale="0" />
+        </property>
+        <property name="duration" type="java.lang.Double">
+            <column name="duration" precision="22" scale="0" />
+        </property>
+        <property name="qty" type="java.lang.Double">
+            <column name="qty" precision="22" scale="0" />
+        </property>
+        <property name="costPerItem" type="java.lang.Double">
+            <column name="cost_per_item" precision="22" scale="0" />
+        </property>
+        <property name="totalCost" type="java.lang.Double">
+            <column name="total_cost" precision="22" scale="0" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="65535" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+    </class>
+</hibernate-mapping>

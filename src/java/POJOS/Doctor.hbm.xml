@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Doctor" table="doctor" catalog="pms" optimistic-lock="version">
+        <id name="iddoctor" type="java.lang.Integer">
+            <column name="iddoctor" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="POJOS.User" fetch="select">
+            <column name="user_iduser" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="65535" />
+        </property>
+        <property name="contactNumber" type="string">
+            <column name="contact_number" length="45" />
+        </property>
+        <property name="regNumber" type="string">
+            <column name="reg_number" length="45" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="65535" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <set name="prescriptions" table="prescription" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="doctor_iddoctor" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Prescription" />
+        </set>
+    </class>
+</hibernate-mapping>

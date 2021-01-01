@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.DoItem" table="do_item" catalog="pms" optimistic-lock="version">
+        <id name="iddoItem" type="java.lang.Integer">
+            <column name="iddo_item" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="deo" class="POJOS.Deo" fetch="select">
+            <column name="deo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="holdInvoice" class="POJOS.HoldInvoice" fetch="select">
+            <column name="hold_invoice" not-null="true" />
+        </many-to-one>
+        <property name="transport" type="java.lang.Double">
+            <column name="transport" precision="22" scale="0" />
+        </property>
+        <property name="sendDate" type="string">
+            <column name="send_date" length="45" />
+        </property>
+        <property name="sendTime" type="string">
+            <column name="send_time" length="45" />
+        </property>
+        <property name="customerRecieved" type="java.lang.Integer">
+            <column name="customer_recieved" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <set name="doHoldItems" table="do_hold_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="do_item_iddo_item" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.DoHoldItem" />
+        </set>
+    </class>
+</hibernate-mapping>

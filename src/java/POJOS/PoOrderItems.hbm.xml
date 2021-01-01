@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.PoOrderItems" table="po_order_items" catalog="pms" optimistic-lock="version">
+        <id name="idpoOrderItems" type="java.lang.Integer">
+            <column name="idpo_order_items" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="items" class="POJOS.Items" fetch="select">
+            <column name="items_item_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="purchaseInvoiceOrder" class="POJOS.PurchaseInvoiceOrder" fetch="select">
+            <column name="idpurchase_invoice_order" not-null="true" />
+        </many-to-one>
+        <property name="qty" type="java.lang.Double">
+            <column name="qty" precision="22" scale="0" />
+        </property>
+        <property name="qtyRecived" type="java.lang.Double">
+            <column name="qty_recived" precision="22" scale="0" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="cost" type="java.lang.Double">
+            <column name="cost" precision="22" scale="0" />
+        </property>
+        <property name="total" type="java.lang.Double">
+            <column name="total" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Account" table="account" catalog="pms" optimistic-lock="version">
+        <id name="idaccount" type="java.lang.Integer">
+            <column name="idaccount" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="150" />
+        </property>
+        <property name="contact" type="string">
+            <column name="contact" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="150" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="250" />
+        </property>
+        <property name="remarks" type="string">
+            <column name="remarks" length="45" />
+        </property>
+        <property name="bank" type="java.lang.Integer">
+            <column name="bank" />
+        </property>
+        <property name="customer" type="java.lang.Integer">
+            <column name="customer" />
+        </property>
+        <property name="supplier" type="java.lang.Integer">
+            <column name="supplier" />
+        </property>
+        <property name="expences" type="java.lang.Integer">
+            <column name="expences" />
+        </property>
+        <property name="employee" type="java.lang.Integer">
+            <column name="employee" />
+        </property>
+        <property name="debitBalance" type="java.lang.Double">
+            <column name="debit_balance" precision="22" scale="0" />
+        </property>
+        <property name="creditBalance" type="java.lang.Double">
+            <column name="credit_balance" precision="22" scale="0" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="creditLimit" type="java.lang.Double">
+            <column name="credit_limit" precision="22" scale="0" />
+        </property>
+        <property name="balance" type="java.lang.Double">
+            <column name="balance" precision="22" scale="0" />
+        </property>
+        <property name="nic" type="string">
+            <column name="nic" length="45" />
+        </property>
+        <set name="purchaseInvoiceOrders" table="purchase_invoice_order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="supplier" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.PurchaseInvoiceOrder" />
+        </set>
+        <set name="purchusInvoices" table="purchus_invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="supplier" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.PurchusInvoice" />
+        </set>
+        <set name="holdReciptsForBankAccount" table="hold_recipt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bank_account" />
+            </key>
+            <one-to-many class="POJOS.HoldRecipt" />
+        </set>
+        <set name="invoiceReciptsForBankAccount" table="invoice_recipt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bank_account" />
+            </key>
+            <one-to-many class="POJOS.InvoiceRecipt" />
+        </set>
+        <set name="invoiceReciptsForCustomer" table="invoice_recipt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.InvoiceRecipt" />
+        </set>
+        <set name="quotationInvoices" table="quotation_invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="account_idaccount" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.QuotationInvoice" />
+        </set>
+        <set name="otherTransesForBank" table="other_trans" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bank" />
+            </key>
+            <one-to-many class="POJOS.OtherTrans" />
+        </set>
+        <set name="holdReciptsForCustomer" table="hold_recipt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.HoldRecipt" />
+        </set>
+        <set name="otherTransesForSupplier" table="other_trans" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="supplier" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.OtherTrans" />
+        </set>
+        <set name="messesForEmployee" table="mess" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employee" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Mess" />
+        </set>
+        <set name="chequeBooks" table="cheque_book" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bank" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.ChequeBook" />
+        </set>
+        <set name="messesForCustomer" table="mess" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Mess" />
+        </set>
+        <set name="stockReturns" table="stock_return" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="account" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.StockReturn" />
+        </set>
+        <set name="customerBranches" table="customer_branch" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="account_idaccount" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.CustomerBranch" />
+        </set>
+        <set name="purchusInvoiceReciptsForSupplier" table="purchus_invoice_recipt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="supplier" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.PurchusInvoiceRecipt" />
+        </set>
+        <set name="saleInvoices" table="sale_invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="account_idaccount" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.SaleInvoice" />
+        </set>
+        <set name="customerTypeCustomers" table="customer_type_customer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.CustomerTypeCustomer" />
+        </set>
+        <set name="itemses" table="items" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="account" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Items" />
+        </set>
+        <set name="holdInvoices" table="hold_invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="account_idaccount" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.HoldInvoice" />
+        </set>
+        <set name="purchusInvoiceReciptsForBank" table="purchus_invoice_recipt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bank" />
+            </key>
+            <one-to-many class="POJOS.PurchusInvoiceRecipt" />
+        </set>
+    </class>
+</hibernate-mapping>

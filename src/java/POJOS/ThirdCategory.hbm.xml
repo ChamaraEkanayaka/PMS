@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.ThirdCategory" table="third_category" catalog="pms" optimistic-lock="version">
+        <id name="thirdcategoryId" type="java.lang.Integer">
+            <column name="thirdcategory_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="subCategory" class="POJOS.SubCategory" fetch="select">
+            <column name="sub_category" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="45" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <set name="itemThirds" table="item_third" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="third_category_thirdcategory_id" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.ItemThird" />
+        </set>
+    </class>
+</hibernate-mapping>

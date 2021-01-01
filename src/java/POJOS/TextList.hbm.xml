@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.TextList" table="text_list" catalog="pms" optimistic-lock="version">
+        <id name="idtextList" type="java.lang.Integer">
+            <column name="idtext_list" />
+            <generator class="identity" />
+        </id>
+        <property name="test" type="string">
+            <column name="test" length="150" />
+        </property>
+    </class>
+</hibernate-mapping>
