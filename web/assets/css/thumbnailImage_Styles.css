@@ -1,0 +1,19 @@
+/*
+Copyright (c) 2020  APK HUB Software Solution (Pvt.) Ltd
+All rights reserved.
+25 Oct 2020 01:57:40 PM By AKILA.
+*/
+/* 
+    Created on : Oct 25, 2020, 1:57:40 PM
+    Author     : AKILA
+*/
+
+.thumbnail-Image:active {
+    transform: scale(1.8);
+    display:block;
+    position:absolute;
+    top:-65px;
+    left:100px;
+    width:160px;
+    height:120px;
+} 

@@ -1,0 +1,9 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Copyright (c) ${date?date?string("yyyy")}  APK HUB Software Solution (Pvt.) Ltd
+${licensePrefix}All rights reserved.
+${licensePrefix}${date?date?string("dd MMM yyyy")} ${time?time?string("hh:mm:ss a")} By ${project.organization!user}.
+<#if licenseLast??>
+${licenseLast}
+</#if>
