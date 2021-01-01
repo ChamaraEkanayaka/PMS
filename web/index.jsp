@@ -14,5 +14,6 @@
     <body>
         <h1>Hello World!</h1>
         <h1><%=DataHolders.ProjectInfo.getCopyrightText() %></h1>
+        
     </body>
 </html>
