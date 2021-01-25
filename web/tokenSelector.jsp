@@ -141,7 +141,7 @@
 
                                                 <!-- Skipped Tokens List  -DATA.TABLE --------------------------------------------------------------------------------------------- -->
                                                 <div class="col-lg-12 m-b-10">
-                                                    <button class="btn btn-dark btn-mat waves-effect" id="btn_SkippedList" onclick='load_SkippedTokensList();'>SKIPPED TOKENS</button>
+                                                    <button class="btn btn-dark btn-mat waves-effect" id="btn_SkippedList" onclick='load_SkippedTokensList();'><span class="fa fa-bookmark-o"></span>&nbsp;&nbsp;SKIPPED TOKENS</button>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div id="DataTable_Includer">
@@ -278,6 +278,12 @@
             function load_SkippedTokensList() {
                 document.getElementById("DataTable_Remover").outerHTML = "";
                 $('#DataTable_Includer').load('tokenSelector_SkippedTokens_DataTable.jsp');
+
+                // Scroll-Down Page
+                setTimeout(function () {
+                    var scrollDiv = document.getElementById("ScrollNFocusElem").offsetTop;
+                    window.scrollTo({top: scrollDiv + 500, behavior: 'smooth'});
+                }, 600);
             }
         </script>
 

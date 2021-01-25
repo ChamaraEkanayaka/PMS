@@ -23,7 +23,7 @@ public class CurrentDateNTime {
     }
 
     public static String getCurrentTime() {
-        DateFormat df = new SimpleDateFormat("HH:mm:ss");
+        DateFormat df = new SimpleDateFormat("hh:mm:ss a");
         Calendar calnd = Calendar.getInstance();
         return df.format(calnd.getTime());
     }

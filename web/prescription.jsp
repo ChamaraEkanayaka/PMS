@@ -670,9 +670,6 @@
                     flagSubmitSts = false;
                 }
                 // check Validations ----Dosage
-//                else if (!document.getElementById('addItem_Dosage').checkValidity()) {
-//                    flagSubmitSts = false;
-//                } 
                 else if (document.getElementById('addItem_Dosage').value.toString().trim().length == 0) {
                     flagSubmitSts = false;
                 } else if (document.getElementById('addItem_Dosage').value.toString().trim() == "NaN") {
@@ -682,9 +679,6 @@
                     flagSubmitSts = false;
                 }
                 // check Validations ----Duration
-//                else if (!document.getElementById('addItem_Duration').checkValidity()) {
-//                    flagSubmitSts = false;
-//                } 
                 else if (document.getElementById('addItem_Duration').value.toString().trim().length == 0) {
                     flagSubmitSts = false;
                 } else if (document.getElementById('addItem_Duration').value.toString().trim() == "NaN") {
@@ -791,10 +785,6 @@
                 var flagSubmitSts = false;
 
                 // check Validations ----Doctor_Charges
-//                else if (!document.getElementById('val_DoctorCharges').checkValidity()) {
-//                    flagSubmitSts = false;
-//                } else
-
                 if (document.getElementById('val_DoctorCharges').value.toString().trim().length == 0) {
                     flagSubmitSts = false;
                 } else if (document.getElementById('val_DoctorCharges').value.toString().trim() == "NaN") {
@@ -805,10 +795,6 @@
                 }
 
                 // check Validations ----Receivable_Amount
-//                else if (!document.getElementById('val_ReceivableAmount').checkValidity()) {
-//                    flagSubmitSts = false;
-//                } 
-
                 else if (document.getElementById('val_ReceivableAmount').value.toString().trim().length == 0) {
                     flagSubmitSts = false;
                 } else if (document.getElementById('val_ReceivableAmount').value.toString().trim() == "NaN") {

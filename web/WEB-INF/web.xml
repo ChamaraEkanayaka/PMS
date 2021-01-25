@@ -55,6 +55,26 @@
         <servlet-name>Prescription_SaveServlet</servlet-name>
         <servlet-class>Servlet.Prescription_SaveServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IssueToken_getNextIssuingTokenNoServlet</servlet-name>
+        <servlet-class>Servlet.IssueToken_getNextIssuingTokenNoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IssueToken_LoadPatientsListServlet</servlet-name>
+        <servlet-class>Servlet.IssueToken_LoadPatientsListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IssueToken_LoadSelectedPatientDetailsServlet</servlet-name>
+        <servlet-class>Servlet.IssueToken_LoadSelectedPatientDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IssueToken_CancelTokenServlet</servlet-name>
+        <servlet-class>Servlet.IssueToken_CancelTokenServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IssueToken_IssueNSaveTokenServlet</servlet-name>
+        <servlet-class>Servlet.IssueToken_IssueNSaveTokenServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Token_getNextTokenDetailsServlet</servlet-name>
         <url-pattern>/Token_getNextTokenDetailsServlet</url-pattern>
@@ -106,6 +126,26 @@
     <servlet-mapping>
         <servlet-name>Prescription_SaveServlet</servlet-name>
         <url-pattern>/Prescription_SaveServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IssueToken_getNextIssuingTokenNoServlet</servlet-name>
+        <url-pattern>/IssueToken_getNextIssuingTokenNoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IssueToken_LoadPatientsListServlet</servlet-name>
+        <url-pattern>/IssueToken_LoadPatientsListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IssueToken_LoadSelectedPatientDetailsServlet</servlet-name>
+        <url-pattern>/IssueToken_LoadSelectedPatientDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IssueToken_CancelTokenServlet</servlet-name>
+        <url-pattern>/IssueToken_CancelTokenServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IssueToken_IssueNSaveTokenServlet</servlet-name>
+        <url-pattern>/IssueToken_IssueNSaveTokenServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
