@@ -3,13 +3,117 @@
     <listener>
         <listener-class>Servlet.SessionListener</listener-class>
     </listener>
+    <servlet>
+        <servlet-name>Token_getNextTokenDetailsServlet</servlet-name>
+        <servlet-class>Servlet.Token_getNextTokenDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Token_SkipTokenServlet</servlet-name>
+        <servlet-class>Servlet.Token_SkipTokenServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Token_SelectTokenServlet</servlet-name>
+        <servlet-class>Servlet.Token_SelectTokenServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Prescription_LoadAddingItemsServlet</servlet-name>
+        <servlet-class>Servlet.Prescription_LoadAddingItemsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Prescription_LoadAddingUseCyclesServlet</servlet-name>
+        <servlet-class>Servlet.Prescription_LoadAddingUseCyclesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Prescription_LoadAddingUseMethodsServlet</servlet-name>
+        <servlet-class>Servlet.Prescription_LoadAddingUseMethodsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Prescription_LoadAddingMealTypesServlet</servlet-name>
+        <servlet-class>Servlet.Prescription_LoadAddingMealTypesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Prescription_LoadSelectedItemDetailsServlet</servlet-name>
+        <servlet-class>Servlet.Prescription_LoadSelectedItemDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Prescription_RemoveItemServlet</servlet-name>
+        <servlet-class>Servlet.Prescription_RemoveItemServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Prescription_AddItemServlet</servlet-name>
+        <servlet-class>Servlet.Prescription_AddItemServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Prescription_CalcMedicineCostServlet</servlet-name>
+        <servlet-class>Servlet.Prescription_CalcMedicineCostServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Prescription_CalcReceivableAmountServlet</servlet-name>
+        <servlet-class>Servlet.Prescription_CalcReceivableAmountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Prescription_SaveServlet</servlet-name>
+        <servlet-class>Servlet.Prescription_SaveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Token_getNextTokenDetailsServlet</servlet-name>
+        <url-pattern>/Token_getNextTokenDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Token_SkipTokenServlet</servlet-name>
+        <url-pattern>/Token_SkipTokenServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Token_SelectTokenServlet</servlet-name>
+        <url-pattern>/Token_SelectTokenServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prescription_LoadAddingItemsServlet</servlet-name>
+        <url-pattern>/Prescription_LoadAddingItemsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prescription_LoadAddingUseCyclesServlet</servlet-name>
+        <url-pattern>/Prescription_LoadAddingUseCyclesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prescription_LoadAddingUseMethodsServlet</servlet-name>
+        <url-pattern>/Prescription_LoadAddingUseMethodsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prescription_LoadAddingMealTypesServlet</servlet-name>
+        <url-pattern>/Prescription_LoadAddingMealTypesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prescription_LoadSelectedItemDetailsServlet</servlet-name>
+        <url-pattern>/Prescription_LoadSelectedItemDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prescription_RemoveItemServlet</servlet-name>
+        <url-pattern>/Prescription_RemoveItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prescription_AddItemServlet</servlet-name>
+        <url-pattern>/Prescription_AddItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prescription_CalcMedicineCostServlet</servlet-name>
+        <url-pattern>/Prescription_CalcMedicineCostServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prescription_CalcReceivableAmountServlet</servlet-name>
+        <url-pattern>/Prescription_CalcReceivableAmountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prescription_SaveServlet</servlet-name>
+        <url-pattern>/Prescription_SaveServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             -1
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
     <error-page>
         <error-code>404</error-code>

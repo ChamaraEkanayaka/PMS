@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Jan 19, 2021 12:56:32 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOS.Patient" table="patient" catalog="pms" optimistic-lock="version">
         <id name="idpatient" type="java.lang.Integer">
@@ -62,11 +62,11 @@
             </key>
             <one-to-many class="POJOS.PatientToken" />
         </set>
-        <set name="bodyMessurements" table="body_messurement" inverse="true" lazy="true" fetch="select">
+        <set name="bodyMeasurements" table="body_measurement" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="patient_idpatient" not-null="true" />
             </key>
-            <one-to-many class="POJOS.BodyMessurement" />
+            <one-to-many class="POJOS.BodyMeasurement" />
         </set>
     </class>
 </hibernate-mapping>

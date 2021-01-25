@@ -86,7 +86,6 @@ Contributor(s):
     <mapping resource="POJOS/Category.hbm.xml"/>
     <mapping resource="POJOS/ItemThird.hbm.xml"/>
     <mapping resource="POJOS/SaleInvoice.hbm.xml"/>
-    <mapping resource="POJOS/BodyMessurement.hbm.xml"/>
     <mapping resource="POJOS/CustomerBranch.hbm.xml"/>
     <mapping resource="POJOS/PatientToken.hbm.xml"/>
     <mapping resource="POJOS/Vehicle.hbm.xml"/>
@@ -99,6 +98,7 @@ Contributor(s):
     <mapping resource="POJOS/UseMethod.hbm.xml"/>
     <mapping resource="POJOS/PayEmployee.hbm.xml"/>
     <mapping resource="POJOS/StockPrice.hbm.xml"/>
+    <mapping resource="POJOS/BodyMeasurement.hbm.xml"/>
     <mapping resource="POJOS/ThirdCategory.hbm.xml"/>
     <mapping resource="POJOS/HoldInvoice.hbm.xml"/>
     <mapping resource="POJOS/OtherTrans.hbm.xml"/>

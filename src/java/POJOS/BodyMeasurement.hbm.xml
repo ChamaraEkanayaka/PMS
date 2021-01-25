@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jan 1, 2021 9:25:30 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Jan 19, 2021 12:56:32 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="POJOS.BodyMessurement" table="body_messurement" catalog="pms" optimistic-lock="version">
-        <id name="idbodyMessurement" type="java.lang.Integer">
-            <column name="idbody_messurement" />
+    <class name="POJOS.BodyMeasurement" table="body_measurement" catalog="pms" optimistic-lock="version">
+        <id name="idbodyMeasurement" type="java.lang.Integer">
+            <column name="idbody_measurement" />
             <generator class="identity" />
         </id>
         <many-to-one name="patient" class="POJOS.Patient" fetch="select">

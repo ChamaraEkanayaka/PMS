@@ -1,5 +1,5 @@
 package POJOS;
-// Generated Jan 1, 2021 9:25:22 PM by Hibernate Tools 4.3.1
+// Generated Jan 19, 2021 12:56:26 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -20,8 +20,8 @@ public class Prescription  implements java.io.Serializable {
      private String time;
      private Double medicineCost;
      private Double doctorCharge;
+     private Double totalAmount;
      private Double receivableAmount;
-     private Double paidAmount;
      private String note;
      private Double cash;
      private Double balance;
@@ -40,7 +40,7 @@ public class Prescription  implements java.io.Serializable {
         this.patientToken = patientToken;
         this.user = user;
     }
-    public Prescription(Doctor doctor, Patient patient, PatientToken patientToken, User user, String date, String time, Double medicineCost, Double doctorCharge, Double receivableAmount, Double paidAmount, String note, Double cash, Double balance, String settleDate, String settleTime, Integer status, Set prescriptionItems) {
+    public Prescription(Doctor doctor, Patient patient, PatientToken patientToken, User user, String date, String time, Double medicineCost, Double doctorCharge, Double totalAmount, Double receivableAmount, String note, Double cash, Double balance, String settleDate, String settleTime, Integer status, Set prescriptionItems) {
        this.doctor = doctor;
        this.patient = patient;
        this.patientToken = patientToken;
@@ -49,8 +49,8 @@ public class Prescription  implements java.io.Serializable {
        this.time = time;
        this.medicineCost = medicineCost;
        this.doctorCharge = doctorCharge;
+       this.totalAmount = totalAmount;
        this.receivableAmount = receivableAmount;
-       this.paidAmount = paidAmount;
        this.note = note;
        this.cash = cash;
        this.balance = balance;
@@ -123,19 +123,19 @@ public class Prescription  implements java.io.Serializable {
     public void setDoctorCharge(Double doctorCharge) {
         this.doctorCharge = doctorCharge;
     }
+    public Double getTotalAmount() {
+        return this.totalAmount;
+    }
+    
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
     public Double getReceivableAmount() {
         return this.receivableAmount;
     }
     
     public void setReceivableAmount(Double receivableAmount) {
         this.receivableAmount = receivableAmount;
-    }
-    public Double getPaidAmount() {
-        return this.paidAmount;
-    }
-    
-    public void setPaidAmount(Double paidAmount) {
-        this.paidAmount = paidAmount;
     }
     public String getNote() {
         return this.note;

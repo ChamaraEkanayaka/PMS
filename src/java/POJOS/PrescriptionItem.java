@@ -1,5 +1,5 @@
 package POJOS;
-// Generated Jan 1, 2021 9:25:22 PM by Hibernate Tools 4.3.1
+// Generated Jan 19, 2021 12:56:26 AM by Hibernate Tools 4.3.1
 
 
 
@@ -20,7 +20,7 @@ public class PrescriptionItem  implements java.io.Serializable {
      private Double qty;
      private Double costPerItem;
      private Double totalCost;
-     private String note;
+     private String remark;
      private Integer status;
 
     public PrescriptionItem() {
@@ -34,7 +34,7 @@ public class PrescriptionItem  implements java.io.Serializable {
         this.useCycle = useCycle;
         this.useMethod = useMethod;
     }
-    public PrescriptionItem(MealType mealType, Prescription prescription, Stock stock, UseCycle useCycle, UseMethod useMethod, Double dosage, Double duration, Double qty, Double costPerItem, Double totalCost, String note, Integer status) {
+    public PrescriptionItem(MealType mealType, Prescription prescription, Stock stock, UseCycle useCycle, UseMethod useMethod, Double dosage, Double duration, Double qty, Double costPerItem, Double totalCost, String remark, Integer status) {
        this.mealType = mealType;
        this.prescription = prescription;
        this.stock = stock;
@@ -45,7 +45,7 @@ public class PrescriptionItem  implements java.io.Serializable {
        this.qty = qty;
        this.costPerItem = costPerItem;
        this.totalCost = totalCost;
-       this.note = note;
+       this.remark = remark;
        this.status = status;
     }
    
@@ -126,12 +126,12 @@ public class PrescriptionItem  implements java.io.Serializable {
     public void setTotalCost(Double totalCost) {
         this.totalCost = totalCost;
     }
-    public String getNote() {
-        return this.note;
+    public String getRemark() {
+        return this.remark;
     }
     
-    public void setNote(String note) {
-        this.note = note;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
     public Integer getStatus() {
         return this.status;

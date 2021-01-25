@@ -12,12 +12,12 @@ package DataHolders;
 public class ProjectInfo {
     
     public static String getAppTitle() {
-        String txt = "Patient Management System";
+        String txt = "PMS";
         return txt;
     }
     
      public static String getCopyrightText() {
-        String txt = "© 2017 - 2020 A P K Hub  | All Rights Reserved.";
+        String txt = "© 2017 - 2021 A P K Hub  | All Rights Reserved.";
         return txt;
     }
 }

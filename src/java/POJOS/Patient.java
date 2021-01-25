@@ -1,5 +1,5 @@
 package POJOS;
-// Generated Jan 1, 2021 9:25:22 PM by Hibernate Tools 4.3.1
+// Generated Jan 19, 2021 12:56:26 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -28,7 +28,7 @@ public class Patient  implements java.io.Serializable {
      private Integer status;
      private Set prescriptions = new HashSet(0);
      private Set patientTokens = new HashSet(0);
-     private Set bodyMessurements = new HashSet(0);
+     private Set bodyMeasurements = new HashSet(0);
 
     public Patient() {
     }
@@ -37,7 +37,7 @@ public class Patient  implements java.io.Serializable {
     public Patient(User user) {
         this.user = user;
     }
-    public Patient(User user, String name, String birthDay, String gender, String bloodGroup, String address, String contactNo, String nic, String regDate, String regTime, String note, String lastUpdateDate, String lastUpdateTime, Integer status, Set prescriptions, Set patientTokens, Set bodyMessurements) {
+    public Patient(User user, String name, String birthDay, String gender, String bloodGroup, String address, String contactNo, String nic, String regDate, String regTime, String note, String lastUpdateDate, String lastUpdateTime, Integer status, Set prescriptions, Set patientTokens, Set bodyMeasurements) {
        this.user = user;
        this.name = name;
        this.birthDay = birthDay;
@@ -54,7 +54,7 @@ public class Patient  implements java.io.Serializable {
        this.status = status;
        this.prescriptions = prescriptions;
        this.patientTokens = patientTokens;
-       this.bodyMessurements = bodyMessurements;
+       this.bodyMeasurements = bodyMeasurements;
     }
    
     public Integer getIdpatient() {
@@ -176,12 +176,12 @@ public class Patient  implements java.io.Serializable {
     public void setPatientTokens(Set patientTokens) {
         this.patientTokens = patientTokens;
     }
-    public Set getBodyMessurements() {
-        return this.bodyMessurements;
+    public Set getBodyMeasurements() {
+        return this.bodyMeasurements;
     }
     
-    public void setBodyMessurements(Set bodyMessurements) {
-        this.bodyMessurements = bodyMessurements;
+    public void setBodyMeasurements(Set bodyMeasurements) {
+        this.bodyMeasurements = bodyMeasurements;
     }
 
 
