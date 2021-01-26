@@ -118,7 +118,7 @@
                                                         <div class="card-block">
                                                             <div class="row align-items-center">
                                                                 <div class="col">
-                                                                    <h5 class="m-b-0" style="font-size: 16px;">Tokens&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                                                    <h5 class="m-b-0" style="font-size: 16px;">Tokens&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
                                                                 </div>
                                                                 <div class="col col-auto text-right">
                                                                     <i class="feather icon-bookmark f-50 text-c-blue"></i>
@@ -132,24 +132,10 @@
                                                         <div class="card-block">
                                                             <div class="row align-items-center">
                                                                 <div class="col">
-                                                                    <h5 class="m-b-0" style="font-size: 16px;">Treatments</h5>
+                                                                    <h5 class="m-b-0" style="font-size: 16px;">Treatment</h5>
                                                                 </div>
                                                                 <div class="col col-auto text-right">
                                                                     <i class="feather icon-heart f-50 text-c-green"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                                    <div class="card bg-c-pink text-white" onclick='location.replace("index.jsp");'>
-                                                        <div class="card-block">
-                                                            <div class="row align-items-center">
-                                                                <div class="col">
-                                                                    <h5 class="m-b-0" style="font-size: 16px;">Patients</h5>
-                                                                </div>
-                                                                <div class="col col-auto text-right">
-                                                                    <i class="feather icon-users f-50 text-c-pink"></i>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -160,16 +146,29 @@
                                                         <div class="card-block">
                                                             <div class="row align-items-center">
                                                                 <div class="col">
-                                                                    <h5 class="m-b-0" style="font-size: 16px;">Title Here</h5>
+                                                                    <h5 class="m-b-0" style="font-size: 16px;">Patients&nbsp;&nbsp;&nbsp;&nbsp;</h5>
                                                                 </div>
                                                                 <div class="col col-auto text-right">
-                                                                    <i class="feather icon-shopping-cart f-50 text-c-yellow"></i>
+                                                                    <i class="feather icon-users f-50 text-c-yellow"></i>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                                    <div class="card bg-c-pink text-white" onclick='location.replace("index.jsp");'>
+                                                        <div class="card-block">
+                                                            <div class="row align-items-center">
+                                                                <div class="col">
+                                                                    <h5 class="m-b-0" style="font-size: 16px;">Reports&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                                                </div>
+                                                                <div class="col col-auto text-right">
+                                                                    <i class="feather icon-file f-50 text-c-pink"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
 
 

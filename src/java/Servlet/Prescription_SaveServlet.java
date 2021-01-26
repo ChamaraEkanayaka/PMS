@@ -74,7 +74,7 @@ public class Prescription_SaveServlet extends HttpServlet {
             prescp.setCash(0.00);
             prescp.setBalance(0.00);
             prescp.setUser(param_User);
-            prescp.setStatus(1);
+            prescp.setStatus(1); // set as Unpaid
             sess.save(prescp);
 
             // [ 02_1 ] SAVE  "PRESCRIPTION  >>ITEMS" ---------------------------------------------------------------------------

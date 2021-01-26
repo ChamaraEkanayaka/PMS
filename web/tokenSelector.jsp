@@ -47,7 +47,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title># Token | <%=MAIN_NAME%></title>
+        <title>Select Next #Token | <%=MAIN_NAME%></title>
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -100,7 +100,7 @@
                                                 <div class="col-lg-8">
                                                     <div class="page-header-title">
                                                         <div class="d-inline">
-                                                            <h4>NEXT TOKEN NUMBER</h4>
+                                                            <h4>NEXT PATIENT TOKEN NUMBER</h4>
                                                         </div>
                                                     </div>
                                                 </div>
