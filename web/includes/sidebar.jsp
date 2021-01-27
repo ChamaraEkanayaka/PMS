@@ -35,7 +35,7 @@
 
             <!-- *** PATIENTS *****************************************************************************************************  -->
             <li class="<%=(navMenuItem == "patients") ? "active pcoded-trigger" : ""%>">
-                <a href="index.jsp">
+                <a href="patient_Register.jsp">
                     <span class="pcoded-micon"><i class="feather icon-users"></i></span>
                     <span class="pcoded-mtext">Patients</span>
                 </a>
