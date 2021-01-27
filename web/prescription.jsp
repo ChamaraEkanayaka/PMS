@@ -186,7 +186,7 @@
                                                         </div>
                                                         <div class="card-block">
 
-                                                            <!-- PRESCRIPTION INFO --------------------------------------------------------------------------------------------------------------------------------------------------- -->
+                                                            <!-- PATIENT INFO --------------------------------------------------------------------------------------------------------------------------------------------------- -->
                                                             <div class="row invoive-info m-t-10">
                                                                 <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: -40px;">
                                                                     <h6><span class="fa fa-user"></span>&nbsp;&nbsp;Patient Information</h6>
@@ -237,9 +237,7 @@
                                                                             <tr>
                                                                                 <th>Note<span style="margin-left: 59px"></span>:&nbsp;&nbsp;</th>
                                                                                 <td style="width: 100%;">
-                                                                                    <textarea rows="5" cols="5" class="form-control" style="border: 1px solid #e9ecef;background: #ffffff; height: 85px;"
-                                                                                              readonly="true"
-                                                                                              id="lbl_PatientNote">
+                                                                                    <textarea rows="5" cols="5" class="form-control" style="border: 1px solid #e9ecef;background: #ffffff; height: 85px;" readonly="true" id="lbl_PatientNote">
                                                                                         <%=Token_OBJECT.getPatient().getNote()%>
                                                                                     </textarea>
                                                                                 </td>
@@ -670,9 +668,6 @@
                     flagSubmitSts = false;
                 }
                 // check Validations ----Dosage
-//                else if (!document.getElementById('addItem_Dosage').checkValidity()) {
-//                    flagSubmitSts = false;
-//                } 
                 else if (document.getElementById('addItem_Dosage').value.toString().trim().length == 0) {
                     flagSubmitSts = false;
                 } else if (document.getElementById('addItem_Dosage').value.toString().trim() == "NaN") {
@@ -682,9 +677,6 @@
                     flagSubmitSts = false;
                 }
                 // check Validations ----Duration
-//                else if (!document.getElementById('addItem_Duration').checkValidity()) {
-//                    flagSubmitSts = false;
-//                } 
                 else if (document.getElementById('addItem_Duration').value.toString().trim().length == 0) {
                     flagSubmitSts = false;
                 } else if (document.getElementById('addItem_Duration').value.toString().trim() == "NaN") {
@@ -791,10 +783,6 @@
                 var flagSubmitSts = false;
 
                 // check Validations ----Doctor_Charges
-//                else if (!document.getElementById('val_DoctorCharges').checkValidity()) {
-//                    flagSubmitSts = false;
-//                } else
-
                 if (document.getElementById('val_DoctorCharges').value.toString().trim().length == 0) {
                     flagSubmitSts = false;
                 } else if (document.getElementById('val_DoctorCharges').value.toString().trim() == "NaN") {
@@ -805,10 +793,6 @@
                 }
 
                 // check Validations ----Receivable_Amount
-//                else if (!document.getElementById('val_ReceivableAmount').checkValidity()) {
-//                    flagSubmitSts = false;
-//                } 
-
                 else if (document.getElementById('val_ReceivableAmount').value.toString().trim().length == 0) {
                     flagSubmitSts = false;
                 } else if (document.getElementById('val_ReceivableAmount').value.toString().trim() == "NaN") {

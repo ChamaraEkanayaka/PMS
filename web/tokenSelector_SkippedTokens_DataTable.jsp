@@ -16,7 +16,7 @@
 
     <style>
         .subDescText{
-            font-size: 12px;
+            font-size: 13px;
             color: #797878;
             font-weight: 600;
         }
@@ -42,8 +42,8 @@
                 <div class="card-block">
                     <div class="dt-responsive table-responsive">
                         <table id="datatable" class="table table-striped table-bordered nowrap">
-                            <thead>
-                                <tr>
+                            <thead style="background-color: #404e67; color: #f4f6fa;">
+                                <tr id="ScrollNFocusElem">
                                     <th>#Token No</th>
                                     <th>Actions</th>
                                 </tr>

@@ -25,7 +25,7 @@
                 </a>
             </li>
 
-            <!-- *** TREATMENTS *****************************************************************************************************  -->
+            <!-- *** TREATMENT *****************************************************************************************************  -->
             <li class="<%=(navMenuItem == "treatment") ? "active pcoded-trigger" : ""%>">
                 <a href="tokenSelector.jsp">
                     <span class="pcoded-micon"><i class="feather icon-heart"></i></span>
@@ -33,37 +33,37 @@
                 </a>
             </li>
 
-
-
-
-            <!-- ***  ******************************************************************************************************  -->
-            <li class="pcoded-hasmenu <%=(navMenuItem == "patients") ? "active pcoded-trigger" : ""%>">
-                <a href="javascript:void(0)">
+            <!-- *** PATIENTS *****************************************************************************************************  -->
+            <li class="<%=(navMenuItem == "patients") ? "active pcoded-trigger" : ""%>">
+                <a href="index.jsp">
                     <span class="pcoded-micon"><i class="feather icon-users"></i></span>
                     <span class="pcoded-mtext">Patients</span>
                 </a>
+            </li>
+
+            <!-- *** REPORTS *********************************************************************************************************  -->
+            <li class="pcoded-hasmenu <%=(navMenuItem == "reports") ? "active pcoded-trigger" : ""%>">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-file"></i></span>
+                    <span class="pcoded-mtext">Reports</span>
+                </a>
                 <ul class="pcoded-submenu">
-
-                    <li class="<%=(pagename == "patients") ? "active" : ""%>">
+                    <li class="<%=(pagename == "treatmentsReport") ? "active" : ""%>">
+                        <a href="report_TreatmentsReport.jsp">
+                            <span class="pcoded-mtext">Treatments Report</span>
+                        </a>
+                    </li>
+                    <li class="<%=(pagename == "tokenReport") ? "active" : ""%>">
                         <a href="index.jsp">
                             <span class="pcoded-mtext">MenuItem</span>
                         </a>
                     </li>
-
-                    <li class="<%=(pagename == "patients") ? "active" : ""%>">
-                        <a href="index.jsp">
-                            <span class="pcoded-mtext">MenuItem</span>
-                        </a>
-                    </li>
-
-                    <li class="<%=(pagename == "patients") ? "active" : ""%>">
-                        <a href="index.jsp">
-                            <span class="pcoded-mtext">MenuItem</span>
-                        </a>
-                    </li> 
 
                 </ul>
             </li>
+
+
+
 
 
 
