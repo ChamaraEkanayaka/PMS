@@ -301,6 +301,7 @@
                 $('#name').focus();
                 //name nic contact_number weight height gender blood_group address birth_day
                 
+                
             });
         </script>
 
