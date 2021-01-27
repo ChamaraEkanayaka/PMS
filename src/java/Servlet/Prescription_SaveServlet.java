@@ -52,6 +52,8 @@ public class Prescription_SaveServlet extends HttpServlet {
             PatientToken param_Token = (PatientToken) sess.load(PatientToken.class, Integer.valueOf(request.getParameter("tokenID")));
             Patient param_Patient = (Patient) sess.load(Patient.class, Integer.valueOf(request.getParameter("patientID")));
             Doctor param_Doctor = (Doctor) sess.load(Doctor.class, Integer.valueOf(request.getParameter("doctorID")));
+            String param_PatientWeight = String.valueOf(request.getParameter("patient_Weight"));
+            String param_PatientHeight = String.valueOf(request.getParameter("patient_Height"));
             double param_MedicineCost = Double.valueOf(request.getParameter("medicineCost"));
             double param_DoctorCharges = Double.valueOf(request.getParameter("doctorCharge"));
             double param_TotalAmount = Double.valueOf(request.getParameter("totalAmount"));
@@ -62,11 +64,14 @@ public class Prescription_SaveServlet extends HttpServlet {
             // [ 01 ] SAVE  "PRESCRIPTION  --INFO" -----------------------------------------------------------------------------
             Prescription prescp = new Prescription();
             prescp.setPatient(param_Patient);
-        //    prescp.setBodyMeasurement();
             prescp.setPatientToken(param_Token);
             prescp.setDoctor(param_Doctor);
             prescp.setDate(Utils.CurrentDateNTime.getCurrentDate());
             prescp.setTime(Utils.CurrentDateNTime.getCurrentTime());
+            prescp.setWeight(param_PatientWeight);
+            prescp.setHeight(param_PatientHeight);
+            prescp.setPatientAge(Utils.CurrentDateNTime.getAge(param_Patient.getBirthDay()) + " Years");
+            prescp.setPatientNote(param_Patient.getNote());
             prescp.setMedicineCost(param_MedicineCost);
             prescp.setDoctorCharge(param_DoctorCharges);
             prescp.setReceivableAmount(param_ReceivableAmount);

@@ -1,5 +1,5 @@
 package POJOS;
-// Generated Jan 27, 2021 1:27:27 PM by Hibernate Tools 4.3.1
+// Generated Jan 27, 2021 3:30:14 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -20,6 +20,8 @@ public class Prescription  implements java.io.Serializable {
      private String time;
      private String weight;
      private String height;
+     private String patientAge;
+     private String patientNote;
      private Double medicineCost;
      private Double doctorCharge;
      private Double totalAmount;
@@ -42,7 +44,7 @@ public class Prescription  implements java.io.Serializable {
         this.patientToken = patientToken;
         this.user = user;
     }
-    public Prescription(Doctor doctor, Patient patient, PatientToken patientToken, User user, String date, String time, String weight, String height, Double medicineCost, Double doctorCharge, Double totalAmount, Double receivableAmount, String note, Double cash, Double balance, String settleDate, String settleTime, Integer status, Set prescriptionItems) {
+    public Prescription(Doctor doctor, Patient patient, PatientToken patientToken, User user, String date, String time, String weight, String height, String patientAge, String patientNote, Double medicineCost, Double doctorCharge, Double totalAmount, Double receivableAmount, String note, Double cash, Double balance, String settleDate, String settleTime, Integer status, Set prescriptionItems) {
        this.doctor = doctor;
        this.patient = patient;
        this.patientToken = patientToken;
@@ -51,6 +53,8 @@ public class Prescription  implements java.io.Serializable {
        this.time = time;
        this.weight = weight;
        this.height = height;
+       this.patientAge = patientAge;
+       this.patientNote = patientNote;
        this.medicineCost = medicineCost;
        this.doctorCharge = doctorCharge;
        this.totalAmount = totalAmount;
@@ -126,6 +130,20 @@ public class Prescription  implements java.io.Serializable {
     
     public void setHeight(String height) {
         this.height = height;
+    }
+    public String getPatientAge() {
+        return this.patientAge;
+    }
+    
+    public void setPatientAge(String patientAge) {
+        this.patientAge = patientAge;
+    }
+    public String getPatientNote() {
+        return this.patientNote;
+    }
+    
+    public void setPatientNote(String patientNote) {
+        this.patientNote = patientNote;
     }
     public Double getMedicineCost() {
         return this.medicineCost;

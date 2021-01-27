@@ -45,9 +45,10 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/pms?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">123</property>
     <mapping resource="POJOS/PurchusInvoiceRecipt.hbm.xml"/>
-    <mapping resource="POJOS/StockTransfer.hbm.xml"/>
     <mapping resource="POJOS/Type.hbm.xml"/>
+    <mapping resource="POJOS/StockTransfer.hbm.xml"/>
     <mapping resource="POJOS/CustomerTypeCustomer.hbm.xml"/>
     <mapping resource="POJOS/User.hbm.xml"/>
     <mapping resource="POJOS/HoldRecipt.hbm.xml"/>
@@ -72,13 +73,13 @@ Contributor(s):
     <mapping resource="POJOS/Shortcut.hbm.xml"/>
     <mapping resource="POJOS/DayStart.hbm.xml"/>
     <mapping resource="POJOS/PurchusInvoiceItem.hbm.xml"/>
-    <mapping resource="POJOS/CustomerType.hbm.xml"/>
     <mapping resource="POJOS/Mess.hbm.xml"/>
     <mapping resource="POJOS/Patient.hbm.xml"/>
+    <mapping resource="POJOS/CustomerType.hbm.xml"/>
     <mapping resource="POJOS/Branch.hbm.xml"/>
     <mapping resource="POJOS/SaleInvoiceItem.hbm.xml"/>
-    <mapping resource="POJOS/Items.hbm.xml"/>
     <mapping resource="POJOS/DoHoldItem.hbm.xml"/>
+    <mapping resource="POJOS/Items.hbm.xml"/>
     <mapping resource="POJOS/ReturnItem.hbm.xml"/>
     <mapping resource="POJOS/StockHistory.hbm.xml"/>
     <mapping resource="POJOS/TextList.hbm.xml"/>
@@ -96,12 +97,12 @@ Contributor(s):
     <mapping resource="POJOS/Settings.hbm.xml"/>
     <mapping resource="POJOS/UseMethod.hbm.xml"/>
     <mapping resource="POJOS/PayEmployee.hbm.xml"/>
-    <mapping resource="POJOS/StockPrice.hbm.xml"/>
     <mapping resource="POJOS/BodyMeasurement.hbm.xml"/>
+    <mapping resource="POJOS/StockPrice.hbm.xml"/>
     <mapping resource="POJOS/ThirdCategory.hbm.xml"/>
     <mapping resource="POJOS/HoldInvoice.hbm.xml"/>
-    <mapping resource="POJOS/PoOrderItems.hbm.xml"/>
     <mapping resource="POJOS/OtherTrans.hbm.xml"/>
+    <mapping resource="POJOS/PoOrderItems.hbm.xml"/>
     <mapping resource="POJOS/ItemReorder.hbm.xml"/>
     <mapping resource="POJOS/StockDamage.hbm.xml"/>
     <mapping resource="POJOS/UseCycle.hbm.xml"/>

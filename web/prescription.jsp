@@ -109,6 +109,10 @@
             // Set TOKEN Object
             PatientToken Token_OBJECT = (PatientToken) sess.load(PatientToken.class, Integer.valueOf(request.getParameter("tokenID")));
 
+            // Set PATIENT Weight & Height
+            String patient_Weight = "N/A";
+            String patient_Height = "N/A";
+
             // Set DOCTOR Object
             User User_OBJECT = (User) sess.load(User.class, USER_ID);
             Criteria doctor_Crt = sess.createCriteria(Doctor.class);
@@ -197,7 +201,7 @@
                                                                                 <td><%="# " + Token_OBJECT.getTokenNumber()%></td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Name<span style="margin-left: 52px"></span>:&nbsp;&nbsp;</th>
+                                                                                <th>Name<span style="margin-left: 51px"></span>:&nbsp;&nbsp;</th>
                                                                                 <td><%=Token_OBJECT.getPatient().getName()%></td>
                                                                             </tr>
                                                                             <tr>
@@ -205,11 +209,11 @@
                                                                                 <td><%=Token_OBJECT.getPatient().getGender()%></td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Age<span style="margin-left: 64px"></span>:&nbsp;&nbsp;</th>
+                                                                                <th>Age<span style="margin-left: 67px"></span>:&nbsp;&nbsp;</th>
                                                                                 <td><%=Utils.CurrentDateNTime.getAge(Token_OBJECT.getPatient().getBirthDay()) + " Years"%></td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Blood Group<span style="margin-left: 5px"></span>:&nbsp;&nbsp;</th>
+                                                                                <th>Blood Group<span style="margin-left: 7px"></span>:&nbsp;&nbsp;</th>
                                                                                 <td><%=Token_OBJECT.getPatient().getBloodGroup()%></td>
                                                                             </tr>
                                                                             <%
@@ -217,25 +221,30 @@
                                                                                 BodyMsrmnt_Crt.add(Restrictions.eq("patient", Token_OBJECT.getPatient()));
                                                                                 BodyMsrmnt_Crt.add(Restrictions.eq("status", 1));
                                                                                 List<BodyMeasurement> BodyMsrmntList = BodyMsrmnt_Crt.list();
-                                                                                for (BodyMeasurement BodyMsrmnt_OBJC : BodyMsrmntList) {
+                                                                                if (!BodyMsrmntList.isEmpty()) {
+                                                                                    BodyMeasurement BodyMsrmnt_OBJC = BodyMsrmntList.get(0);
+                                                                                    patient_Weight = Utils.DecimalFormats.dfDoubleValue().format(BodyMsrmnt_OBJC.getWeight());
+                                                                                    patient_Height = Utils.DecimalFormats.dfDoubleValue().format(BodyMsrmnt_OBJC.getHeight());
+                                                                                }
                                                                             %>
                                                                             <tr>
-                                                                                <th>Height<span style="margin-left: 46px"></span>:&nbsp;&nbsp;</th>
-                                                                                <td><%=Utils.DecimalFormats.dfDoubleValue().format(BodyMsrmnt_OBJC.getHeight()) + " Ft./ Inc."%></td>
+                                                                                <th>Height<span style="margin-left: 48px"></span>:&nbsp;&nbsp;</th>
+                                                                                <td><%=patient_Height + " Ft./ Inc."%></td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th>Wight<span style="margin-left: 51px"></span>:&nbsp;&nbsp;</th>
-                                                                                <td><%=Utils.DecimalFormats.dfDoubleValue().format(BodyMsrmnt_OBJC.getWeight()) + " Kg"%>
-
+                                                                                <th>Weight<span style="margin-left: 45px"></span>:&nbsp;&nbsp;</th>
+                                                                                <td><%=patient_Weight + " Kg"%>
+                                                                                    <% if (!BodyMsrmntList.isEmpty()) {%>
                                                                                     <button style="font-size: 13px; padding: 3px 8px 3px 8px;" class="btn btn-warning btn-sm btn-mat waves-effect m-l-20"
                                                                                             onclick='open_BMHistoryModal("<%=Token_OBJECT.getPatient().getIdpatient()%>");'
                                                                                             ><span class="fa fa-history"></span>&nbsp;View History
                                                                                     </button>
+                                                                                    <% }%>
                                                                                 </td>
                                                                             </tr>
-                                                                            <% }%>
+
                                                                             <tr>
-                                                                                <th>Note<span style="margin-left: 59px"></span>:&nbsp;&nbsp;</th>
+                                                                                <th>Note<span style="margin-left: 60px"></span>:&nbsp;&nbsp;</th>
                                                                                 <td style="width: 100%;">
                                                                                     <textarea rows="5" cols="5" class="form-control" style="border: 1px solid #e9ecef;background: #ffffff; height: 85px;" readonly="true" id="lbl_PatientNote">
                                                                                         <%=Token_OBJECT.getPatient().getNote()%>
@@ -881,6 +890,8 @@
                                 "tokenID=" + "<%=Token_OBJECT.getIdpatientToken()%>" + "&" +
                                 "patientID=" + "<%=Token_OBJECT.getPatient().getIdpatient()%>" + "&" +
                                 "doctorID=" + "<%=Doctor_OBJECT.getIddoctor()%>" + "&" +
+                                "patient_Weight=" + "<%=patient_Weight%>" + "&" +
+                                "patient_Height=" + "<%=patient_Height%>" + "&" +
                                 "medicineCost=" + document.getElementById("val_MedicineCost").value + "&" +
                                 "doctorCharge=" + document.getElementById("val_DoctorCharges").value + "&" +
                                 "totalAmount=" + document.getElementById("val_TotalAmount").innerHTML + "&" +

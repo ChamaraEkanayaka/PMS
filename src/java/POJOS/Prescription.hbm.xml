@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jan 27, 2021 1:27:33 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Jan 27, 2021 3:30:22 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOS.Prescription" table="prescription" catalog="pms" optimistic-lock="version">
         <id name="idprescription" type="java.lang.Integer">
@@ -31,6 +31,12 @@
         </property>
         <property name="height" type="string">
             <column name="height" length="10" />
+        </property>
+        <property name="patientAge" type="string">
+            <column name="patient_age" length="10" />
+        </property>
+        <property name="patientNote" type="string">
+            <column name="patient_note" length="65535" />
         </property>
         <property name="medicineCost" type="java.lang.Double">
             <column name="medicine_cost" precision="22" scale="0" />
