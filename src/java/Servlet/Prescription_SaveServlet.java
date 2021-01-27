@@ -62,6 +62,7 @@ public class Prescription_SaveServlet extends HttpServlet {
             // [ 01 ] SAVE  "PRESCRIPTION  --INFO" -----------------------------------------------------------------------------
             Prescription prescp = new Prescription();
             prescp.setPatient(param_Patient);
+        //    prescp.setBodyMeasurement();
             prescp.setPatientToken(param_Token);
             prescp.setDoctor(param_Doctor);
             prescp.setDate(Utils.CurrentDateNTime.getCurrentDate());

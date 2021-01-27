@@ -1,5 +1,5 @@
 package POJOS;
-// Generated Jan 27, 2021 12:48:16 PM by Hibernate Tools 4.3.1
+// Generated Jan 27, 2021 1:27:27 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,13 +12,14 @@ public class Prescription  implements java.io.Serializable {
 
 
      private Integer idprescription;
-     private BodyMeasurement bodyMeasurement;
      private Doctor doctor;
      private Patient patient;
      private PatientToken patientToken;
      private User user;
      private String date;
      private String time;
+     private String weight;
+     private String height;
      private Double medicineCost;
      private Double doctorCharge;
      private Double totalAmount;
@@ -35,21 +36,21 @@ public class Prescription  implements java.io.Serializable {
     }
 
 	
-    public Prescription(BodyMeasurement bodyMeasurement, Doctor doctor, Patient patient, PatientToken patientToken, User user) {
-        this.bodyMeasurement = bodyMeasurement;
+    public Prescription(Doctor doctor, Patient patient, PatientToken patientToken, User user) {
         this.doctor = doctor;
         this.patient = patient;
         this.patientToken = patientToken;
         this.user = user;
     }
-    public Prescription(BodyMeasurement bodyMeasurement, Doctor doctor, Patient patient, PatientToken patientToken, User user, String date, String time, Double medicineCost, Double doctorCharge, Double totalAmount, Double receivableAmount, String note, Double cash, Double balance, String settleDate, String settleTime, Integer status, Set prescriptionItems) {
-       this.bodyMeasurement = bodyMeasurement;
+    public Prescription(Doctor doctor, Patient patient, PatientToken patientToken, User user, String date, String time, String weight, String height, Double medicineCost, Double doctorCharge, Double totalAmount, Double receivableAmount, String note, Double cash, Double balance, String settleDate, String settleTime, Integer status, Set prescriptionItems) {
        this.doctor = doctor;
        this.patient = patient;
        this.patientToken = patientToken;
        this.user = user;
        this.date = date;
        this.time = time;
+       this.weight = weight;
+       this.height = height;
        this.medicineCost = medicineCost;
        this.doctorCharge = doctorCharge;
        this.totalAmount = totalAmount;
@@ -69,13 +70,6 @@ public class Prescription  implements java.io.Serializable {
     
     public void setIdprescription(Integer idprescription) {
         this.idprescription = idprescription;
-    }
-    public BodyMeasurement getBodyMeasurement() {
-        return this.bodyMeasurement;
-    }
-    
-    public void setBodyMeasurement(BodyMeasurement bodyMeasurement) {
-        this.bodyMeasurement = bodyMeasurement;
     }
     public Doctor getDoctor() {
         return this.doctor;
@@ -118,6 +112,20 @@ public class Prescription  implements java.io.Serializable {
     
     public void setTime(String time) {
         this.time = time;
+    }
+    public String getWeight() {
+        return this.weight;
+    }
+    
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+    public String getHeight() {
+        return this.height;
+    }
+    
+    public void setHeight(String height) {
+        this.height = height;
     }
     public Double getMedicineCost() {
         return this.medicineCost;

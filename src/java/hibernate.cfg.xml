@@ -73,9 +73,9 @@ Contributor(s):
     <mapping resource="POJOS/Shortcut.hbm.xml"/>
     <mapping resource="POJOS/DayStart.hbm.xml"/>
     <mapping resource="POJOS/PurchusInvoiceItem.hbm.xml"/>
+    <mapping resource="POJOS/CustomerType.hbm.xml"/>
     <mapping resource="POJOS/Mess.hbm.xml"/>
     <mapping resource="POJOS/Patient.hbm.xml"/>
-    <mapping resource="POJOS/CustomerType.hbm.xml"/>
     <mapping resource="POJOS/Branch.hbm.xml"/>
     <mapping resource="POJOS/SaleInvoiceItem.hbm.xml"/>
     <mapping resource="POJOS/Items.hbm.xml"/>
@@ -101,8 +101,8 @@ Contributor(s):
     <mapping resource="POJOS/BodyMeasurement.hbm.xml"/>
     <mapping resource="POJOS/ThirdCategory.hbm.xml"/>
     <mapping resource="POJOS/HoldInvoice.hbm.xml"/>
-    <mapping resource="POJOS/OtherTrans.hbm.xml"/>
     <mapping resource="POJOS/PoOrderItems.hbm.xml"/>
+    <mapping resource="POJOS/OtherTrans.hbm.xml"/>
     <mapping resource="POJOS/ItemReorder.hbm.xml"/>
     <mapping resource="POJOS/StockDamage.hbm.xml"/>
     <mapping resource="POJOS/UseCycle.hbm.xml"/>

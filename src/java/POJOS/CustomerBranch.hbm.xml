@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jan 27, 2021 12:48:24 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Jan 27, 2021 1:27:33 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOS.CustomerBranch" table="customer_branch" catalog="pms" optimistic-lock="version">
         <id name="idcustomerBranch" type="java.lang.Integer">
