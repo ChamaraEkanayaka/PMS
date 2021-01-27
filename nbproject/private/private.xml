@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="44"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="49"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/AKILA/Documents/NetBeansProjects/PMS/src/java/Servlet/Prescription_SaveServlet.java</file>
             <file>file:/C:/Users/AKILA/Documents/NetBeansProjects/PMS/web/report_TreatmentsReport.jsp</file>
-            <file>file:/C:/Users/AKILA/Documents/NetBeansProjects/PMS/web/prescription.jsp</file>
             <file>file:/C:/Users/AKILA/Documents/NetBeansProjects/PMS/web/prescriptionPreview_Modal.jsp</file>
-            <file>file:/C:/Users/AKILA/Documents/NetBeansProjects/PMS/web/report_TreatmentsReport_DataTable.jsp</file>
         </group>
     </open-files>
 </project-private>
