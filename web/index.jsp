@@ -142,7 +142,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
-                                                    <div class="card bg-c-yellow text-white" onclick='location.replace("index.jsp");'>
+                                                    <div class="card bg-c-yellow text-white" onclick='location.replace("patient_Register.jsp");'>
                                                         <div class="card-block">
                                                             <div class="row align-items-center">
                                                                 <div class="col">
