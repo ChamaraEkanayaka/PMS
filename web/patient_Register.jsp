@@ -94,7 +94,7 @@
 
     <body>
         <%
-            Session sess = FactoryManager.getSessionFactory().openSession(); 
+            Session sess = FactoryManager.getSessionFactory().openSession();
             User User_OBJECT = (User) sess.load(User.class, USER_ID);
         %>
 
@@ -313,8 +313,11 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#name').focus();
-                $('#button_save').click(function (){
+                $('#button_save').click(function () {
                     savePatient("save");
+                });
+                $('#button_saveAndIssueToken').click(function () {
+                    savePatient("saveToken");
                 });
 
             });
@@ -332,10 +335,10 @@
                     closeOnConfirm: false,
                     showLoaderOnConfirm: true
                 }, function (isConfirm) {
-                    if (isConfirm){
+                    if (isConfirm) {
                         //name nic contact_number weight height gender blood_group address birth_day remark
                         var params =
-                                "userID=" + "<%=User_OBJECT.getIduser() %>" + "&" +
+                                "userID=" + "<%=User_OBJECT.getIduser()%>" + "&" +
                                 "name=" + document.getElementById("name").value + "&" +
                                 "nic=" + document.getElementById("nic").value + "&" +
                                 "contact_number=" + document.getElementById("contact_number").value + "&" +
@@ -346,18 +349,25 @@
                                 "remark=" + document.getElementById("remark").value + "&" +
                                 "address=" + document.getElementById("address").value + "&" +
                                 "birth_day=" + document.getElementById("birth_day").value;
-                        alert(params);
 
-                        $.post("patientRegistrationServlet", params, function (outputData) {
-                            //swal(outputData.split(":")[1], outputData.split(":")[2], outputData.split(":")[0]);
-                            // Post Actions..
-                            setTimeout(function () {
-                                //if (outputData.split(":")[0] == 'success') {
-                                    
-                                //} else {
-                                    
-                                //}
-                            }, 1000);
+                        $.post("Patient_RegisterServlet", params, function (outputData) {
+                            //Post Actions..
+                            if (outputData.split(":")[0] == '1') {
+                                if (param_saveType == 'save') {
+                                    swal("Saved !", 'Patient details saved !', "success");
+                                    setTimeout(function () {
+                                        window.location.replace("patient_Register.jsp");
+                                    }, 700);
+                                } else {
+                                    swal("Saved !", 'Patient details saved !', "success");
+                                    setTimeout(function () {
+                                        window.location.replace("issueToken.jsp?patientID="+outputData.split(":")[1]);
+                                    }, 700);
+                                }
+                            } else {
+                                swal('Empty Fields !', 'Please fill all filelds and try agin.', 'error');
+                            }
+
                         });
                     }
                 });

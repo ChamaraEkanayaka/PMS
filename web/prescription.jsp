@@ -902,7 +902,7 @@
                             swal(outputData.split(":")[1], outputData.split(":")[2], outputData.split(":")[0]);
                             // Post Actions..
                             setTimeout(function () {
-                                if (outputData.split(":")[0] == 'success') {
+                                if (outputData.split(":")[0] == 'success'){
                                     location.replace("tokenSelector.jsp");
                                 } else {
                                     document.getElementById('btn_SubmitForm').disabled = true;  // disable submit
@@ -941,7 +941,7 @@
         <script type="text/javascript">
             function open_BMHistoryModal(param_PatientID) {
                 $('#DetailsPrvw-Modal').modal('show');
-                $('#DetailsPrvw-Modal-Content').load('prescription_BMHistoryModal.jsp?patientID=' + param_PatientID);
+                $('#DetailsPrvw-Modal-Content').load('prescription_BMHistoryModal.jsp?patientID='+ param_PatientID);
             }
         </script>
 

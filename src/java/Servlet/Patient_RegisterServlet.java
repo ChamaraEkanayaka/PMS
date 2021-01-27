@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2021  APK HUB Software Solution (Pvt.) Ltd
  * All rights reserved.
- * 27 Jan 2021 02:31:15 PM By Mayura Lakshan.
+ * 27 Jan 2021 09:29:59 PM By Mayura Lakshan.
  */
 package Servlet;
 
@@ -23,7 +23,8 @@ import org.hibernate.Transaction;
  *
  * @author Mayura Lakshan
  */
-public class patientRegistrationServlet extends HttpServlet {
+public class Patient_RegisterServlet extends HttpServlet {
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,7 +40,7 @@ public class patientRegistrationServlet extends HttpServlet {
                 
                 Session sess = FactoryManager.getSessionFactory().openSession();
                 
-                int User_Id = 0;
+                int User_Id = Integer.parseInt(request.getParameter("userID"));
                 
                 String NIC = "N/A";
                 double Weight = 0.0;
@@ -90,6 +91,7 @@ public class patientRegistrationServlet extends HttpServlet {
                 
                 if (Height > 0 || Weight > 0) {
                     BodyMeasurement bm = new BodyMeasurement();
+                    bm.setPatient(pt);
                     bm.setHeight(Height);
                     bm.setWeight(Weight);
                     bm.setDate(CurrentDateNTime.getCurrentDate());
@@ -108,11 +110,14 @@ public class patientRegistrationServlet extends HttpServlet {
             out.print("0:0");
         }
     }
+
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
+
     
+
 }
