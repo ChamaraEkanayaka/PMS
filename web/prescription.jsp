@@ -874,7 +874,7 @@
                     closeOnConfirm: false,
                     showLoaderOnConfirm: true
                 }, function (isConfirm) {
-                    if (isConfirm) {
+                    if (isConfirm){
                         // start >> Save process.............................................................................................................................
                         var params =
                                 "userID=" + "<%=User_OBJECT.getIduser()%>" + "&" +

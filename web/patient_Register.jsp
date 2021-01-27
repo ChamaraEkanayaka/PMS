@@ -94,7 +94,8 @@
 
     <body>
         <%
-
+            Session sess = FactoryManager.getSessionFactory().openSession(); 
+            User User_OBJECT = (User) sess.load(User.class, USER_ID);
         %>
 
         <!-- Preloader Start-->
@@ -187,7 +188,14 @@
                                                                         <select class="form-control"
                                                                                 required="true"
                                                                                 id="blood_group">
-                                                                            <option value="x">Select Here</option>
+                                                                            <option value="A+">A+</option>
+                                                                            <option value="A-">A-</option>
+                                                                            <option value="AB+">AB+</option>
+                                                                            <option value="AB-">AB-</option>
+                                                                            <option value="B+">B+</option>
+                                                                            <option value="B-">B-</option>
+                                                                            <option value="O+">O+</option>
+                                                                            <option value="O-">O-</option>
                                                                         </select>
                                                                     </div>
 
@@ -197,19 +205,21 @@
                                                                         <select class="form-control"
                                                                                 required="true"
                                                                                 id="gender">
-                                                                            <option value="x">Select Here</option>
+                                                                            <option value="Male">Male</option>
+                                                                            <option value="Female">Female</option>
+                                                                            <option value="Other">Other</option>
                                                                         </select>
                                                                     </div>
                                                                     <!-- Height -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
-                                                                        <label class="col-lable f-w-700">Height</label>
+                                                                        <label class="col-lable f-w-700">Height (cm)</label>
                                                                         <input class="form-control"
                                                                                type="number"
                                                                                id="height">
                                                                     </div> 
                                                                     <!-- Weight -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
-                                                                        <label class="col-lable f-w-700">Weight</label>
+                                                                        <label class="col-lable f-w-700">Weight (kg)</label>
                                                                         <input class="form-control"
                                                                                type="number"
                                                                                id="weight">
@@ -223,7 +233,7 @@
                                                                     </div> 
                                                                     <!-- NIC -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
-                                                                        <label class="col-lable f-w-700">NIC *</label>
+                                                                        <label class="col-lable f-w-700">NIC</label>
                                                                         <input class="form-control"
                                                                                type="text"
                                                                                id="nic">
@@ -243,8 +253,12 @@
                                                                         <div class="col-lg-12 col-md-12 col-sm-6">
                                                                             <button style="font-size: 14px;" class="btn btn-primary btn-sm btn-mat waves-effect"
                                                                                     type="submit"
-                                                                                    disabled="true"
-                                                                                    id="button_addItemToList"
+                                                                                    id="button_save"
+                                                                                    >SAVE ONLY
+                                                                            </button>
+                                                                            <button style="font-size: 14px;" class="btn btn-warning btn-sm btn-mat waves-effect"
+                                                                                    type="submit"
+                                                                                    id="button_saveAndIssueToken"
                                                                                     >SAVE AND ISSUE TOKEN
                                                                             </button>
                                                                             <label class="col-lable">&nbsp;</label>
@@ -299,12 +313,56 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#name').focus();
-                //name nic contact_number weight height gender blood_group address birth_day
-                
-                
+                $('#button_save').click(function (){
+                    savePatient("save");
+                });
+
             });
         </script>
+        <script type="text/javascript">
+            function savePatient(param_saveType) {
+                swal({
+                    title: "Are you sure?",
+                    text: "You want to save this patient.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes, Save Now",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true
+                }, function (isConfirm) {
+                    if (isConfirm){
+                        //name nic contact_number weight height gender blood_group address birth_day remark
+                        var params =
+                                "userID=" + "<%=User_OBJECT.getIduser() %>" + "&" +
+                                "name=" + document.getElementById("name").value + "&" +
+                                "nic=" + document.getElementById("nic").value + "&" +
+                                "contact_number=" + document.getElementById("contact_number").value + "&" +
+                                "weight=" + document.getElementById("weight").value + "&" +
+                                "height=" + document.getElementById("height").value + "&" +
+                                "gender=" + document.getElementById("gender").value + "&" +
+                                "blood_group=" + document.getElementById("blood_group").value + "&" +
+                                "remark=" + document.getElementById("remark").value + "&" +
+                                "address=" + document.getElementById("address").value + "&" +
+                                "birth_day=" + document.getElementById("birth_day").value;
+                        alert(params);
 
+                        $.post("patientRegistrationServlet", params, function (outputData) {
+                            //swal(outputData.split(":")[1], outputData.split(":")[2], outputData.split(":")[0]);
+                            // Post Actions..
+                            setTimeout(function () {
+                                //if (outputData.split(":")[0] == 'success') {
+                                    
+                                //} else {
+                                    
+                                //}
+                            }, 1000);
+                        });
+                    }
+                });
+            }
+        </script>
 
     </body>
 </html>
