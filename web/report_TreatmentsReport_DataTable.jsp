@@ -225,10 +225,10 @@
                                         <span class="label label-danger">&nbsp;PENDING&nbsp;</span>      
                                         <% } else { %>
                                         <span class="label label-success">&nbsp;COMPLETED&nbsp;</span>   
-                                        <% } %>
+                                        <% }%>
                                     </td>
                                     <td>
-                                        <button class="btn btn-primary btn-sm" onclick=''><span class="fa fa-file-text" style="display: inline; color: #ffffff;"></span>&nbsp;&nbsp;View Prescription</button>
+                                        <button class="btn btn-primary btn-sm" onclick='show_PrescriptionPrvw_Modal("<%=prescp_Objct.getIdprescription()%>");'><span class="fa fa-file-text" style="display: inline; color: #ffffff;"></span>&nbsp;&nbsp;View Prescription</button>
                                     </td>
                                 </tr>
                                 <% }
@@ -240,6 +240,15 @@
             </div>
         </div>
     </div>
+
+    <!-- Prescription-Preview _Modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="Prescription-Modal">
+        <div class="modal-dialog modal-lg" role="document" style="max-width: 80%;">
+            <div class="modal-content" id="Prescription-Modal-Content" style="background: #f6f7fb;">
+                <div class="loader-block"><svg id="loader2" viewBox="0 0 100 100"><circle id="circle-loader2" cx="50" cy="50" r="45"></circle></svg></div>
+            </div>
+        </div>
+    </div>                        
 
     <!--  Core Script Pugins -->   
     <script src="assets/js/script.min.js" type="text/javascript"></script>
@@ -257,6 +266,13 @@
                 document.getElementById("dtTableTH_ORD").click();
             }, 500);
         });
+    </script>
+
+    <script type="text/javascript">
+        function show_PrescriptionPrvw_Modal(prescriptionNo) {
+            $('#Prescription-Modal').modal('show');
+            $('#Prescription-Modal-Content').load('prescriptionPreview_Modal.jsp?prescriptionNo=' + prescriptionNo);
+        }
     </script>
 
 </div>

@@ -1,5 +1,5 @@
 package POJOS;
-// Generated Jan 19, 2021 12:56:26 AM by Hibernate Tools 4.3.1
+// Generated Jan 27, 2021 12:48:16 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,6 +12,7 @@ public class Prescription  implements java.io.Serializable {
 
 
      private Integer idprescription;
+     private BodyMeasurement bodyMeasurement;
      private Doctor doctor;
      private Patient patient;
      private PatientToken patientToken;
@@ -34,13 +35,15 @@ public class Prescription  implements java.io.Serializable {
     }
 
 	
-    public Prescription(Doctor doctor, Patient patient, PatientToken patientToken, User user) {
+    public Prescription(BodyMeasurement bodyMeasurement, Doctor doctor, Patient patient, PatientToken patientToken, User user) {
+        this.bodyMeasurement = bodyMeasurement;
         this.doctor = doctor;
         this.patient = patient;
         this.patientToken = patientToken;
         this.user = user;
     }
-    public Prescription(Doctor doctor, Patient patient, PatientToken patientToken, User user, String date, String time, Double medicineCost, Double doctorCharge, Double totalAmount, Double receivableAmount, String note, Double cash, Double balance, String settleDate, String settleTime, Integer status, Set prescriptionItems) {
+    public Prescription(BodyMeasurement bodyMeasurement, Doctor doctor, Patient patient, PatientToken patientToken, User user, String date, String time, Double medicineCost, Double doctorCharge, Double totalAmount, Double receivableAmount, String note, Double cash, Double balance, String settleDate, String settleTime, Integer status, Set prescriptionItems) {
+       this.bodyMeasurement = bodyMeasurement;
        this.doctor = doctor;
        this.patient = patient;
        this.patientToken = patientToken;
@@ -66,6 +69,13 @@ public class Prescription  implements java.io.Serializable {
     
     public void setIdprescription(Integer idprescription) {
         this.idprescription = idprescription;
+    }
+    public BodyMeasurement getBodyMeasurement() {
+        return this.bodyMeasurement;
+    }
+    
+    public void setBodyMeasurement(BodyMeasurement bodyMeasurement) {
+        this.bodyMeasurement = bodyMeasurement;
     }
     public Doctor getDoctor() {
         return this.doctor;

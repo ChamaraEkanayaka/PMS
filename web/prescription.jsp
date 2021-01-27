@@ -186,7 +186,7 @@
                                                         </div>
                                                         <div class="card-block">
 
-                                                            <!-- PRESCRIPTION INFO --------------------------------------------------------------------------------------------------------------------------------------------------- -->
+                                                            <!-- PATIENT INFO --------------------------------------------------------------------------------------------------------------------------------------------------- -->
                                                             <div class="row invoive-info m-t-10">
                                                                 <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: -40px;">
                                                                     <h6><span class="fa fa-user"></span>&nbsp;&nbsp;Patient Information</h6>
@@ -237,9 +237,7 @@
                                                                             <tr>
                                                                                 <th>Note<span style="margin-left: 59px"></span>:&nbsp;&nbsp;</th>
                                                                                 <td style="width: 100%;">
-                                                                                    <textarea rows="5" cols="5" class="form-control" style="border: 1px solid #e9ecef;background: #ffffff; height: 85px;"
-                                                                                              readonly="true"
-                                                                                              id="lbl_PatientNote">
+                                                                                    <textarea rows="5" cols="5" class="form-control" style="border: 1px solid #e9ecef;background: #ffffff; height: 85px;" readonly="true" id="lbl_PatientNote">
                                                                                         <%=Token_OBJECT.getPatient().getNote()%>
                                                                                     </textarea>
                                                                                 </td>
