@@ -53,9 +53,9 @@
                             <span class="pcoded-mtext">Treatments Report</span>
                         </a>
                     </li>
-                    <li class="<%=(pagename == "tokenReport") ? "active" : ""%>">
-                        <a href="index.jsp">
-                            <span class="pcoded-mtext">MenuItem</span>
+                    <li class="<%=(pagename == "tokensReport") ? "active" : ""%>">
+                        <a href="report_TokensReport.jsp">
+                            <span class="pcoded-mtext">Tokens Report</span>
                         </a>
                     </li>
 
