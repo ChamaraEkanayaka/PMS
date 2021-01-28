@@ -18,7 +18,7 @@
     int USER_ID = 0;
     int BRANCH_ID = 0;
     try {
-        if (request.getSession().getAttribute("LOGIN_DATA") != null){
+        if (request.getSession().getAttribute("LOGIN_DATA") != null) {
             USER_LOGIN_DATA LD = (USER_LOGIN_DATA) request.getSession().getAttribute("LOGIN_DATA");
             STAFF_NAME = LD.getName();
             USER_NAME = LD.getUsername();
@@ -160,6 +160,7 @@
                                                                 <hr class="m-t-0" style="border-top: 2px dashed rgba(248,249,250);">
                                                                 <button class="btn btn-light btn-round m-r-5" id="btn_Submit" onclick='issue_Token(document.getElementById("val_TokenNo").value, document.getElementById("patientID").value);'>Issue Token</button>
                                                                 <button class="btn btn-warning btn-round" id="btn_Refresh" onclick='load_NextTokenNo();'>Refresh</button>
+                                                                <button class="btn btn-danger btn-round" id="btn_Update_And_Issue_Token" onclick='updateDetails(document.getElementById("patientID").value)' >Update Details</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -237,9 +238,19 @@
                 $.post("IssueToken_getNextIssuingTokenNoServlet", function (outputData) {
                     // Post Actions..
                     if (outputData.split(":")[0] == 'success') {
+                        document.getElementById("lbl_PatientID").innerHTML = 'N/A';
+                        document.getElementById("lbl_Name").innerHTML = 'N/A';
+                        document.getElementById("lbl_Gender").innerHTML = 'N/A';
+                        document.getElementById("lbl_Age").innerHTML = 'N/A';
+                        document.getElementById("lbl_Contact").innerHTML = 'N/A';
+
                         document.getElementById("val_TokenNo").value = outputData.split(":")[1];
                         document.getElementById("lbl_TokenNo").innerHTML = "# " + outputData.split(":")[1];
                         document.getElementById("btn_Submit").disabled = true;
+
+                        //code by mayura
+                        document.getElementById('btn_Update_And_Issue_Token').disabled = true;  // enable submit
+                        //code by mayura
                     } else {
                         swal(outputData.split(":")[1], outputData.split(":")[2], outputData.split(":")[0]);
                     }
@@ -300,8 +311,16 @@
                 //  == set submit btn status =================================================
                 if (flagSubmitSts) {
                     document.getElementById('btn_Submit').disabled = false;  // enable submit
+
+                    //code by mayura
+                    document.getElementById('btn_Update_And_Issue_Token').disabled = false;  // enable submit
+                    //code by mayura
                 } else {
                     document.getElementById('btn_Submit').disabled = true;  // disable submit
+
+                    //code by mayura
+                    document.getElementById('btn_Update_And_Issue_Token').disabled = true;  // disable submit
+                    //code by mayura
                 }
             }
         </script>
@@ -319,6 +338,27 @@
                     }, 1000);
                 });
             }
+
+            //code by mayura
+            function updateDetails(PatientID) {
+                swal({
+                    title: "Are you sure?",
+                    text: "You want to update this patient details.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes, Update Now",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        location.replace("patient.jsp?PatientID="+PatientID);
+                    }
+                });
+            }
+            //code by mayura
+
         </script>
 
     </body>
