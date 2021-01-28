@@ -61,7 +61,7 @@
 
                 <div class="dt-responsive table-responsive">
                     <table id="datatable_BMHistory" class="table table-striped table-bordered nowrap">
-                        <thead>
+                        <thead style="background-color: #404e67; color: #f4f6fa;">
                             <tr>
                                 <th>Date & Time</th>
                                 <th>Height (Ft./ Inc.)</th>
