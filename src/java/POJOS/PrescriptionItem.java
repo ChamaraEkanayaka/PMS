@@ -1,5 +1,5 @@
 package POJOS;
-// Generated Jan 27, 2021 3:30:14 PM by Hibernate Tools 4.3.1
+// Generated Jan 28, 2021 9:31:10 PM by Hibernate Tools 4.3.1
 
 
 
@@ -11,6 +11,7 @@ public class PrescriptionItem  implements java.io.Serializable {
 
      private Integer idprescriptionItem;
      private MealType mealType;
+     private MedicineType medicineType;
      private Prescription prescription;
      private Stock stock;
      private UseCycle useCycle;
@@ -27,15 +28,17 @@ public class PrescriptionItem  implements java.io.Serializable {
     }
 
 	
-    public PrescriptionItem(MealType mealType, Prescription prescription, Stock stock, UseCycle useCycle, UseMethod useMethod) {
+    public PrescriptionItem(MealType mealType, MedicineType medicineType, Prescription prescription, Stock stock, UseCycle useCycle, UseMethod useMethod) {
         this.mealType = mealType;
+        this.medicineType = medicineType;
         this.prescription = prescription;
         this.stock = stock;
         this.useCycle = useCycle;
         this.useMethod = useMethod;
     }
-    public PrescriptionItem(MealType mealType, Prescription prescription, Stock stock, UseCycle useCycle, UseMethod useMethod, Double dosage, Double duration, Double qty, Double costPerItem, Double totalCost, String remark, Integer status) {
+    public PrescriptionItem(MealType mealType, MedicineType medicineType, Prescription prescription, Stock stock, UseCycle useCycle, UseMethod useMethod, Double dosage, Double duration, Double qty, Double costPerItem, Double totalCost, String remark, Integer status) {
        this.mealType = mealType;
+       this.medicineType = medicineType;
        this.prescription = prescription;
        this.stock = stock;
        this.useCycle = useCycle;
@@ -62,6 +65,13 @@ public class PrescriptionItem  implements java.io.Serializable {
     
     public void setMealType(MealType mealType) {
         this.mealType = mealType;
+    }
+    public MedicineType getMedicineType() {
+        return this.medicineType;
+    }
+    
+    public void setMedicineType(MedicineType medicineType) {
+        this.medicineType = medicineType;
     }
     public Prescription getPrescription() {
         return this.prescription;

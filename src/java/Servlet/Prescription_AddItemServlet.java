@@ -10,6 +10,7 @@ import DataHolders.PRESCRIPTION_ITEMS_DataHolder;
 import DataHolders.PRESCRIPTION_ITEM_OBJ;
 import POJOS.Items;
 import POJOS.MealType;
+import POJOS.MedicineType;
 import POJOS.Stock;
 import POJOS.UseCycle;
 import POJOS.UseMethod;
@@ -52,6 +53,7 @@ public class Prescription_AddItemServlet extends HttpServlet {
             Items param_ItemOBJC = (Items) sess.load(Items.class, Integer.valueOf(request.getParameter("addItem_Item")));
             double param_Dosage = Double.valueOf(request.getParameter("addItem_Dosage"));
             double param_Duration = Double.valueOf(request.getParameter("addItem_Duration"));
+            MedicineType param_MedicineType = (MedicineType) sess.load(MedicineType.class, Integer.valueOf(request.getParameter("addItem_MedicineType")));
             UseCycle param_UseCycle = (UseCycle) sess.load(UseCycle.class, Integer.valueOf(request.getParameter("addItem_UseCycle")));
             UseMethod param_UseMethod = (UseMethod) sess.load(UseMethod.class, Integer.valueOf(request.getParameter("addItem_UseMethod")));
             MealType param_MealType = (MealType) sess.load(MealType.class, Integer.valueOf(request.getParameter("addItem_MealType")));
@@ -85,6 +87,7 @@ public class Prescription_AddItemServlet extends HttpServlet {
                     if (param_RequestingQty < AvlStockQty) {
                         existing_PrscpItem.setDosage(param_Dosage);
                         existing_PrscpItem.setDuration(param_Duration);
+                        existing_PrscpItem.setMedicineType(param_MedicineType);
                         existing_PrscpItem.setUseCycle(param_UseCycle);
                         existing_PrscpItem.setUseMethod(param_UseMethod);
                         existing_PrscpItem.setMealType(param_MealType);
@@ -106,6 +109,7 @@ public class Prescription_AddItemServlet extends HttpServlet {
                         newPrscp_Item.setStock(param_Stock);
                         newPrscp_Item.setDosage(param_Dosage);
                         newPrscp_Item.setDuration(param_Duration);
+                        newPrscp_Item.setMedicineType(param_MedicineType);
                         newPrscp_Item.setUseCycle(param_UseCycle);
                         newPrscp_Item.setUseMethod(param_UseMethod);
                         newPrscp_Item.setMealType(param_MealType);

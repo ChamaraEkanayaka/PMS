@@ -88,6 +88,7 @@ public class Prescription_SaveServlet extends HttpServlet {
                 PrescriptionItem prescpItem = new PrescriptionItem();
                 prescpItem.setPrescription(prescp);
                 prescpItem.setStock(prscpItem_OBJ.getStock());
+                prescpItem.setMedicineType(prscpItem_OBJ.getMedicineType());
                 prescpItem.setDosage(prscpItem_OBJ.getDosage());
                 prescpItem.setDuration(prscpItem_OBJ.getDuration());
                 prescpItem.setUseCycle(prscpItem_OBJ.getUseCycle());

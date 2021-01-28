@@ -3,9 +3,9 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Jan 28, 2021 9:31:15 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="POJOS.UseMethod" table="use_method" catalog="pms" optimistic-lock="version">
-        <id name="iduseMethod" type="java.lang.Integer">
-            <column name="iduse_method" />
+    <class name="POJOS.MedicineType" table="medicine_type" catalog="pms" optimistic-lock="version">
+        <id name="medicineTypeId" type="java.lang.Integer">
+            <column name="medicine_type_id" />
             <generator class="identity" />
         </id>
         <property name="name" type="string">
@@ -16,7 +16,7 @@
         </property>
         <set name="prescriptionItems" table="prescription_item" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="use_method_iduse_method" not-null="true" />
+                <column name="medicine_type_id" not-null="true" />
             </key>
             <one-to-many class="POJOS.PrescriptionItem" />
         </set>

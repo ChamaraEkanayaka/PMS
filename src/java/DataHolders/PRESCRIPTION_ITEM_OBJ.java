@@ -6,6 +6,7 @@
 package DataHolders;
 
 import POJOS.MealType;
+import POJOS.MedicineType;
 import POJOS.Stock;
 import POJOS.UseCycle;
 import POJOS.UseMethod;
@@ -19,6 +20,7 @@ public class PRESCRIPTION_ITEM_OBJ {
     private Stock stock;
     private double dosage;
     private double duration;
+    private MedicineType medicineType;
     private UseCycle useCycle;
     private UseMethod useMethod;
     private MealType mealType;
@@ -49,6 +51,14 @@ public class PRESCRIPTION_ITEM_OBJ {
 
     public void setDuration(double duration) {
         this.duration = duration;
+    }
+
+    public MedicineType getMedicineType() {
+        return medicineType;
+    }
+
+    public void setMedicineType(MedicineType medicineType) {
+        this.medicineType = medicineType;
     }
 
     public UseCycle getUseCycle() {
