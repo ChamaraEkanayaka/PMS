@@ -269,11 +269,16 @@
                                                                     </div>
 
                                                                 </div>
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-lg-12 m-b-10">
+                                                    <button class="btn btn-dark btn-mat waves-effect" onclick='load_IssuedTokensList();'><span class="fa fa-bookmark"></span>&nbsp;&nbsp;SAVED PATIENTS</button>
+                                                </div>
                                             </div>
+
                                         </div>
                                         <!-- Page Body End --> 
                                     </div>
@@ -361,7 +366,7 @@
                                 } else {
                                     swal("Saved !", 'Patient details saved !', "success");
                                     setTimeout(function () {
-                                        window.location.replace("issueToken.jsp?patientID="+outputData.split(":")[1]);
+                                        window.location.replace("issueToken.jsp?patientID=" + outputData.split(":")[1]);
                                     }, 700);
                                 }
                             } else {
