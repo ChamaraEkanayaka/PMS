@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jan 27, 2021 3:30:22 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Jan 28, 2021 9:31:15 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOS.PrescriptionItem" table="prescription_item" catalog="pms" optimistic-lock="version">
         <id name="idprescriptionItem" type="java.lang.Integer">
@@ -10,6 +10,9 @@
         </id>
         <many-to-one name="mealType" class="POJOS.MealType" fetch="select">
             <column name="meal_type_idmeal_type" not-null="true" />
+        </many-to-one>
+        <many-to-one name="medicineType" class="POJOS.MedicineType" fetch="select">
+            <column name="medicine_type_id" not-null="true" />
         </many-to-one>
         <many-to-one name="prescription" class="POJOS.Prescription" fetch="select">
             <column name="prescription_idprescription" not-null="true" />

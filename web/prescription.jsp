@@ -296,7 +296,7 @@
                                                                     </div>
 
                                                                     <!-- Dosage -->
-                                                                    <div class="col-lg-6 col-md-5 col-sm-6 m-b-10">
+                                                                    <div class="col-lg-2 col-md-4 col-sm-6 m-b-10">
                                                                         <label class="col-lable f-w-700">Dosage</label>
                                                                         <input class="form-control"
                                                                                type="number"
@@ -307,11 +307,36 @@
                                                                                id="addItem_Dosage" 
                                                                                onblur='formatCurrencyValue(this); checkValidations_addItemToList();'
                                                                                onkeyup='checkValidations_addItemToList();'
-                                                                               onkeydown='setElementFocus_addItemToList(event, "addItem_Duration");'>
+                                                                               onkeydown='setElementFocus_addItemToList(event, "addItem_MedicineType");'>
+                                                                    </div>
+                                                                    <!-- Medicine-Type -->
+                                                                    <div class="col-lg-4 col-md-4 col-sm-6 m-b-20">
+                                                                        <label class="col-lable f-w-700">&nbsp;</label>
+                                                                        <select class="form-control"
+                                                                                required="true"
+                                                                                id="addItem_MedicineType"
+                                                                                onchange='checkValidations_addItemToList();'
+                                                                                onclick='checkValidations_addItemToList();'
+                                                                                onkeydown='setElementFocus_addItemToList(event, "addItem_Duration");'>
+                                                                            <option value="x">--Medicine Type--</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <!-- Use-Cycle -->
+                                                                    <div class="col-lg-6 col-md-4 col-sm-6 m-b-20">
+                                                                        <label class="col-lable f-w-700">Use Cycle</label>
+                                                                        <select class="form-control"
+                                                                                required="true"
+                                                                                id="addItem_UseCycle"
+                                                                                onchange='checkValidations_addItemToList();'
+                                                                                onclick='checkValidations_addItemToList();'
+                                                                                onkeydown='setElementFocus_addItemToList(event, "addItem_UseMethod");'>
+                                                                            <option value="x">Select Here</option>
+                                                                        </select>
                                                                     </div>
 
                                                                     <!-- Duration -->
-                                                                    <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
+                                                                    <div class="col-lg-6 col-md-4 col-sm-6 m-b-15">
                                                                         <label class="col-lable f-w-700">Duration (Days)</label>
                                                                         <input class="form-control"
                                                                                type="number"
@@ -325,21 +350,8 @@
                                                                                onkeydown='setElementFocus_addItemToList(event, "addItem_UseCycle");'>
                                                                     </div>    
 
-                                                                    <!-- Use-Cycle -->
-                                                                    <div class="col-lg-6 col-md-4 col-sm-4 m-b-15">
-                                                                        <label class="col-lable f-w-700">Use Cycle</label>
-                                                                        <select class="form-control"
-                                                                                required="true"
-                                                                                id="addItem_UseCycle"
-                                                                                onchange='checkValidations_addItemToList();'
-                                                                                onclick='checkValidations_addItemToList();'
-                                                                                onkeydown='setElementFocus_addItemToList(event, "addItem_UseMethod");'>
-                                                                            <option value="x">Select Here</option>
-                                                                        </select>
-                                                                    </div>
-
                                                                     <!-- Use-Method -->
-                                                                    <div class="col-lg-6 col-md-4 col-sm-4 m-b-15">
+                                                                    <div class="col-lg-6 col-md-4 col-sm-6 m-b-15">
                                                                         <label class="col-lable f-w-700">Use Method</label>
                                                                         <select class="form-control"
                                                                                 required="true"
@@ -352,7 +364,7 @@
                                                                     </div>
 
                                                                     <!-- Meal-Type -->
-                                                                    <div class="col-lg-6 col-md-4 col-sm-4 m-b-20">
+                                                                    <div class="col-lg-6 col-md-4 col-sm-6 m-b-20">
                                                                         <label class="col-lable f-w-700">Meal Type</label>
                                                                         <select class="form-control"
                                                                                 required="true"
@@ -589,6 +601,7 @@
 
                 // Initialize Select2
                 $('#addItem_Item').select2();
+                $('#addItem_MedicineType').select2();
                 $('#addItem_UseCycle').select2();
                 $('#addItem_UseMethod').select2();
                 $('#addItem_MealType').select2();
@@ -610,6 +623,16 @@
                     // Post Actions..
                     if (outputData.split(":")[0] == 'success') {
                         document.getElementById("addItem_Item").innerHTML = outputData.split(":")[3];
+                    } else {
+                        swal(outputData.split(":")[1], outputData.split(":")[2], outputData.split(":")[0]);
+                    }
+                });
+            }
+            function loadAdding_MEDICINETYPES() {
+                $.post("Prescription_LoadAddingMedicineTypesServlet", function (outputData) {
+                    // Post Actions..
+                    if (outputData.split(":")[0] == 'success') {
+                        document.getElementById("addItem_MedicineType").innerHTML = outputData.split(":")[3];
                     } else {
                         swal(outputData.split(":")[1], outputData.split(":")[2], outputData.split(":")[0]);
                     }
@@ -650,6 +673,7 @@
             // RESET ELEMENTS & VALUES
             function resetAll_addItemToList() {
                 loadAdding_ITEMS();
+                loadAdding_MEDICINETYPES();
                 loadAdding_USECYCLES();
                 loadAdding_USEMETHODS();
                 loadAdding_MEALTYPES();
@@ -658,6 +682,8 @@
                 $('#addItem_Item').select2().trigger('change');
                 document.getElementById("addItem_Dosage").value = "0.00";
                 document.getElementById("addItem_Duration").value = "0.00";
+                $('#addItem_MedicineType').val("x");
+                $('#addItem_MedicineType').select2().trigger('change');
                 $('#addItem_UseCycle').val("x");
                 $('#addItem_UseCycle').select2().trigger('change');
                 $('#addItem_UseMethod').val("x");
@@ -700,6 +726,10 @@
                     document.getElementById("addItem_Duration").value = "0.00";
                     flagSubmitSts = false;
                 } else if (document.getElementById('addItem_Duration').value < 0.01) {
+                    flagSubmitSts = false;
+                }
+                // check Validations ----MEDICINE-TYPE
+                else if (document.getElementById('addItem_MedicineType').value == "x") {
                     flagSubmitSts = false;
                 }
                 // check Validations ----USE-CYCLE
@@ -758,6 +788,7 @@
                         "addItem_Item=" + document.getElementById("addItem_Item").value + "&" +
                         "addItem_Dosage=" + document.getElementById("addItem_Dosage").value + "&" +
                         "addItem_Duration=" + document.getElementById("addItem_Duration").value + "&" +
+                        "addItem_MedicineType=" + document.getElementById("addItem_MedicineType").value + "&" +
                         "addItem_UseCycle=" + document.getElementById("addItem_UseCycle").value + "&" +
                         "addItem_UseMethod=" + document.getElementById("addItem_UseMethod").value + "&" +
                         "addItem_MealType=" + document.getElementById("addItem_MealType").value + "&" +
