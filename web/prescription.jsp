@@ -234,15 +234,23 @@
                                                                             <tr>
                                                                                 <th>Weight<span style="margin-left: 45px"></span>:&nbsp;&nbsp;</th>
                                                                                 <td><%=patient_Weight + " Kg"%>
+                                                                                    <!-- Body.Measurements History-View Button -->
                                                                                     <% if (!BodyMsrmntList.isEmpty()) {%>
-                                                                                    <button style="font-size: 13px; padding: 3px 8px 3px 8px;" class="btn btn-warning btn-sm btn-mat waves-effect m-l-20"
-                                                                                            onclick='open_BMHistoryModal("<%=Token_OBJECT.getPatient().getIdpatient()%>");'
-                                                                                            ><span class="fa fa-history"></span>&nbsp;View History
+                                                                                    <button style="font-size: 13px; padding: 4px 10px 4px 10px;" class="btn btn-warning btn-sm btn-mat waves-effect m-l-20"
+                                                                                            onclick='open_BMHistoryModal("<%=Token_OBJECT.getPatient().getIdpatient()%>");'>
+                                                                                        <span class="fa fa-history"></span>&nbsp;B.M. History
+                                                                                    </button>
+                                                                                    <% }%>
+
+                                                                                    <!-- Prescriptions History View Button -->
+                                                                                    <% if (!Token_OBJECT.getPatient().getPrescriptions().isEmpty()) {%>
+                                                                                    <button style="font-size: 13px; padding: 4px 10px 4px 10px;" class="btn btn-warning btn-sm btn-mat waves-effect m-l-20"
+                                                                                            onclick='window.open("patient_PrescriptionsList.jsp?patientID=<%=Token_OBJECT.getPatient().getIdpatient()%>");'>
+                                                                                        <span class="fa fa-file-text"></span>&nbsp;Previous Prescriptions
                                                                                     </button>
                                                                                     <% }%>
                                                                                 </td>
                                                                             </tr>
-
                                                                             <tr>
                                                                                 <th>Note<span style="margin-left: 60px"></span>:&nbsp;&nbsp;</th>
                                                                                 <td style="width: 100%;">
@@ -883,7 +891,7 @@
                     closeOnConfirm: false,
                     showLoaderOnConfirm: true
                 }, function (isConfirm) {
-                    if (isConfirm){
+                    if (isConfirm) {
                         // start >> Save process.............................................................................................................................
                         var params =
                                 "userID=" + "<%=User_OBJECT.getIduser()%>" + "&" +
@@ -902,7 +910,7 @@
                             swal(outputData.split(":")[1], outputData.split(":")[2], outputData.split(":")[0]);
                             // Post Actions..
                             setTimeout(function () {
-                                if (outputData.split(":")[0] == 'success'){
+                                if (outputData.split(":")[0] == 'success') {
                                     location.replace("tokenSelector.jsp");
                                 } else {
                                     document.getElementById('btn_SubmitForm').disabled = true;  // disable submit
@@ -941,7 +949,7 @@
         <script type="text/javascript">
             function open_BMHistoryModal(param_PatientID) {
                 $('#DetailsPrvw-Modal').modal('show');
-                $('#DetailsPrvw-Modal-Content').load('prescription_BMHistoryModal.jsp?patientID='+ param_PatientID);
+                $('#DetailsPrvw-Modal-Content').load('prescription_BMHistoryModal.jsp?patientID=' + param_PatientID);
             }
         </script>
 
