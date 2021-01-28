@@ -18,7 +18,7 @@
     int USER_ID = 0;
     int BRANCH_ID = 0;
     try {
-        if (request.getSession().getAttribute("LOGIN_DATA") != null) {
+        if (request.getSession().getAttribute("LOGIN_DATA") != null){
             USER_LOGIN_DATA LD = (USER_LOGIN_DATA) request.getSession().getAttribute("LOGIN_DATA");
             STAFF_NAME = LD.getName();
             USER_NAME = LD.getUsername();
