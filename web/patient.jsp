@@ -103,7 +103,7 @@
         <!-- Preloader Start-->
         <%@include file="includes/preloader.jsp"%>
         <!-- Preloader End -->
-
+        
         <div id="pcoded" class="pcoded">
             <div class="pcoded-overlay-box"></div>
             <div class="pcoded-container navbar-wrapper">
@@ -156,7 +156,6 @@
                                                             <div class="row invoive-info m-t-10">
                                                                 <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: -40px; display: contents;">
                                                                     <h6>&nbsp;&nbsp;Patient Details</h6>
-
                                                                     <!-- Name -->
                                                                     <div class="col-lg-12 col-sm-12 m-b-10">
                                                                         <label class="col-lable f-w-700">Name *</label>
@@ -165,7 +164,6 @@
                                                                                required="true" 
                                                                                id="name">
                                                                     </div>
-
                                                                     <!-- Birth Day -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-10">
                                                                         <label class="col-lable f-w-700">Birth Day *</label>
@@ -175,7 +173,6 @@
                                                                                max=""
                                                                                id="birth_day">
                                                                     </div>
-
                                                                     <!-- Address -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
                                                                         <label class="col-lable f-w-700">Address</label>
@@ -183,7 +180,6 @@
                                                                                type="text"
                                                                                id="address">
                                                                     </div>    
-
                                                                     <!-- Blood Group -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-15">
                                                                         <label class="col-lable f-w-700">Blood Group *</label>
@@ -200,7 +196,6 @@
                                                                             <option value="O-">O-</option>
                                                                         </select>
                                                                     </div>
-
                                                                     <!-- Gender -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-15">
                                                                         <label class="col-lable f-w-700">Gender *</label>
@@ -240,7 +235,6 @@
                                                                                type="text"
                                                                                id="nic">
                                                                     </div> 
-
                                                                     <!-- Remark -->
                                                                     <div class="col-lg-12 col-md-12 col-sm-12 m-b-10">
                                                                         <label class="col-lable f-w-700">Remark</label>
@@ -249,7 +243,6 @@
                                                                                   id="remark">
                                                                         </textarea>
                                                                     </div>
-
                                                                     <div class="row col-lg-12 col-md-12 col-sm-12 text-right m-t-10 m-b-0">
                                                                         <div class="col-lg-12 col-md-12 col-sm-6">&nbsp;</div>
                                                                         <div class="col-lg-12 col-md-12 col-sm-6">
@@ -269,9 +262,7 @@
                                                                             </a>
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -280,7 +271,6 @@
                                                     <button class="btn btn-dark btn-mat waves-effect" onclick='load_IssuedTokensList();'><span class="fa fa-bookmark"></span>&nbsp;&nbsp;SAVED PATIENTS</button>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <!-- Page Body End --> 
                                     </div>
