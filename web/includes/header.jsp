@@ -49,16 +49,6 @@
                         </div>
                         <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                             <li>
-                                <a href="tutorialVideos.jsp">
-                                    <i class="feather icon-play-circle"></i>Watch Tutorial Videos
-                                </a>
-                            </li>
-                            <li>
-                                <a href="user_Profile.jsp">
-                                    <i class="feather icon-user"></i>My Profile
-                                </a>
-                            </li>
-                            <li>
                                 <a href="User_LogoutServlet">
                                     <i class="feather icon-log-out"></i>Logout
                                 </a>
