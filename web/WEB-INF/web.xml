@@ -83,6 +83,10 @@
         <servlet-name>Prescription_LoadAddingMedicineTypesServlet</servlet-name>
         <servlet-class>Servlet.Prescription_LoadAddingMedicineTypesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Patient_UpdateServlet</servlet-name>
+        <servlet-class>Servlet.Patient_UpdateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Token_getNextTokenDetailsServlet</servlet-name>
         <url-pattern>/Token_getNextTokenDetailsServlet</url-pattern>
@@ -162,6 +166,10 @@
     <servlet-mapping>
         <servlet-name>Prescription_LoadAddingMedicineTypesServlet</servlet-name>
         <url-pattern>/Prescription_LoadAddingMedicineTypesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Patient_UpdateServlet</servlet-name>
+        <url-pattern>/Patient_UpdateServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
