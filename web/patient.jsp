@@ -4,6 +4,7 @@
     Author     : AKILA
 --%>
 
+<%@page import="POJOS.Patient"%>
 <%@page import="POJOS.User"%>
 <%@page import="Connection.FactoryManager"%>
 <%@page import="POJOS.BodyMeasurement"%>
@@ -98,12 +99,25 @@
         <%
             Session sess = FactoryManager.getSessionFactory().openSession();
             User User_OBJECT = (User) sess.load(User.class, USER_ID);
+            Patient PATIENT = null;
+            if (request.getParameter("PatientID") != null && !request.getParameter("PatientID").equals("")) {
+                try {
+                    int PatientID = Integer.parseInt(request.getParameter("PatientID"));
+                    PATIENT = (Patient) sess.load(Patient.class, PatientID);
+                } catch (Exception e) {
+                    response.sendRedirect("issueToken.jsp");
+                    return;
+                }
+            } else {
+                response.sendRedirect("issueToken.jsp");
+                return;
+            }
         %>
 
         <!-- Preloader Start-->
         <%@include file="includes/preloader.jsp"%>
         <!-- Preloader End -->
-        
+
         <div id="pcoded" class="pcoded">
             <div class="pcoded-overlay-box"></div>
             <div class="pcoded-container navbar-wrapper">
@@ -129,7 +143,7 @@
                                                 <div class="col-lg-8">
                                                     <div class="page-header-title">
                                                         <div class="d-inline">
-                                                            <h4>Patient registration form</h4>
+                                                            <h4>Patient Update form</h4>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -139,7 +153,7 @@
                                                             <li class="breadcrumb-item">
                                                                 <a href="index.jsp"><i class="feather icon-home"></i></a>
                                                             </li>
-                                                            <li class="breadcrumb-item"><a href="patient_Register.jsp">#Patient Registration</a></li>
+                                                            <li class="breadcrumb-item"><a href="patient.jsp">#Patient Update</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -162,7 +176,8 @@
                                                                         <input class="form-control"
                                                                                type="text"
                                                                                required="true" 
-                                                                               id="name">
+                                                                               id="name"
+                                                                               value="<%=PATIENT.getName() %>">
                                                                     </div>
                                                                     <!-- Birth Day -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-10">
@@ -171,14 +186,16 @@
                                                                                type="date"
                                                                                required="true" 
                                                                                max=""
-                                                                               id="birth_day">
+                                                                               id="birth_day"
+                                                                               value="<%=PATIENT.getBirthDay() %>">
                                                                     </div>
                                                                     <!-- Address -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
                                                                         <label class="col-lable f-w-700">Address</label>
                                                                         <input class="form-control"
                                                                                type="text"
-                                                                               id="address">
+                                                                               id="address"
+                                                                               value="<%=PATIENT.getAddress() %>">
                                                                     </div>    
                                                                     <!-- Blood Group -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-15">
@@ -207,33 +224,22 @@
                                                                             <option value="Other">Other</option>
                                                                         </select>
                                                                     </div>
-                                                                    <!-- Height -->
-                                                                    <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
-                                                                        <label class="col-lable f-w-700">Height (cm)</label>
-                                                                        <input class="form-control"
-                                                                               type="number"
-                                                                               id="height">
-                                                                    </div> 
-                                                                    <!-- Weight -->
-                                                                    <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
-                                                                        <label class="col-lable f-w-700">Weight (kg)</label>
-                                                                        <input class="form-control"
-                                                                               type="number"
-                                                                               id="weight">
-                                                                    </div> 
+
                                                                     <!-- Contact Number -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
                                                                         <label class="col-lable f-w-700">Contact Number *</label>
                                                                         <input class="form-control"
                                                                                type="text"
-                                                                               id="contact_number">
+                                                                               id="contact_number"
+                                                                               value="<%=PATIENT.getContactNo()%>">
                                                                     </div> 
                                                                     <!-- NIC -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
                                                                         <label class="col-lable f-w-700">NIC</label>
                                                                         <input class="form-control"
                                                                                type="text"
-                                                                               id="nic">
+                                                                               id="nic"
+                                                                               value="<%=PATIENT.getNic() %>">
                                                                     </div> 
                                                                     <!-- Remark -->
                                                                     <div class="col-lg-12 col-md-12 col-sm-12 m-b-10">
@@ -241,24 +247,42 @@
                                                                         <textarea rows="5" cols="5" class="form-control"
                                                                                   placeholder="Optional"
                                                                                   id="remark">
+
                                                                         </textarea>
                                                                     </div>
+                                                                    <div class="row col-lg-12 col-md-12 col-sm-12 text-right m-t-30 m-b-0 ">
+                                                                        <h6>&nbsp;&nbsp;New Body Measurement</h6>
+                                                                    </div>
+                                                                    <!-- Height -->
+                                                                    <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
+                                                                        <label class="col-lable f-w-700">Today Height (cm)</label>
+                                                                        <input class="form-control"
+                                                                               type="number"
+                                                                               id="height">
+                                                                    </div> 
+                                                                    <!-- Weight -->
+                                                                    <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
+                                                                        <label class="col-lable f-w-700">Today Weight (kg)</label>
+                                                                        <input class="form-control"
+                                                                               type="number"
+                                                                               id="weight">
+                                                                    </div> 
                                                                     <div class="row col-lg-12 col-md-12 col-sm-12 text-right m-t-10 m-b-0">
                                                                         <div class="col-lg-12 col-md-12 col-sm-6">&nbsp;</div>
                                                                         <div class="col-lg-12 col-md-12 col-sm-6">
                                                                             <button style="font-size: 14px;" class="btn btn-primary btn-sm btn-mat waves-effect"
                                                                                     type="submit"
                                                                                     id="button_save"
-                                                                                    >SAVE ONLY
+                                                                                    >UPDATE ONLY
                                                                             </button>
                                                                             <button style="font-size: 14px;" class="btn btn-warning btn-sm btn-mat waves-effect"
                                                                                     type="submit"
                                                                                     id="button_saveAndIssueToken"
-                                                                                    >SAVE AND ISSUE TOKEN
+                                                                                    >UPDATE AND ISSUE TOKEN
                                                                             </button>
                                                                             <label class="col-lable">&nbsp;</label>
                                                                             <a style="font-size: 14px;" class="btn btn-danger btn-sm btn-mat waves-effect"
-                                                                               href="patient_Register.jsp">RESET
+                                                                               href="patient.jsp?PatientID=<%=PATIENT.getIdpatient()%>">REFRESH
                                                                             </a>
                                                                         </div>
                                                                     </div>
@@ -268,7 +292,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 m-b-10">
-                                                    <button class="btn btn-dark btn-mat waves-effect" onclick='load_IssuedTokensList();'><span class="fa fa-bookmark"></span>&nbsp;&nbsp;SAVED PATIENTS</button>
+                                                    <a class="btn btn-dark btn-mat waves-effect" href="patient_list.jsp" ><span class="fa fa-bookmark"></span>&nbsp;&nbsp;SAVED PATIENTS</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -309,25 +333,31 @@
         <!-- === UTILITY SCRIPTS ==================================================================================================== -->
         <script type="text/javascript">
             $(document).ready(function () {
+
                 $('#name').focus();
+                $('#remark').html('');
+                $('#remark').html('<%=PATIENT.getNote()%>');
                 $('#button_save').click(function () {
                     savePatient("save");
                 });
                 $('#button_saveAndIssueToken').click(function () {
                     savePatient("saveToken");
                 });
-
+                $('#blood_group').val('<%=PATIENT.getBloodGroup()%>');
+                $('#gender').val('<%=PATIENT.getGender()%>');
             });
+
+
         </script>
         <script type="text/javascript">
             function savePatient(param_saveType) {
                 swal({
                     title: "Are you sure?",
-                    text: "You want to save this patient.",
+                    text: "You want to update this patient.",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonClass: "btn-danger",
-                    confirmButtonText: "Yes, Save Now",
+                    confirmButtonText: "Yes, Update Now",
                     cancelButtonText: "No",
                     closeOnConfirm: false,
                     showLoaderOnConfirm: true
@@ -335,6 +365,7 @@
                     if (isConfirm) {
                         //name nic contact_number weight height gender blood_group address birth_day remark
                         var params =
+                                "PatientID=" + "<%=PATIENT.getIdpatient()%>" + "&" +
                                 "userID=" + "<%=User_OBJECT.getIduser()%>" + "&" +
                                 "name=" + document.getElementById("name").value + "&" +
                                 "nic=" + document.getElementById("nic").value + "&" +
@@ -347,21 +378,21 @@
                                 "address=" + document.getElementById("address").value + "&" +
                                 "birth_day=" + document.getElementById("birth_day").value;
 
-                        $.post("Patient_RegisterServlet", params, function (outputData) {
+                        $.post("Patient_UpdateServlet", params, function (outputData) {
                             //Post Actions..
                             if (outputData.split(":")[0] == '1') {
                                 if (param_saveType == 'save') {
-                                    swal("Saved !", 'Patient details saved !', "success");
+                                    swal("Saved !", 'Patient details updated !', "success");
                                     setTimeout(function () {
-                                        window.location.replace("patient_Register.jsp");
+                                        window.location.replace("issueToken.jsp");
                                     }, 700);
                                 } else {
-                                    swal("Saved !", 'Patient details saved !', "success");
+                                    swal("Saved !", 'Patient details updated !', "success");
                                     setTimeout(function () {
                                         window.location.replace("issueToken.jsp?patientID=" + outputData.split(":")[1]);
                                     }, 700);
                                 }
-                            } else {
+                            }else{
                                 swal('Empty Fields !', 'Please fill all filelds and try agin.', 'error');
                             }
 
