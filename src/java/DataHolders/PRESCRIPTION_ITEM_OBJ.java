@@ -25,8 +25,10 @@ public class PRESCRIPTION_ITEM_OBJ {
     private UseMethod useMethod;
     private MealType mealType;
     private double qty;
-    private double costPerItem;
+    private double unitCost;
     private double totalCost;
+    private double unitPrice;
+    private double totalPrice;
     private String remark;
 
     public Stock getStock() {
@@ -93,12 +95,12 @@ public class PRESCRIPTION_ITEM_OBJ {
         this.qty = qty;
     }
 
-    public double getCostPerItem() {
-        return costPerItem;
+    public double getUnitCost() {
+        return unitCost;
     }
 
-    public void setCostPerItem(double costPerItem) {
-        this.costPerItem = costPerItem;
+    public void setUnitCost(double unitCost) {
+        this.unitCost = unitCost;
     }
 
     public double getTotalCost() {
@@ -107,6 +109,22 @@ public class PRESCRIPTION_ITEM_OBJ {
 
     public void setTotalCost(double totalCost) {
         this.totalCost = totalCost;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getRemark() {

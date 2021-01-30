@@ -92,8 +92,10 @@ public class Prescription_AddItemServlet extends HttpServlet {
                         existing_PrscpItem.setUseMethod(param_UseMethod);
                         existing_PrscpItem.setMealType(param_MealType);
                         existing_PrscpItem.setQty(param_RequestingQty);
-                        existing_PrscpItem.setCostPerItem(param_Stock.getCost());
+                        existing_PrscpItem.setUnitCost(param_Stock.getCost());
                         existing_PrscpItem.setTotalCost(param_Stock.getCost() * param_RequestingQty);
+                        existing_PrscpItem.setUnitPrice(param_Stock.getPrice());
+                        existing_PrscpItem.setTotalPrice(param_Stock.getPrice() * param_RequestingQty);
                         existing_PrscpItem.setRemark(param_Remark);
 
                         flag_StockAvailable = true;
@@ -101,7 +103,7 @@ public class Prescription_AddItemServlet extends HttpServlet {
                         flag_StockAvailable = false;
                     }
 
-                } else { // ADD as NEW ITEM !! +++++++++++++++++++++++++++++++++++++++
+                } else { // ADD as NEW ITEM !! ++++++++++++++++++++++++++++++++++++++++
 
                     if (param_RequestingQty < AvlStockQty) {
 
@@ -114,8 +116,10 @@ public class Prescription_AddItemServlet extends HttpServlet {
                         newPrscp_Item.setUseMethod(param_UseMethod);
                         newPrscp_Item.setMealType(param_MealType);
                         newPrscp_Item.setQty(param_RequestingQty);
-                        newPrscp_Item.setCostPerItem(param_Stock.getCost());
+                        newPrscp_Item.setUnitCost(param_Stock.getCost());
                         newPrscp_Item.setTotalCost(param_Stock.getCost() * param_RequestingQty);
+                        newPrscp_Item.setUnitPrice(param_Stock.getPrice());
+                        newPrscp_Item.setTotalPrice(param_Stock.getPrice() * param_RequestingQty);
                         newPrscp_Item.setRemark(param_Remark);
                         dtHolder.getHolder().add(newPrscp_Item);
                         flag_StockAvailable = true;

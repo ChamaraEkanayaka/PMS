@@ -5,11 +5,11 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="POJOS.Prescription"%>
 <%@page import="POJOS.Doctor"%>
 <%@page import="POJOS.Patient"%>
 <%@page import="DataHolders.USER_LOGIN_DATA"%>
 <%@page import="java.text.DecimalFormat"%>
+<%@page import="POJOS.Prescription"%>
 <%@page import="org.hibernate.transform.Transformers"%>
 <%@page import="org.hibernate.criterion.Restrictions"%>
 <%@page import="org.hibernate.Criteria"%>
@@ -43,9 +43,6 @@
     }
     //login code and check access plase past this code before header of all pages
 %>
-
-
-
 
 <div id="DataTable_Remover">
     <%
@@ -148,6 +145,51 @@
                         <%=searchResultTxt%>
                     </span> 
 
+
+                    <!--  ./start   REPORT.SUM.TILES ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+                    <div class="card-block box-list">
+                        <div class="row">
+
+                            <div class="col-lg-4">
+                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white" style="height: 142px;">
+                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">TOKENS COUNT</code>
+                                    <h4 class="text-sm-center f-40" id="RptSUM_TokensCount">0</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="p-0 z-depth-bottom-1 waves-effect bg-c-blue text-white">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <code style="margin-left: -1px;margin-top: 0px;font-weight: 900;">TOTAL MEDICINE COST</code>
+                                            <span style="color: #ffffff;font-size: medium;font-weight: 600;margin-left: 20px;" id="RptSUM_MedCost">Rs. 0.00</span>
+
+                                            <code style="margin-left: -1px;margin-top: 5px;font-weight: 900;">TOTAL DOCTOR CHARGES</code>
+                                            <span style="color: #ffffff;font-size: medium;font-weight: 600;margin-left: 20px;" id="RptSUM_DocCharges">Rs. 0.00</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <code style="margin-left: -1px;margin-top: 0px;font-weight: 900;">TOTAL AMOUNT&nbsp;&nbsp;&nbsp;</code>
+                                            <span style="color: #ffffff;font-size: x-large;margin-left: 20px;" id="RptSUM_TotAmount">Rs. 0.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white">
+                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">TOTAL RECEIVABLE AMOUNT</code>
+                                    <h4 class="text-sm-center" id="RptSUM_RcvblAmount">Rs. 0.00</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white">
+                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">LOST AMOUNT</code>
+                                    <h4 class="text-sm-center" id="RptSUM_Balance">Rs. 0.00</h4>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--  ./end  REPORT.SUM.TILES ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+
                     <div class="card-header-right">
                         <ul class="list-unstyled card-option">
                             <li><i class="feather icon-maximize full-card"></i></li>
@@ -166,13 +208,25 @@
                                     <th>#Token</th>
                                     <th>Patient</th>
                                     <th>Doctor</th>
+                                    <th>Medicine Cost</th>
+                                    <th>Doctor Charges</th>
+                                    <th>Total Amount</th>
                                     <th>Receivable Amount</th>
-                                    <th>Payments Status</th>
+                                    <th>Settlement Status</th>
+                                    <th>Settlement Details</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <%  Criteria prescp_Crt = ssn_TrmntReport.createCriteria(Prescription.class);
+                                <%
+                                    // Report-Sum Values params
+                                    int SumVALUE_TokensCount = 0;
+                                    double SumVALUE_MedCost = 0.00;
+                                    double SumVALUE_DocCharges = 0.00;
+                                    double SumVALUE_TotAmount = 0.00;
+                                    double SumVALUE_RcvblAmount = 0.00;
+
+                                    Criteria prescp_Crt = ssn_TrmntReport.createCriteria(Prescription.class);
                                     // set CUSTOMIZED SEARCHING FILTERS....
                                     if (chBxOpt_Date) {
                                         prescp_Crt.add(Restrictions.between("date", Val_DateFrom, Val_DateTo));
@@ -211,6 +265,12 @@
                                         }
 
                                         if (flag_eqTknFilter) {
+                                            // Calculate REPORT-SUM-VALUES...
+                                            SumVALUE_TokensCount += 1;
+                                            SumVALUE_MedCost += prescp_Objct.getMedicineCost();
+                                            SumVALUE_DocCharges += prescp_Objct.getDoctorCharge();
+                                            SumVALUE_TotAmount += prescp_Objct.getTotalAmount();
+                                            SumVALUE_RcvblAmount += prescp_Objct.getReceivableAmount();
                                 %>
                                 <tr>
                                     <td><%=prescp_Objct.getIdprescription()%></td>
@@ -219,12 +279,26 @@
                                     <td><%=prescp_Objct.getPatientToken().getTokenNumber()%></td>
                                     <td><%=prescp_Objct.getPatient().getName()%></td>
                                     <td><%=prescp_Objct.getDoctor().getName()%></td>
+                                    <td><%= "Rs. " + Utils.DecimalFormats.dfPriceValue().format(prescp_Objct.getMedicineCost())%></td>
+                                    <td><%= "Rs. " + Utils.DecimalFormats.dfPriceValue().format(prescp_Objct.getDoctorCharge())%></td>
+                                    <td><%= "Rs. " + Utils.DecimalFormats.dfPriceValue().format(prescp_Objct.getTotalAmount())%></td>
                                     <td><%= "Rs. " + Utils.DecimalFormats.dfPriceValue().format(prescp_Objct.getReceivableAmount())%></td>
                                     <td>
-                                        <% if (prescp_Objct.getStatus() == 1) { %>
-                                        <span class="label label-danger">&nbsp;PENDING&nbsp;</span>      
+                                        <% if (prescp_Objct.getStatus() == 0) { %>
+                                        <span class="label label-success">&nbsp;COMPLETED&nbsp;</span>
                                         <% } else { %>
-                                        <span class="label label-success">&nbsp;COMPLETED&nbsp;</span>   
+                                        <span class="label label-danger">&nbsp;PENDING&nbsp;</span>      
+                                        <% }%>
+                                    </td>
+                                    <td>
+                                        <% if (prescp_Objct.getStatus() == 0) {%>
+                                        <span>
+                                            <%="PAYMENT : " + "Rs. " + Utils.DecimalFormats.dfPriceValue().format(prescp_Objct.getCash()) + " | BALANCE : " + "Rs. " + Utils.DecimalFormats.dfPriceValue().format(prescp_Objct.getBalance())%><br>
+                                            <%="DATE & TIME : " + prescp_Objct.getSettleDate() + " @" + prescp_Objct.getSettleTime()%><br>
+                                            <%="USER : " + prescp_Objct.getUser().getName()%>
+                                        </span>
+                                        <% } else { %>
+                                        <span>&nbsp;N/A&nbsp;</span>      
                                         <% }%>
                                     </td>
                                     <td>
@@ -236,6 +310,14 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <input type="hidden" id="VALSUM_TokensCount" value="<%= SumVALUE_TokensCount%>">      
+                    <input type="hidden" id="VALSUM_MedCost" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_MedCost)%>">      
+                    <input type="hidden" id="VALSUM_DocCharges" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_DocCharges)%>">      
+                    <input type="hidden" id="VALSUM_TotAmount" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_TotAmount)%>">      
+                    <input type="hidden" id="VALSUM_RcvblAmount" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_RcvblAmount)%>">      
+                    <input type="hidden" id="VALSUM_Balance" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_RcvblAmount - SumVALUE_TotAmount)%>">      
+
                 </div>
             </div>
         </div>
@@ -264,7 +346,15 @@
 
             setTimeout(function () {
                 document.getElementById("dtTableTH_ORD").click();
-            }, 500);
+
+                // set  REPORT.SUM.TILES.VALUES
+                document.getElementById("RptSUM_TokensCount").innerHTML = document.getElementById("VALSUM_TokensCount").value;
+                document.getElementById("RptSUM_MedCost").innerHTML = document.getElementById("VALSUM_MedCost").value;
+                document.getElementById("RptSUM_DocCharges").innerHTML = document.getElementById("VALSUM_DocCharges").value;
+                document.getElementById("RptSUM_TotAmount").innerHTML = document.getElementById("VALSUM_TotAmount").value;
+                document.getElementById("RptSUM_RcvblAmount").innerHTML = document.getElementById("VALSUM_RcvblAmount").value;
+                document.getElementById("RptSUM_Balance").innerHTML = document.getElementById("VALSUM_Balance").value;
+            }, 800);
         });
     </script>
 

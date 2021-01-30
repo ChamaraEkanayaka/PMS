@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jan 28, 2021 9:31:15 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Jan 30, 2021 12:28:29 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOS.PrescriptionItem" table="prescription_item" catalog="pms" optimistic-lock="version">
         <id name="idprescriptionItem" type="java.lang.Integer">
@@ -35,11 +35,17 @@
         <property name="qty" type="java.lang.Double">
             <column name="qty" precision="22" scale="0" />
         </property>
-        <property name="costPerItem" type="java.lang.Double">
-            <column name="cost_per_item" precision="22" scale="0" />
+        <property name="unitCost" type="java.lang.Double">
+            <column name="unit_cost" precision="22" scale="0" />
         </property>
         <property name="totalCost" type="java.lang.Double">
             <column name="total_cost" precision="22" scale="0" />
+        </property>
+        <property name="unitPrice" type="java.lang.Double">
+            <column name="unit_price" precision="22" scale="0" />
+        </property>
+        <property name="totalPrice" type="java.lang.Double">
+            <column name="total_price" precision="22" scale="0" />
         </property>
         <property name="remark" type="string">
             <column name="remark" length="65535" />

@@ -58,7 +58,11 @@
                             <span class="pcoded-mtext">Tokens Report</span>
                         </a>
                     </li>
-
+                    <li class="<%=(pagename == "medicinesSalesReport") ? "active" : ""%>">
+                        <a href="report_MedicinesSalesReport.jsp">
+                            <span class="pcoded-mtext">Medicines Sales Report</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 

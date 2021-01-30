@@ -95,8 +95,10 @@ public class Prescription_SaveServlet extends HttpServlet {
                 prescpItem.setUseMethod(prscpItem_OBJ.getUseMethod());
                 prescpItem.setMealType(prscpItem_OBJ.getMealType());
                 prescpItem.setQty(prscpItem_OBJ.getQty());
-                prescpItem.setCostPerItem(prscpItem_OBJ.getCostPerItem());
+                prescpItem.setUnitCost(prscpItem_OBJ.getUnitCost());
                 prescpItem.setTotalCost(prscpItem_OBJ.getTotalCost());
+                prescpItem.setUnitPrice(prscpItem_OBJ.getUnitPrice());
+                prescpItem.setTotalPrice(prscpItem_OBJ.getTotalPrice());
                 prescpItem.setRemark(prscpItem_OBJ.getRemark());
                 prescpItem.setStatus(1);
                 sess.save(prescpItem);

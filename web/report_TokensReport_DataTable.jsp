@@ -114,6 +114,46 @@
                         <%=searchResultTxt%>
                     </span> 
 
+                    <!--  ./start   REPORT.SUM.TILES ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+                    <div class="card-block box-list">
+                        <div class="row">
+
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white">
+                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">COMPLETED TOKENS</code>
+                                    <h4 class="text-sm-center f-40" id="RptSUM_Completed">0</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white">
+                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">SKIPPED TOKENS COUNT</code>
+                                    <h4 class="text-sm-center f-40" id="RptSUM_Skipped">0</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white">
+                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">PENDING TOKENS COUNT</code>
+                                    <h4 class="text-sm-center f-40" id="RptSUM_Pending">0</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white">
+                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">CANCELED TOKENS COUNT</code>
+                                    <h4 class="text-sm-center f-40" id="RptSUM_Canceled">0</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white">
+                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">TOTAL TOKENS</code>
+                                    <h4 class="text-sm-center f-40" id="RptSUM_Total">0</h4>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--  ./end  REPORT.SUM.TILES ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+
+
                     <div class="card-header-right">
                         <ul class="list-unstyled card-option">
                             <li><i class="feather icon-maximize full-card"></i></li>
@@ -134,7 +174,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <%  Criteria ptnTOKENS_Crt = ssn_TokensReport.createCriteria(PatientToken.class);
+                                <%
+                                    // Report-Sum Values params
+                                    int SumVALUE_Total = 0;
+                                    int SumVALUE_Completed = 0;
+                                    int SumVALUE_Skipped = 0;
+                                    int SumVALUE_Pending = 0;
+                                    int SumVALUE_Canceled = 0;
+
+                                    Criteria ptnTOKENS_Crt = ssn_TokensReport.createCriteria(PatientToken.class);
                                     // set CUSTOMIZED SEARCHING FILTERS....
                                     if (chBxOpt_Date) {
                                         ptnTOKENS_Crt.add(Restrictions.between("date", Val_DateFrom, Val_DateTo));
@@ -151,6 +199,7 @@
                                     }
                                     List<PatientToken> ptnTOKENS_List = ptnTOKENS_Crt.list();
                                     for (PatientToken ptnTOKENS_Objct : ptnTOKENS_List) {
+                                        SumVALUE_Total += 1;
                                 %>
                                 <tr>
                                     <td><%=ptnTOKENS_Objct.getTokenNumber()%></td>
@@ -159,13 +208,21 @@
                                     <td><%=ptnTOKENS_Objct.getTime()%></td>
                                     <td>
                                         <% if (ptnTOKENS_Objct.getStatus() == 0) { %>
-                                        <span class="label label-warning">&nbsp;PENDING&nbsp;</span>      
+                                        <span class="label label-warning">&nbsp;PENDING&nbsp;</span>
+                                        <% SumVALUE_Pending += 1; %>
+
                                         <% } else if (ptnTOKENS_Objct.getStatus() == 1) { %>
                                         <span class="label label-success">&nbsp;COMPLETED&nbsp;</span>    
+                                        <% SumVALUE_Completed += 1; %>
+
                                         <% } else if (ptnTOKENS_Objct.getStatus() == 2) { %>
-                                        <span class="label label-primary">&nbsp;SKIPPED&nbsp;</span>    
+                                        <span class="label label-primary">&nbsp;SKIPPED&nbsp;</span> 
+                                        <% SumVALUE_Skipped += 1; %>
+
                                         <% } else if (ptnTOKENS_Objct.getStatus() == 3) { %>
                                         <span class="label label-danger">&nbsp;CANCELED&nbsp;</span>   
+                                        <% SumVALUE_Canceled += 1; %>
+
                                         <% }%>
                                     </td>
                                 </tr>
@@ -174,6 +231,13 @@
                         </table>
                     </div>
                 </div>
+
+                <input type="hidden" id="VALSUM_Total" value="<%= SumVALUE_Total%>">            
+                <input type="hidden" id="VALSUM_Completed" value="<%= SumVALUE_Completed%>">            
+                <input type="hidden" id="VALSUM_Skipped" value="<%= SumVALUE_Skipped%>">            
+                <input type="hidden" id="VALSUM_Pending" value="<%= SumVALUE_Pending%>">            
+                <input type="hidden" id="VALSUM_Canceled" value="<%= SumVALUE_Canceled%>">            
+
             </div>
         </div>
     </div>
@@ -192,7 +256,14 @@
 
             setTimeout(function () {
                 document.getElementById("dtTableTH_ORD").click();
-            }, 500);
+
+                // set  REPORT.SUM.TILES.VALUES
+                document.getElementById("RptSUM_Total").innerHTML = document.getElementById("VALSUM_Total").value;
+                document.getElementById("RptSUM_Completed").innerHTML = document.getElementById("VALSUM_Completed").value;
+                document.getElementById("RptSUM_Skipped").innerHTML = document.getElementById("VALSUM_Skipped").value;
+                document.getElementById("RptSUM_Pending").innerHTML = document.getElementById("VALSUM_Pending").value;
+                document.getElementById("RptSUM_Canceled").innerHTML = document.getElementById("VALSUM_Canceled").value;
+            }, 800);
         });
     </script>
 </div>

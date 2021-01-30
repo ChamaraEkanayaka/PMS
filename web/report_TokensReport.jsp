@@ -4,7 +4,6 @@
     Author     : AKILA
 --%>
 
-<%@page import="org.hibernate.criterion.Projections"%>
 <%@page import="POJOS.Patient"%>
 <%@page import="POJOS.PatientToken"%>
 <%@page import="POJOS.User"%>
@@ -12,6 +11,7 @@
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.Set"%>
 <%@page import="org.hibernate.criterion.Order"%>
+<%@page import="org.hibernate.criterion.Projections"%>
 <%@page import="org.hibernate.criterion.Restrictions"%>
 <%@page import="org.hibernate.Criteria"%>
 <%@page import="java.util.List"%>

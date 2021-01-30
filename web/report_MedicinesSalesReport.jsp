@@ -1,13 +1,10 @@
 <%-- 
-    Document   : report_TreatmentsReport
-    Created on : Jan 26, 2021, 12:04:55 PM
+    Document   : report_MedicinesSalesReport
+    Created on : Jan 29, 2021, 11:59:57 PM
     Author     : AKILA
 --%>
 
-<%@page import="POJOS.Doctor"%>
-<%@page import="POJOS.Patient"%>
-<%@page import="POJOS.Prescription"%>
-<%@page import="POJOS.PatientToken"%>
+<%@page import="POJOS.Items"%>
 <%@page import="POJOS.User"%>
 <%@page import="DataHolders.USER_LOGIN_DATA"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -25,7 +22,7 @@
     //login code and check access please past this code before header of all pages
     String MAIN_NAME = DataHolders.ProjectInfo.getAppTitle();
     String navMenuItem = "reports";
-    String pagename = "treatmentsReport";
+    String pagename = "medicinesSalesReport";
     String STAFF_NAME = "";
     String USER_NAME = "";
     String BRANCH_NAME = "";
@@ -61,7 +58,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Treatments Report | <%=MAIN_NAME%></title>
+        <title>Medicines Sales Report | <%=MAIN_NAME%></title>
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -134,8 +131,8 @@
                                                 <div class="col-lg-8">
                                                     <div class="page-header-title">
                                                         <div class="d-inline">
-                                                            <h4>Treatments Report</h4>
-                                                            <span>Search, View Treatment Records & Details.</span>
+                                                            <h4>Medicines Sales Report</h4>
+                                                            <span>Search, View Medicines Sales Records & Details.</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -145,7 +142,7 @@
                                                             <li class="breadcrumb-item">
                                                                 <a href="index.jsp"> <i class="feather icon-home"></i> </a>
                                                             </li>
-                                                            <li class="breadcrumb-item"><a href="report_TreatmentsReport.jsp">Treatments Report</a></li>
+                                                            <li class="breadcrumb-item"><a href="report_MedicinesSalesReport.jsp">Medicines Sales Report</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -206,8 +203,7 @@
                                                                     </table>
                                                                 </div> 
 
-
-                                                                <!-- PRESCRIPTION-NO  SELECTOR  -->
+                                                                <!-- MEDICINE-ITEM  SELECTOR -->
                                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                                     <table class="table table-responsive invoice-table invoice-order table-borderless">
                                                                         <tbody>
@@ -215,8 +211,8 @@
                                                                                 <th>
                                                                                     <div class="chk-option">
                                                                                         <div class="checkbox-fade fade-in-primary">
-                                                                                            <label class="check-task">Prescription No
-                                                                                                <input type="checkbox" id="chBox_PrescriptionNo">
+                                                                                            <label class="check-task">Medicine/ Item
+                                                                                                <input type="checkbox" id="chBox_MedicItem">
                                                                                                 <span class="cr"><i class="cr-icon feather icon-check txt-default"></i></span>
                                                                                             </label>
                                                                                         </div>
@@ -226,87 +222,16 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <th style="width: 100%;">
-                                                                                    <select class="form-control" id="PrescriptionNo">
+                                                                                    <select class="form-control" id="MedicItem">
                                                                                         <option value="0">ALL</option>
-                                                                                        <%  Criteria cr_PrescpNo = sess.createCriteria(Prescription.class);
-                                                                                            cr_PrescpNo.addOrder(Order.desc("idprescription"));
-                                                                                            List<Prescription> prescpNo_List = cr_PrescpNo.list();
-                                                                                            for (Prescription PrescpNo_OBJ : prescpNo_List) {%>
-                                                                                        <option value="<%=PrescpNo_OBJ.getIdprescription()%>"><%=PrescpNo_OBJ.getIdprescription()%></option>
-                                                                                        <% }%>
-                                                                                    </select>
-                                                                                </th>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-
-                                                                <!-- TOKEN-NO  SELECTOR -->
-                                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                                    <table class="table table-responsive invoice-table invoice-order table-borderless">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <th>
-                                                                                    <div class="chk-option">
-                                                                                        <div class="checkbox-fade fade-in-primary">
-                                                                                            <label class="check-task">Token No
-                                                                                                <input type="checkbox" id="chBox_TokenNo">
-                                                                                                <span class="cr"><i class="cr-icon feather icon-check txt-default"></i></span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </th>
-                                                                                <td>&nbsp;</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th style="width: 100%;">
-                                                                                    <select class="form-control" id="TokenNo">
-                                                                                        <option value="0">ALL</option>
-                                                                                        <%  Criteria cr_PtnTokenNo = sess.createCriteria(PatientToken.class);
-                                                                                            cr_PtnTokenNo.add(Restrictions.eq("status", 1)); // only  Prescriptions-Available #Tokens
-                                                                                            cr_PtnTokenNo.addOrder(Order.asc("tokenNumber"));
-                                                                                            cr_PtnTokenNo.setProjection(Projections.distinct(Projections.property("tokenNumber")));
-                                                                                            List<Integer> ptnTokenNo_List = cr_PtnTokenNo.list();
-                                                                                            for (Integer PrescTokenNo_VAL : ptnTokenNo_List) {
+                                                                                        <%  Criteria cr_MedicItems = sess.createCriteria(Items.class);
+                                                                                            cr_MedicItems.add(Restrictions.eq("status", 1));
+                                                                                            cr_MedicItems.addOrder(Order.asc("name"));
+                                                                                            List<Items> medicItems_List = cr_MedicItems.list();
+                                                                                            for (Items MedicItems_OBJ : medicItems_List) {
+                                                                                                if (!MedicItems_OBJ.getStocks().isEmpty()) {
                                                                                         %>
-                                                                                        <option value="<%=PrescTokenNo_VAL%>"><%=PrescTokenNo_VAL%></option>
-                                                                                        <% }%>
-                                                                                    </select>
-                                                                                </th>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-
-                                                                <!-- PATIENT  SELECTOR -->
-                                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                                    <table class="table table-responsive invoice-table invoice-order table-borderless">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <th>
-                                                                                    <div class="chk-option">
-                                                                                        <div class="checkbox-fade fade-in-primary">
-                                                                                            <label class="check-task">Patient
-                                                                                                <input type="checkbox" id="chBox_Patient">
-                                                                                                <span class="cr"><i class="cr-icon feather icon-check txt-default"></i></span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </th>
-                                                                                <td>&nbsp;</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th style="width: 100%;">
-                                                                                    <select class="form-control" id="PatientID">
-                                                                                        <option value="0">ALL</option>
-                                                                                        <%  Criteria cr_Patients = sess.createCriteria(Patient.class);
-                                                                                            cr_Patients.add(Restrictions.eq("status", 1));
-                                                                                            cr_Patients.addOrder(Order.asc("name"));
-                                                                                            List<Patient> patients_List = cr_Patients.list();
-                                                                                            for (Patient Patient_OBJ : patients_List) {
-                                                                                                if (!Patient_OBJ.getPrescriptions().isEmpty()) {
-                                                                                        %>
-                                                                                        <option value="<%=Patient_OBJ.getIdpatient()%>"><%=Patient_OBJ.getName() + " [" + Patient_OBJ.getContactNo() + "]"%></option>
+                                                                                        <option value="<%=MedicItems_OBJ.getItemId()%>"><%=MedicItems_OBJ.getName()%></option>
                                                                                         <% }
                                                                                             }%>
                                                                                     </select>
@@ -315,44 +240,6 @@
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
-
-                                                                <!-- DOCTOR  SELECTOR  -->                    
-                                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                                    <table class="table table-responsive invoice-table invoice-order table-borderless">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <th>
-                                                                                    <div class="chk-option">
-                                                                                        <div class="checkbox-fade fade-in-primary">
-                                                                                            <label class="check-task">Doctor
-                                                                                                <input type="checkbox" id="chBox_Doctor">
-                                                                                                <span class="cr"><i class="cr-icon feather icon-check txt-default"></i></span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </th>
-                                                                                <td>&nbsp;</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th style="width: 100%;">
-                                                                                    <select class="form-control" id="DoctorID">
-                                                                                        <option value="0">ALL</option>
-                                                                                        <%  Criteria cr_Doctor = sess.createCriteria(Doctor.class);
-                                                                                            cr_Doctor.add(Restrictions.eq("status", 1));
-                                                                                            cr_Doctor.addOrder(Order.asc("name"));
-                                                                                            List<Doctor> doctors_List = cr_Doctor.list();
-                                                                                            for (Doctor Doctor_OBJ : doctors_List) {
-                                                                                                if (!Doctor_OBJ.getPrescriptions().isEmpty()) {
-                                                                                        %>
-                                                                                        <option value="<%=Doctor_OBJ.getIddoctor()%>"><%=Doctor_OBJ.getName() + " [" + Doctor_OBJ.getContactNumber() + "]"%></option>
-                                                                                        <% }
-                                                                                            }%>
-                                                                                    </select>
-                                                                                </th>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>                     
 
                                                                 <div class="col-md-12 col-sm-12">
                                                                     <button type="submit" class="btn btn-primary" style="float: right;" onclick='load_SearchResults_DataTable();'><span class="fa fa-search" style="display: inline; color: #ffffff;"></span>&nbsp;SEARCH</button>
@@ -409,10 +296,7 @@
                 $('#datatable').DataTable();
 
                 // cfg. Select2 Elements
-                $('#PrescriptionNo').select2();
-                $('#TokenNo').select2();
-                $('#PatientID').select2();
-                $('#DoctorID').select2();
+                $('#MedicItem').select2();
                 load_SearchResults_DataTable();
             });
         </script>
@@ -421,22 +305,16 @@
         <script type="text/javascript">
             function load_SearchResults_DataTable() {
                 var param_ChBxDate = document.getElementById("chBox_Date").checked;
-                var param_ChBxPrescNo = document.getElementById("chBox_PrescriptionNo").checked;
-                var param_ChBxTokenNo = document.getElementById("chBox_TokenNo").checked;
-                var param_ChBxPatient = document.getElementById("chBox_Patient").checked;
-                var param_ChBxDoctor = document.getElementById("chBox_Doctor").checked;
+                var param_ChMedicItem = document.getElementById("chBox_MedicItem").checked;
 
                 var param_DateFrom = document.getElementById("DateFrom").value;
                 var param_DateTo = document.getElementById("DateTo").value;
-                var param_PrescNo = document.getElementById("PrescriptionNo").value;
-                var param_TokenNo = document.getElementById("TokenNo").value;
-                var param_Patient = document.getElementById("PatientID").value;
-                var param_Doctor = document.getElementById("DoctorID").value;
+                var param_MedicItem = document.getElementById("MedicItem").value;
 
                 document.getElementById("DataTable_Remover").outerHTML = "";
-                $('#DataTable_Includer').load('report_TreatmentsReport_DataTable.jsp?' +
-                        'param_ChBxDate=' + param_ChBxDate + "&param_ChBxPrescNo=" + param_ChBxPrescNo + "&param_ChBxTokenNo=" + param_ChBxTokenNo + "&param_ChBxPatient=" + param_ChBxPatient + "&param_ChBxDoctor=" + param_ChBxDoctor +
-                        "&param_DateFrom=" + param_DateFrom + "&param_DateTo=" + param_DateTo + "&param_PrescNo=" + param_PrescNo + "&param_TokenNo=" + param_TokenNo + "&param_Patient=" + param_Patient + "&param_Doctor=" + param_Doctor);
+                $('#DataTable_Includer').load('report_MedicinesSalesReport_DataTable.jsp?' +
+                        'param_ChBxDate=' + param_ChBxDate + "&param_ChMedicItem=" + param_ChMedicItem +
+                        "&param_DateFrom=" + param_DateFrom + "&param_DateTo=" + param_DateTo + "&param_MedicItem=" + param_MedicItem);
             }
         </script>
     </body>

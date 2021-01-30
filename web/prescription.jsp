@@ -281,9 +281,9 @@
                                                                 <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: -40px; display: contents;">
                                                                     <h6><span class="fa fa-plus-square-o"></span>&nbsp;&nbsp;Add Medicines</h6>
 
-                                                                    <!-- Item -->
+                                                                    <!-- Medicine-Item -->
                                                                     <div class="col-lg-12 col-sm-12 m-b-10">
-                                                                        <label class="col-lable f-w-700">Item</label>
+                                                                        <label class="col-lable f-w-700">Medicine/ Item</label>
                                                                         <select class="form-control"
                                                                                 required="true"
                                                                                 id="addItem_Item"

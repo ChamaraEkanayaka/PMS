@@ -42,7 +42,7 @@ public class Prescription_CalcMedicineCostServlet extends HttpServlet {
             // do Calculations...
             for (PRESCRIPTION_ITEM_OBJ item : dtHolder.getHolder()) {
                 total_Items = total_Items + 1;
-                mdicnCost = mdicnCost + item.getTotalCost();
+                mdicnCost = mdicnCost + item.getTotalPrice();
             }
 
             // send Submit-opt. status

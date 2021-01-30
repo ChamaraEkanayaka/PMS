@@ -134,7 +134,7 @@
                                         <table class="table invoice-detail-table">
                                             <thead>
                                                 <tr class="thead-default">
-                                                    <th>Item</th>
+                                                    <th>Medicine/ Item</th>
                                                     <th>Dosage</th>
                                                     <th>Use-Cycle</th>
                                                     <th>Duration</th>
@@ -159,7 +159,7 @@
                                                     <td><%=PrescItems.getUseMethod().getName()%></td>
                                                     <td><%=PrescItems.getMealType().getName()%></td>
                                                     <td><%=PrescItems.getRemark()%></td>
-                                                    <td><%="Rs. " + Utils.DecimalFormats.dfDoubleValue().format(PrescItems.getTotalCost())%></td>
+                                                    <td><%="Rs. " + Utils.DecimalFormats.dfDoubleValue().format(PrescItems.getTotalPrice())%></td>
                                                 </tr>
                                                 <% }%>
                                             </tbody>

@@ -1,5 +1,5 @@
 package POJOS;
-// Generated Jan 28, 2021 9:31:10 PM by Hibernate Tools 4.3.1
+// Generated Jan 30, 2021 12:28:20 PM by Hibernate Tools 4.3.1
 
 
 
@@ -19,8 +19,10 @@ public class PrescriptionItem  implements java.io.Serializable {
      private Double dosage;
      private Double duration;
      private Double qty;
-     private Double costPerItem;
+     private Double unitCost;
      private Double totalCost;
+     private Double unitPrice;
+     private Double totalPrice;
      private String remark;
      private Integer status;
 
@@ -36,7 +38,7 @@ public class PrescriptionItem  implements java.io.Serializable {
         this.useCycle = useCycle;
         this.useMethod = useMethod;
     }
-    public PrescriptionItem(MealType mealType, MedicineType medicineType, Prescription prescription, Stock stock, UseCycle useCycle, UseMethod useMethod, Double dosage, Double duration, Double qty, Double costPerItem, Double totalCost, String remark, Integer status) {
+    public PrescriptionItem(MealType mealType, MedicineType medicineType, Prescription prescription, Stock stock, UseCycle useCycle, UseMethod useMethod, Double dosage, Double duration, Double qty, Double unitCost, Double totalCost, Double unitPrice, Double totalPrice, String remark, Integer status) {
        this.mealType = mealType;
        this.medicineType = medicineType;
        this.prescription = prescription;
@@ -46,8 +48,10 @@ public class PrescriptionItem  implements java.io.Serializable {
        this.dosage = dosage;
        this.duration = duration;
        this.qty = qty;
-       this.costPerItem = costPerItem;
+       this.unitCost = unitCost;
        this.totalCost = totalCost;
+       this.unitPrice = unitPrice;
+       this.totalPrice = totalPrice;
        this.remark = remark;
        this.status = status;
     }
@@ -122,12 +126,12 @@ public class PrescriptionItem  implements java.io.Serializable {
     public void setQty(Double qty) {
         this.qty = qty;
     }
-    public Double getCostPerItem() {
-        return this.costPerItem;
+    public Double getUnitCost() {
+        return this.unitCost;
     }
     
-    public void setCostPerItem(Double costPerItem) {
-        this.costPerItem = costPerItem;
+    public void setUnitCost(Double unitCost) {
+        this.unitCost = unitCost;
     }
     public Double getTotalCost() {
         return this.totalCost;
@@ -135,6 +139,20 @@ public class PrescriptionItem  implements java.io.Serializable {
     
     public void setTotalCost(Double totalCost) {
         this.totalCost = totalCost;
+    }
+    public Double getUnitPrice() {
+        return this.unitPrice;
+    }
+    
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+    public Double getTotalPrice() {
+        return this.totalPrice;
+    }
+    
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
     public String getRemark() {
         return this.remark;
