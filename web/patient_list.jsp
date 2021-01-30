@@ -171,7 +171,7 @@
                                                                                 <th>
                                                                                     <div class="chk-option">
                                                                                         <div class="checkbox-fade fade-in-primary">
-                                                                                            <label class="check-task">Date-From
+                                                                                            <label class="check-task">Register Date-From
                                                                                                 <input type="checkbox" checked="true" id="chBox_Date">
                                                                                                 <span class="cr"><i class="cr-icon feather icon-check txt-default"></i></span>
                                                                                             </label>
@@ -192,7 +192,7 @@
                                                                     <table class="table table-responsive invoice-table invoice-order table-borderless">
                                                                         <tbody>
                                                                             <tr>
-                                                                                <th>Date-To</th>
+                                                                                <th>Register Date-To</th>
                                                                                 <td>&nbsp;</td>
                                                                             </tr>
                                                                             <tr>

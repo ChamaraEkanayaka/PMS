@@ -48,7 +48,7 @@ public class IssueToken_LoadPatientsListServlet extends HttpServlet {
             patients_Crt.add(Restrictions.eq("status", 1));
             patients_Crt.addOrder(Order.asc("name"));
             List<Patient> PatientsList = patients_Crt.list();
-            for (Patient Patients_Objct : PatientsList) {
+            for (Patient Patients_Objct : PatientsList){
                 param_OUTPUT = param_OUTPUT + "<option value='" + Patients_Objct.getIdpatient() + "'>" + Patients_Objct.getName() + " [" + Patients_Objct.getContactNo() + "]" + "</option>";
             }
 

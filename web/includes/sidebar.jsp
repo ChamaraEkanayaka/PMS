@@ -32,6 +32,13 @@
                     <span class="pcoded-mtext">Treatment</span>
                 </a>
             </li>
+            <!-- *** DISPENSARY *****************************************************************************************************  -->
+            <li class="<%=(navMenuItem == "dispensary") ? "active pcoded-trigger" : ""%>">
+                <a href="dispensary.jsp">
+                    <span class="pcoded-micon"><i class="feather icon-plus"></i></span>
+                    <span class="pcoded-mtext">Dispensary</span>
+                </a>
+            </li>
 
             <!-- *** PATIENTS *****************************************************************************************************  -->
             <li class="<%=(navMenuItem == "patients") ? "active pcoded-trigger" : ""%>">
