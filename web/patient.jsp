@@ -292,7 +292,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 m-b-10">
-                                                    <button class="btn btn-dark btn-mat waves-effect" onclick='load_IssuedTokensList();'><span class="fa fa-bookmark"></span>&nbsp;&nbsp;SAVED PATIENTS</button>
+                                                    <a class="btn btn-dark btn-mat waves-effect" href="patient_list.jsp" ><span class="fa fa-bookmark"></span>&nbsp;&nbsp;SAVED PATIENTS</a>
                                                 </div>
                                             </div>
                                         </div>
