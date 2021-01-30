@@ -62,29 +62,18 @@
                 </ul>
             </li>
 
-            <!-- *** ADMIN-PANEL *********************************************************************************************************  -->
-            <li class="pcoded-hasmenu <%=(navMenuItem == "adminPanel") ? "active pcoded-trigger" : ""%>">
+            <!-- *** SETTINGS *********************************************************************************************************  -->
+            <li class="pcoded-hasmenu <%=(navMenuItem == "settings") ? "active pcoded-trigger" : ""%>">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
-                    <span class="pcoded-mtext">Admin Panel</span>
+                    <span class="pcoded-mtext">Settings</span>
                 </a>
                 <ul class="pcoded-submenu">
-                    <li class="<%=(pagename == "users") ? "active" : ""%>">
-                        <a href="index.jsp">
-                            <span class="pcoded-mtext">Users</span>
-                        </a>
-                    </li>
-                    <li class="<%=(pagename == "doctors") ? "active" : ""%>">
-                        <a href="index.jsp">
-                            <span class="pcoded-mtext">Doctors</span>
-                        </a>
-                    </li>
                     <li class="<%=(pagename == "utilities") ? "active" : ""%>">
                         <a href="index.jsp">
-                            <span class="pcoded-mtext">Utilities</span>
+                            <span class="pcoded-mtext">Manage Utilities</span>
                         </a>
                     </li>
-
                 </ul>
             </li>
 

@@ -155,12 +155,32 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <!-- REPORTS Section +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                                        <div class="page-header">
+                                            <div class="row align-items-end">
+                                                <div class="col-lg-8">
+                                                    <div class="page-header-title">
+                                                        <div class="d-inline">
+                                                            <h4>Reports</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="page-body">
+                                            <div class="row">
+
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
-                                                    <div class="card bg-c-pink text-white" onclick='location.replace("index.jsp");'>
+                                                    <div class="card bg-c-pink text-white" onclick='location.replace("report_TreatmentsReport.jsp");'>
                                                         <div class="card-block">
                                                             <div class="row align-items-center">
                                                                 <div class="col">
-                                                                    <h5 class="m-b-0" style="font-size: 16px;">Reports&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                                                    <h5 class="m-b-0" style="font-size: 16px;">Treatments Report</h5>
                                                                 </div>
                                                                 <div class="col col-auto text-right">
                                                                     <i class="feather icon-file f-50 text-c-pink"></i>
@@ -169,8 +189,20 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
+                                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                                    <div class="card bg-c-pink text-white" onclick='location.replace("report_TokensReport.jsp");'>
+                                                        <div class="card-block">
+                                                            <div class="row align-items-center">
+                                                                <div class="col">
+                                                                    <h5 class="m-b-0" style="font-size: 16px;">Tokens Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                                                </div>
+                                                                <div class="col col-auto text-right">
+                                                                    <i class="feather icon-file f-50 text-c-pink"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
                                         </div>
