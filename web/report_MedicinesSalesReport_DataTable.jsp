@@ -4,6 +4,11 @@
     Author     : AKILA
 --%>
 
+<%@page import="java.util.Set"%>
+<%@page import="POJOS.PrescriptionItem"%>
+<%@page import="POJOS.Stock"%>
+<%@page import="org.hibernate.criterion.Order"%>
+<%@page import="org.hibernate.criterion.Projections"%>
 <%@page import="POJOS.Items"%>
 <%@page import="DataHolders.USER_LOGIN_DATA"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -105,39 +110,33 @@
                     <div class="card-block box-list">
                         <div class="row">
 
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white" style="height: 142px;">
-                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">TOKENS COUNT</code>
-                                    <h4 class="text-sm-center f-40" id="RptSUM_TokensCount">0</h4>
+                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">TOTAL SALES ITEMS</code>
+                                    <h4 class="text-sm-center f-30" id="RptSUM_SalesItems">0</h4>
                                 </div>
                             </div>
-                            <div class="col-lg-8">
+                            <div class="col-lg-3">
+                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white" style="height: 142px;">
+                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">TOTAL SALES QTY</code>
+                                    <h4 class="text-sm-center f-30" id="RptSUM_SalesQty">0</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
                                 <div class="p-0 z-depth-bottom-1 waves-effect bg-c-blue text-white">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <code style="margin-left: -1px;margin-top: 0px;font-weight: 900;">TOTAL MEDICINE COST</code>
-                                            <span style="color: #ffffff;font-size: medium;font-weight: 600;margin-left: 20px;" id="RptSUM_MedCost">Rs. 0.00</span>
+                                            <code style="margin-left: -1px;margin-top: 0px;font-weight: 900;">TOTAL COST</code>
+                                            <span style="color: #ffffff;font-size: medium;font-weight: 600;margin-left: 20px;" id="RptSUM_TotalCost">Rs. 0.00</span>
 
-                                            <code style="margin-left: -1px;margin-top: 5px;font-weight: 900;">TOTAL DOCTOR CHARGES</code>
-                                            <span style="color: #ffffff;font-size: medium;font-weight: 600;margin-left: 20px;" id="RptSUM_DocCharges">Rs. 0.00</span>
+                                            <code style="margin-left: -1px;margin-top: 5px;font-weight: 900;">TOTAL SALES AMOUNT</code>
+                                            <span style="color: #ffffff;font-size: medium;font-weight: 600;margin-left: 20px;" id="RptSUM_TotalSalesAmount">Rs. 0.00</span>
                                         </div>
                                         <div class="col-lg-6">
-                                            <code style="margin-left: -1px;margin-top: 0px;font-weight: 900;">TOTAL AMOUNT&nbsp;&nbsp;&nbsp;</code>
-                                            <span style="color: #ffffff;font-size: x-large;margin-left: 20px;" id="RptSUM_TotAmount">Rs. 0.00</span>
+                                            <code style="margin-left: -1px;margin-top: 0px;font-weight: 900;">PROFIT&nbsp;&nbsp;&nbsp;</code>
+                                            <span style="color: #ffffff;font-size: x-large;margin-left: 20px;" id="RptSUM_Profit">Rs. 0.00</span>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white">
-                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">TOTAL RECEIVABLE AMOUNT</code>
-                                    <h4 class="text-sm-center" id="RptSUM_RcvblAmount">Rs. 0.00</h4>
-                                </div>
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white">
-                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">BALANCE</code>
-                                    <h4 class="text-sm-center" id="RptSUM_Balance">Rs. 0.00</h4>
                                 </div>
                             </div>
 
@@ -157,37 +156,113 @@
                         <table id="datatable" class="table table-striped table-bordered nowrap">
                             <thead>
                                 <tr>
-                                    <th id="dtTableTH_ORD">#Medicine/ Item</th>
+                                    <th>#Medicine/ Item</th>
                                     <th>Sales Qty</th>
                                     <th>Unit Cost</th>
-                                    <th>Total Cost</th>
                                     <th>Unit Sales Price</th>
+                                    <th>Total Cost</th>
                                     <th>Total Sales Amount</th>
-                                    <th>Balance</th>
-                                    <th>Date & Time</th>
+                                    <th>Profit</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
                                 </tr>
                             </thead>
-                             <tbody>
+                            <tbody>
                                 <%
                                     // Report-Sum Values params
-                                    int SumVALUE_TokensCount = 0;
-                                    double SumVALUE_MedCost = 0.00;
-                                    double SumVALUE_DocCharges = 0.00;
-                                    double SumVALUE_TotAmount = 0.00;
-                                    double SumVALUE_RcvblAmount = 0.00;
-                                    
-                                   
-                                   %>
+                                    int SumVALUE_SalesItems = 0;
+                                    double SumVALUE_SalesQty = 0.00;
+                                    double SumVALUE_TotalCost = 0.00;
+                                    double SumVALUE_TotalSalesAmount = 0.00;
+
+                                    // COLLECT  Item-Names LIST... ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                                    boolean flag_ItemNameExist = false;
+                                    boolean flag_readyToADDLIST = false;
+
+                                    Criteria Items_Crt = ssn_MedicSalesReport.createCriteria(Items.class);
+                                    if (chBxOpt_MedicItem) { // set Custom-Search Opt.
+                                        if (Integer.valueOf(request.getParameter("param_MedicItem")) != 0) {
+                                            Items_Crt.add(Restrictions.eq("name", Val_MedicItem.getName()));
+                                        }
+                                    }
+                                    Items_Crt.addOrder(Order.asc("name"));
+                                    List<Items> itemsList = Items_Crt.list();
+                                    for (Items items_OBJECT : itemsList) {
+                                        flag_ItemNameExist = false;
+                                        if (!items_OBJECT.getStocks().isEmpty()) {
+
+                                            Criteria stock_Crt = ssn_MedicSalesReport.createCriteria(Stock.class);
+                                            stock_Crt.add(Restrictions.eq("items", items_OBJECT));
+                                            stock_Crt.add(Restrictions.eq("status", 1));
+                                            List<Stock> Stock_LIST = stock_Crt.list();
+                                            for (Stock Stock_OBJECT : Stock_LIST) {
+                                                Set<PrescriptionItem> PrescItems_SET = Stock_OBJECT.getPrescriptionItems();
+
+                                                // COLLECT  Prescription-Items  LIST.. ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+                                                for (PrescriptionItem PrescItems_OBJECT : PrescItems_SET) {
+                                                    flag_readyToADDLIST = false;
+
+                                                    // CHECK ON  Prescription .. ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+                                                    Criteria Prescp_Crt = ssn_MedicSalesReport.createCriteria(Prescription.class);
+                                                    Prescp_Crt.add(Restrictions.eq("idprescription", PrescItems_OBJECT.getPrescription().getIdprescription()));
+                                                    // Prescp_Crt.add(Restrictions.eq("status", 1)); //  >> @NOW get all   Prescriptions-Items
+                                                    if (chBxOpt_Date) { // set Custom-Search Opt.
+                                                        Prescp_Crt.add(Restrictions.between("date", Val_DateFrom, Val_DateTo));
+                                                    }
+                                                    List<Prescription> Prescp_LIST = Prescp_Crt.list();
+                                                    if (!Prescp_LIST.isEmpty()) {
+                                                        flag_readyToADDLIST = true;
+                                                    }
+                                                    if (flag_readyToADDLIST) {
+                                                        if (!flag_ItemNameExist) {
+                                                            flag_ItemNameExist = true;
+                                                            SumVALUE_SalesItems += 1;
+                                %>
+                                <tr style="background-color: #a5d6a7;">
+                                    <td><%= Stock_OBJECT.getItems().getName()%></td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <% }%>    
+                                <tr>
+                                    <td style="color: transparent; font-size: 0px;"><%= Stock_OBJECT.getItems().getName()%></td>
+                                    <td><%= Utils.DecimalFormats.dfDoubleValue().format(PrescItems_OBJECT.getQty())%></td>
+                                    <td><%= "Rs. " + Utils.DecimalFormats.dfPriceValue().format(PrescItems_OBJECT.getUnitCost())%></td>
+                                    <td><%= "Rs. " + Utils.DecimalFormats.dfPriceValue().format(PrescItems_OBJECT.getUnitPrice())%></td>
+                                    <td><%= "Rs. " + Utils.DecimalFormats.dfPriceValue().format(PrescItems_OBJECT.getTotalCost())%></td>
+                                    <td><%= "Rs. " + Utils.DecimalFormats.dfPriceValue().format(PrescItems_OBJECT.getTotalPrice())%></td>
+                                    <td><%= "Rs. " + Utils.DecimalFormats.dfPriceValue().format(PrescItems_OBJECT.getTotalPrice() - PrescItems_OBJECT.getTotalCost())%></td>
+                                    <td><%= PrescItems_OBJECT.getPrescription().getDate()%></td>
+                                    <td><%= PrescItems_OBJECT.getPrescription().getTime()%></td>
+                                </tr>
+                                <%
+                                                        // Calculate SUM-VALUES
+                                                        SumVALUE_SalesQty += PrescItems_OBJECT.getQty();
+                                                        SumVALUE_TotalCost += PrescItems_OBJECT.getTotalCost();
+                                                        SumVALUE_TotalSalesAmount += PrescItems_OBJECT.getTotalPrice();
+
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                %>
                             </tbody>
                         </table>
                     </div>
 
-                    <input type="hidden" id="VALSUM_TokensCount" value="<%= SumVALUE_TokensCount%>">      
-                    <input type="hidden" id="VALSUM_MedCost" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_MedCost)%>">      
-                    <input type="hidden" id="VALSUM_DocCharges" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_DocCharges)%>">      
-                    <input type="hidden" id="VALSUM_TotAmount" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_TotAmount)%>">      
-                    <input type="hidden" id="VALSUM_RcvblAmount" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_RcvblAmount)%>">      
-                    <input type="hidden" id="VALSUM_Balance" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_RcvblAmount - SumVALUE_TotAmount)%>">      
+                    <input type="hidden" id="VALSUM_SalesItems" value="<%= SumVALUE_SalesItems%>">      
+                    <input type="hidden" id="VALSUM_SalesQty" value="<%=Utils.DecimalFormats.dfDoubleValue().format(SumVALUE_SalesQty)%>">      
+                    <input type="hidden" id="VALSUM_TotalCost" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_TotalCost)%>">      
+                    <input type="hidden" id="VALSUM_TotalSalesAmount" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_TotalSalesAmount)%>">      
+                    <input type="hidden" id="VALSUM_Profit" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_TotalSalesAmount - SumVALUE_TotalCost)%>">      
 
                 </div>
             </div>
@@ -207,15 +282,12 @@
             $('#datatable').DataTable();
 
             setTimeout(function () {
-                document.getElementById("dtTableTH_ORD").click();
-
                 // set  REPORT.SUM.TILES.VALUES
-                document.getElementById("RptSUM_TokensCount").innerHTML = document.getElementById("VALSUM_TokensCount").value;
-                document.getElementById("RptSUM_MedCost").innerHTML = document.getElementById("VALSUM_MedCost").value;
-                document.getElementById("RptSUM_DocCharges").innerHTML = document.getElementById("VALSUM_DocCharges").value;
-                document.getElementById("RptSUM_TotAmount").innerHTML = document.getElementById("VALSUM_TotAmount").value;
-                document.getElementById("RptSUM_RcvblAmount").innerHTML = document.getElementById("VALSUM_RcvblAmount").value;
-                document.getElementById("RptSUM_Balance").innerHTML = document.getElementById("VALSUM_Balance").value;
+                document.getElementById("RptSUM_SalesItems").innerHTML = document.getElementById("VALSUM_SalesItems").value;
+                document.getElementById("RptSUM_SalesQty").innerHTML = document.getElementById("VALSUM_SalesQty").value;
+                document.getElementById("RptSUM_TotalCost").innerHTML = document.getElementById("VALSUM_TotalCost").value;
+                document.getElementById("RptSUM_TotalSalesAmount").innerHTML = document.getElementById("VALSUM_TotalSalesAmount").value;
+                document.getElementById("RptSUM_Profit").innerHTML = document.getElementById("VALSUM_Profit").value;
             }, 800);
         });
     </script>
