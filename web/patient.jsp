@@ -36,7 +36,12 @@
             BRANCH_ID = LD.getBranch_id();
             if (!STAFF_NAME.equals("") && !USER_NAME.equals("") && !BRANCH_NAME.equals("") && USER_ID > 0 && BRANCH_ID > 0) {
                 //check access code
-
+                Session sess_UserAccess = FactoryManager.getSessionFactory().openSession();
+                User User_AccessOBJECT = (User) sess_UserAccess.load(User.class, USER_ID);
+                if (!User_AccessOBJECT.getAd().contains("P")) {
+                    response.sendRedirect("index.jsp");
+                    return;
+                }
                 //check access code
             } else {
                 response.sendRedirect("login.jsp");
@@ -177,7 +182,7 @@
                                                                                type="text"
                                                                                required="true" 
                                                                                id="name"
-                                                                               value="<%=PATIENT.getName() %>">
+                                                                               value="<%=PATIENT.getName()%>">
                                                                     </div>
                                                                     <!-- Birth Day -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-10">
@@ -187,7 +192,7 @@
                                                                                required="true" 
                                                                                max=""
                                                                                id="birth_day"
-                                                                               value="<%=PATIENT.getBirthDay() %>">
+                                                                               value="<%=PATIENT.getBirthDay()%>">
                                                                     </div>
                                                                     <!-- Address -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
@@ -195,7 +200,7 @@
                                                                         <input class="form-control"
                                                                                type="text"
                                                                                id="address"
-                                                                               value="<%=PATIENT.getAddress() %>">
+                                                                               value="<%=PATIENT.getAddress()%>">
                                                                     </div>    
                                                                     <!-- Blood Group -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-15">
@@ -239,7 +244,7 @@
                                                                         <input class="form-control"
                                                                                type="text"
                                                                                id="nic"
-                                                                               value="<%=PATIENT.getNic() %>">
+                                                                               value="<%=PATIENT.getNic()%>">
                                                                     </div> 
                                                                     <!-- Remark -->
                                                                     <div class="col-lg-12 col-md-12 col-sm-12 m-b-10">
@@ -392,7 +397,7 @@
                                         window.location.replace("issueToken.jsp?patientID=" + outputData.split(":")[1]);
                                     }, 700);
                                 }
-                            }else{
+                            } else {
                                 swal('Empty Fields !', 'Please fill all filelds and try agin.', 'error');
                             }
 
