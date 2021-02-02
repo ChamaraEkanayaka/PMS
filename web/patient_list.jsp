@@ -317,7 +317,6 @@
                 var param_DateFrom = document.getElementById("DateFrom").value;
                 var param_DateTo = document.getElementById("DateTo").value;
                 var param_Patient = document.getElementById("PatientID").value;
-                alert(param_Patient);
                 document.getElementById("DataTable_Remover").outerHTML = "";
                 $('#DataTable_Includer').load('report_PatientsReport_DataTable.jsp?' +
                         'param_ChBxDate=' + param_ChBxDate + "&param_ChBxPatient=" + param_ChBxPatient +
