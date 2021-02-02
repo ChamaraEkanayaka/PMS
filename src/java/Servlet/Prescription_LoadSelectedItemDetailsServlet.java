@@ -6,6 +6,8 @@
 package Servlet;
 
 import Connection.FactoryManager;
+import DataHolders.USER_LOGIN_DATA;
+import POJOS.Branch;
 import POJOS.Items;
 import POJOS.Stock;
 import java.io.IOException;
@@ -44,10 +46,14 @@ public class Prescription_LoadSelectedItemDetailsServlet extends HttpServlet {
             Session ssn = FactoryManager.getSessionFactory().openSession();
             boolean param_Status = false;
 
+            USER_LOGIN_DATA userLOGDATA = (USER_LOGIN_DATA) request.getSession().getAttribute("LOGIN_DATA");
+            Branch branchOBJC = (Branch) ssn.load(Branch.class, Integer.valueOf(userLOGDATA.getBranch_id()));
+
             Items itemOBJC = (Items) ssn.load(Items.class, Integer.valueOf(request.getParameter("itemID")));
 
             Criteria stock_Crt = ssn.createCriteria(Stock.class);
             stock_Crt.add(Restrictions.eq("items", itemOBJC));
+            stock_Crt.add(Restrictions.eq("branch", branchOBJC));
             stock_Crt.add(Restrictions.eq("status", 1));
             stock_Crt.add(Restrictions.gt("qty", 0.00));
             List<Stock> StockList = stock_Crt.list();
