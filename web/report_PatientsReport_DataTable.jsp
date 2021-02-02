@@ -130,7 +130,7 @@
                                     }
                                     if (chBxOpt_Patient) {
                                         if (Integer.valueOf(request.getParameter("param_Patient")) != 0) {
-                                            ptnPATIENT_Crt.add(Restrictions.eq("patient", Val_Patient));
+                                            ptnPATIENT_Crt.add(Restrictions.eq("idpatient", Val_Patient.getIdpatient()));
                                         }
                                     }
                                     List<Patient> ptnList_List = ptnPATIENT_Crt.list();
