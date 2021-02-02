@@ -27,7 +27,12 @@
             BRANCH_ID = LD.getBranch_id();
             if (!STAFF_NAME.equals("") && !USER_NAME.equals("") && !BRANCH_NAME.equals("") && USER_ID > 0 && BRANCH_ID > 0) {
                 //check access code
-
+                Session sess_UserAccess = FactoryManager.getSessionFactory().openSession();
+                User User_AccessOBJECT = (User) sess_UserAccess.load(User.class, USER_ID);
+                if (!User_AccessOBJECT.getAd().contains("L")) {
+                    response.sendRedirect("index.jsp");
+                    return;
+                }
                 //check access code
             } else {
                 response.sendRedirect("login.jsp");
@@ -353,7 +358,7 @@
                     showLoaderOnConfirm: true
                 }, function (isConfirm) {
                     if (isConfirm) {
-                        location.replace("patient.jsp?PatientID="+PatientID);
+                        location.replace("patient.jsp?PatientID=" + PatientID);
                     }
                 });
             }

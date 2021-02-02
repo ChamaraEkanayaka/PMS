@@ -15,8 +15,8 @@
     }
 
     if (LD_SIDE != null && USER_ID_SIDE > 0) {
-        Session sess = FactoryManager.getSessionFactory().openSession();
-        User User_OBJECT_SIDE = (User) sess.load(User.class, USER_ID_SIDE);
+        Session sess_SIDE = FactoryManager.getSessionFactory().openSession();
+        User User_OBJECT_SIDE = (User) sess_SIDE.load(User.class, USER_ID_SIDE);
 %>
 <nav class="pcoded-navbar">
     <div class="pcoded-inner-navbar main-menu">
@@ -97,7 +97,7 @@
                     <% if (User_OBJECT_SIDE.getAd().contains("T")) {%>
                     <li class="<%=(pagename == "patientlist") ? "active" : ""%>">
                         <a href="patient_list.jsp">
-                            <span class="pcoded-mtext">Patient List</span>
+                            <span class="pcoded-mtext">Patients Details</span>
                         </a>
                     </li>
                     <% } %>
