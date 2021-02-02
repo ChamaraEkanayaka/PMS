@@ -41,6 +41,8 @@
         response.sendRedirect("login.jsp");
         return;
     }
+    Session sess_index = FactoryManager.getSessionFactory().openSession();
+    User User_OBJECT_INDEX= (User) sess_index.load(User.class, USER_ID);
     //login code and check access plase past this code before header of all pages
 %>
 
@@ -112,7 +114,7 @@
                                         </div>
                                         <div class="page-body">
                                             <div class="row">
-
+                                                <% if (User_OBJECT_INDEX.getAd().contains("L")) {%>
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="card bg-c-blue text-white" onclick='location.replace("issueToken.jsp");'>
                                                         <div class="card-block">
@@ -127,6 +129,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <% } %>
+                                                <% if (User_OBJECT_INDEX.getAd().contains("M")) {%>
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="card bg-c-green text-white" onclick='location.replace("tokenSelector.jsp");'>
                                                         <div class="card-block">
@@ -141,6 +145,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <% } %>
+                                                <% if (User_OBJECT_INDEX.getAd().contains("P")) {%>
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="card bg-c-yellow text-white" onclick='location.replace("patient_Register.jsp");'>
                                                         <div class="card-block">
@@ -155,7 +161,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <% } %>
                                             </div>
                                         </div>
 
@@ -174,7 +180,7 @@
                                         </div>
                                         <div class="page-body">
                                             <div class="row">
-
+                                                <% if (User_OBJECT_INDEX.getAd().contains("Q")) {%>
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="card bg-c-pink text-white" onclick='location.replace("report_TreatmentsReport.jsp");'>
                                                         <div class="card-block">
@@ -189,6 +195,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <% } %>
+                                                <% if (User_OBJECT_INDEX.getAd().contains("R")) {%>
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="card bg-c-pink text-white" onclick='location.replace("report_TokensReport.jsp");'>
                                                         <div class="card-block">
@@ -203,6 +211,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <% } %>
+                                                <% if (User_OBJECT_INDEX.getAd().contains("S")) {%>
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="card bg-c-pink text-white" onclick='location.replace("report_MedicinesSalesReport.jsp");'>
                                                         <div class="card-block">
@@ -217,7 +227,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <% } %>
                                             </div>
                                         </div>
                                         <!-- Page Content End ----------------------------------------------------------------------------------------------------------------- -->
