@@ -8,6 +8,8 @@ package Servlet;
 import Connection.FactoryManager;
 import DataHolders.PRESCRIPTION_ITEMS_DataHolder;
 import DataHolders.PRESCRIPTION_ITEM_OBJ;
+import DataHolders.USER_LOGIN_DATA;
+import POJOS.Branch;
 import POJOS.Items;
 import POJOS.MealType;
 import POJOS.MedicineType;
@@ -49,6 +51,9 @@ public class Prescription_AddItemServlet extends HttpServlet {
             Session sess = FactoryManager.getSessionFactory().openSession();
             PRESCRIPTION_ITEMS_DataHolder dtHolder = (PRESCRIPTION_ITEMS_DataHolder) request.getSession().getAttribute("PRESCRIPTION_Items");
 
+            USER_LOGIN_DATA userLOGDATA = (USER_LOGIN_DATA) request.getSession().getAttribute("LOGIN_DATA");
+            Branch branchOBJC = (Branch) sess.load(Branch.class, Integer.valueOf(userLOGDATA.getBranch_id()));
+
             // param Data
             Items param_ItemOBJC = (Items) sess.load(Items.class, Integer.valueOf(request.getParameter("addItem_Item")));
             double param_Dosage = Double.valueOf(request.getParameter("addItem_Dosage"));
@@ -62,6 +67,7 @@ public class Prescription_AddItemServlet extends HttpServlet {
             // Check & Get Available Stock-Object ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             Criteria stock_Crt = sess.createCriteria(Stock.class);
             stock_Crt.add(Restrictions.eq("items", param_ItemOBJC));
+            stock_Crt.add(Restrictions.eq("branch", branchOBJC));
             stock_Crt.add(Restrictions.eq("status", 1));
             stock_Crt.add(Restrictions.gt("qty", 0.00));
             List<Stock> StockList = stock_Crt.list();
