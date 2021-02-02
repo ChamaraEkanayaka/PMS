@@ -217,22 +217,28 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Cash Amount :</th>
-                                                        <td><input class="form-control text-right m-b-20" type="number" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(prvwPRESC_OBJC.getReceivableAmount())%>"></td>
+                                                        <td>
+                                                            <input onchange="onChangeKey();" onblur="onChangeKey();" onkeydown="onChangeKey();" id="cash" class="form-control text-right m-b-20" type="number">
+
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th>Balance Amount :</th>
-                                                        <td><input class="form-control text-right m-b-20" type="text" readonly="true" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(prvwPRESC_OBJC.getReceivableAmount())%>"></td>
+                                                        <td><input id="balance" class="form-control text-right m-b-20" type="text" readonly="true" value="Rs. 0.00"></td>
                                                     </tr>
                                                     <tr>
                                                         <th></th>
-                                                        <td><div class="m-b-5">
+                                                        <td>
+                                                            <div class="m-b-5">
                                                                 <hr class="m-t-0" style="border-top: 2px dashed rgba(248,249,250);">
-                                                                <button class="btn btn-warning btn-round m-r-5" id="btn_Submit">Complete Now</button>
-                                                            </div></td>
+                                                                <button class="btn btn-warning btn-round m-r-5" onclick="save()" id="btn_comp">Complete Now</button>
+                                                                <br><span style="color: red;" id="msg_box"></span>
+                                                            </div>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                                    
+
                                         </div>
                                     </div>
                                 </div>
@@ -249,3 +255,41 @@
         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
     </div>
 </div>
+<script>
+    function onChangeKey() {
+        $('#btn_comp').html('Complete Now');
+        $('#balance').val('Rs. 0.00');
+        $('#msg_box').html('');
+    }
+    function save() {
+        var total = <%=Utils.DecimalFormats.dfPriceValue().format(prvwPRESC_OBJC.getReceivableAmount())%>;
+        var id = <%=prvwPRESC_OBJC.getIdprescription() %>;
+        var cash = $('#cash').val();
+        var buttonTxt = $('#btn_comp').html();
+        if (cash !== null && cash >= total) {
+            $('#msg_box').html('');
+            if (buttonTxt === 'Complete Now') {
+                $('#btn_comp').html('Confirm And Continue');
+                var balace = cash - total;
+                $('#balance').val('Rs. ' + balace);
+            } else if (buttonTxt === 'Confirm And Continue') {
+                $.post("IssueMedicine_CompleatePrescriptionServlet", "cash=" + cash + "&id=" + id, function (outputData) {
+                    setTimeout(function () {
+                        if (outputData.split(":")[0] == '1') {
+                            location.replace("dispensary.jsp");
+                        }else{
+                            $('#msg_box').html(outputData.split(":")[1]);
+                        }
+                    }, 300);
+                });
+            }
+        } else {
+            $('#msg_box').html('Pease enter correct cash value.');
+        }
+
+
+
+
+
+    }
+</script>

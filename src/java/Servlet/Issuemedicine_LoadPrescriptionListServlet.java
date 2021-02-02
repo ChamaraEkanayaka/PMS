@@ -38,7 +38,7 @@ public class Issuemedicine_LoadPrescriptionListServlet extends HttpServlet {
             String param_OUTPUT = "<option value='x'>Select Here</option>";
             
             Criteria patients_Crt = ssn.createCriteria(Prescription.class);
-            patients_Crt.add(Restrictions.eq("status", 0));
+            patients_Crt.add(Restrictions.eq("status", 1));
             patients_Crt.add(Restrictions.between("date",CurrentDateNTime.getCurrentDate(),CurrentDateNTime.getCurrentDate()));
             patients_Crt.addOrder(Order.asc("patientToken"));
             List<Prescription> PatientsList = patients_Crt.list();

@@ -230,7 +230,7 @@
         </script>
 
         <script type="text/javascript">
-            function show_PrescriptionPrvw_Modal(prescriptionNo) {
+            function show_PrescriptionPrvw_Modal(prescriptionNo){
                 $('#Prescription-Modal').modal('show');
                 $('#Prescription-Modal-Content').load('prescriptionPreview_Modal_Medicine.jsp?prescriptionNo=' + prescriptionNo);
             }
@@ -291,30 +291,6 @@
             }
         </script>
 
-
-        <script type="text/javascript">
-
-            //code by mayura
-            function updateDetails(PatientID) {
-                swal({
-                    title: "Are you sure?",
-                    text: "You want to update this patient details.",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonClass: "btn-danger",
-                    confirmButtonText: "Yes, Update Now",
-                    cancelButtonText: "No",
-                    closeOnConfirm: false,
-                    showLoaderOnConfirm: true
-                }, function (isConfirm) {
-                    if (isConfirm) {
-                        location.replace("patient.jsp?PatientID=" + PatientID);
-                    }
-                });
-            }
-            //code by mayura
-
-        </script>
 
     </body>
 </html>
