@@ -17,6 +17,7 @@
     String BRANCH_NAME = "";
     int USER_ID = 0;
     int BRANCH_ID = 0;
+    User User_OBJECT_INDEX = null;
     try {
         if (request.getSession().getAttribute("LOGIN_DATA") != null) {
             USER_LOGIN_DATA LD = (USER_LOGIN_DATA) request.getSession().getAttribute("LOGIN_DATA");
@@ -26,9 +27,10 @@
             USER_ID = LD.getUser_id();
             BRANCH_ID = LD.getBranch_id();
             if (!STAFF_NAME.equals("") && !USER_NAME.equals("") && !BRANCH_NAME.equals("") && USER_ID > 0 && BRANCH_ID > 0) {
-                //check access code
-
-                //check access code
+                //check access
+                Session sess_index = FactoryManager.getSessionFactory().openSession();
+                User_OBJECT_INDEX = (User) sess_index.load(User.class, USER_ID);
+                //check access
             } else {
                 response.sendRedirect("login.jsp");
                 return;
@@ -41,8 +43,6 @@
         response.sendRedirect("login.jsp");
         return;
     }
-    Session sess_index = FactoryManager.getSessionFactory().openSession();
-    User User_OBJECT_INDEX= (User) sess_index.load(User.class, USER_ID);
     //login code and check access plase past this code before header of all pages
 %>
 
@@ -167,6 +167,7 @@
 
 
                                         <!-- REPORTS Section +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                                        <% if (User_OBJECT_INDEX.getAd().contains("Q") || User_OBJECT_INDEX.getAd().contains("R") || User_OBJECT_INDEX.getAd().contains("S") || User_OBJECT_INDEX.getAd().contains("T")) {%>
                                         <div class="page-header">
                                             <div class="row align-items-end">
                                                 <div class="col-lg-8">
@@ -218,7 +219,7 @@
                                                         <div class="card-block">
                                                             <div class="row align-items-center">
                                                                 <div class="col">
-                                                                    <h5 class="m-b-0" style="font-size: 16px;">Medicines Sales Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                                                    <h5 class="m-b-0" style="font-size: 16px;">Medicines Sales Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
                                                                 </div>
                                                                 <div class="col col-auto text-right">
                                                                     <i class="feather icon-file f-50 text-c-pink"></i>
@@ -227,9 +228,27 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <% } %>
+                                                <% }%>
+                                                <% if (User_OBJECT_INDEX.getAd().contains("T")) {%>
+                                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                                    <div class="card bg-c-pink text-white" onclick='location.replace("patient_list.jsp");'>
+                                                        <div class="card-block">
+                                                            <div class="row align-items-center">
+                                                                <div class="col">
+                                                                    <h5 class="m-b-0" style="font-size: 16px;">Patients Details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                                                </div>
+                                                                <div class="col col-auto text-right">
+                                                                    <i class="feather icon-file f-50 text-c-pink"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% }%>
                                             </div>
                                         </div>
+                                        <% }%>
+
                                         <!-- Page Content End ----------------------------------------------------------------------------------------------------------------- -->
                                     </div>
                                 </div>
