@@ -492,7 +492,8 @@
                                                                                            maxlength="9"
                                                                                            min="0.00"
                                                                                            step="1"
-                                                                                           id="val_DoctorCharges" 
+                                                                                           id="val_DoctorCharges"
+                                                                                           onfocus='document.getElementById("val_DoctorCharges").value = "";'
                                                                                            onblur='formatCurrencyValue(this); calc_RECEIVABLEAMOUNT(); checkValidations_PrescForm();'
                                                                                            onkeyup='checkValidations_PrescForm();'
                                                                                            onkeydown='setElementFocus_PrescForm(event, "val_ReceivableAmount");'>
@@ -518,7 +519,8 @@
                                                                                            maxlength="9"
                                                                                            min="0.00"
                                                                                            step="1"
-                                                                                           id="val_ReceivableAmount" 
+                                                                                           id="val_ReceivableAmount"
+                                                                                           onfocus='document.getElementById("val_ReceivableAmount").value = "";'
                                                                                            onblur='formatCurrencyValue(this); checkValidations_PrescForm();'
                                                                                            onkeyup='checkValidations_PrescForm();'
                                                                                            onkeydown='setElementFocus_PrescForm(event, "btn_SubmitForm");'>
@@ -613,10 +615,8 @@
 
                 resetAll_addItemToList();
                 load_MEDICINEITEMS_DataTable();
-                calc_RECEIVABLEAMOUNT();
 
                 document.getElementById('button_addItemToList').disabled = false; // enable submit
-
             });
         </script>
 
@@ -685,8 +685,8 @@
 
                 $('#addItem_Item').val("x");
                 $('#addItem_Item').select2().trigger('change');
-                document.getElementById("addItem_Dosage").value = "0.00";
-                document.getElementById("addItem_Duration").value = "0.00";
+                document.getElementById("addItem_Dosage").value = "";
+                document.getElementById("addItem_Duration").value = "";
                 $('#addItem_MedicineType').val("x");
                 $('#addItem_MedicineType').select2().trigger('change');
                 $('#addItem_UseCycle').val("x");
@@ -719,7 +719,7 @@
                 else if (document.getElementById('addItem_Dosage').value.toString().trim().length == 0) {
                     flagSubmitSts = false;
                 } else if (document.getElementById('addItem_Dosage').value.toString().trim() == "NaN") {
-                    document.getElementById("addItem_Dosage").value = "0.00";
+                    document.getElementById("addItem_Dosage").value = "";
                     flagSubmitSts = false;
                 } else if (document.getElementById('addItem_Dosage').value < 0.01) {
                     flagSubmitSts = false;
@@ -728,7 +728,7 @@
                 else if (document.getElementById('addItem_Duration').value.toString().trim().length == 0) {
                     flagSubmitSts = false;
                 } else if (document.getElementById('addItem_Duration').value.toString().trim() == "NaN") {
-                    document.getElementById("addItem_Duration").value = "0.00";
+                    document.getElementById("addItem_Duration").value = "";
                     flagSubmitSts = false;
                 } else if (document.getElementById('addItem_Duration').value < 0.01) {
                     flagSubmitSts = false;
@@ -879,12 +879,6 @@
                             document.getElementById("val_MedicineCost").value = outputData.split(":")[1];
                             calc_RECEIVABLEAMOUNT();
 
-                            // set FORM-SUBMIT Button Enable/ Disable
-                            if (outputData.split(":")[2] == 'true') {
-                                // document.getElementById('btn_SubmitForm').disabled = false;  // enable submit
-                            } else {
-                                //  document.getElementById('btn_SubmitForm').disabled = true;  // disable submit
-                            }
                         } else {
                             swal(outputData.split(":")[1], outputData.split(":")[2], outputData.split(":")[0]);
                             document.getElementById('btn_SubmitForm').disabled = true;  // disable submit
