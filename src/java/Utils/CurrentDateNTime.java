@@ -44,4 +44,12 @@ public class CurrentDateNTime {
         return age;
     }
 
+    public static String getBirthDay(int AGE) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        //System.out.println("Current Date = " + sdf.format(calendar.getTime()));
+        calendar.add(Calendar.YEAR, -AGE);
+        return sdf.format(calendar.getTime());
+    }
+
 }

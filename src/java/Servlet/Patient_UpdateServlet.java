@@ -33,11 +33,7 @@ public class Patient_UpdateServlet extends HttpServlet {
         try {
             if (request.getParameter("userID") != null && !request.getParameter("userID").equals("")
                     && request.getParameter("PatientID") != null && !request.getParameter("PatientID").equals("")
-                    && request.getParameter("name") != null && !request.getParameter("name").equals("")
-                    && request.getParameter("birth_day") != null && !request.getParameter("birth_day").equals("")
-                    && request.getParameter("blood_group") != null && !request.getParameter("blood_group").equals("")
-                    && request.getParameter("gender") != null && !request.getParameter("gender").equals("")
-                    && request.getParameter("contact_number") != null && !request.getParameter("contact_number").equals("")) {
+                    && request.getParameter("name") != null && !request.getParameter("name").equals("")) {
                 
                 Session sess = FactoryManager.getSessionFactory().openSession();
                 
@@ -50,15 +46,34 @@ public class Patient_UpdateServlet extends HttpServlet {
                 String Remark = "N/A";
                 String Address = "N/A";
                 
+                String Birth_Day = "N/A";
+                String Blood_Group = "N/A";
+                String Gender = "N/A";
+                String Contact_Number = "N/A";
+                
                 User User_OBJECT = (User) sess.load(User.class, User_Id);
                 Patient Patient_OBJECT = (Patient) sess.load(Patient.class, Patient_Id);
                 
                 String Name = request.getParameter("name");
-                String Birth_Day = request.getParameter("birth_day");
-                String Blood_Group = request.getParameter("blood_group");
-                String Gender = request.getParameter("gender");
-                String Contact_Number = request.getParameter("contact_number");
                 
+                
+                
+                if (request.getParameter("patient_age") != null && !request.getParameter("patient_age").equals("")) {
+                    String Age = request.getParameter("patient_age");
+                    Birth_Day = CurrentDateNTime.getBirthDay(Integer.parseInt(Age)); 
+                }
+                if (request.getParameter("birth_day") != null && !request.getParameter("birth_day").equals("")) {
+                    Birth_Day = request.getParameter("birth_day");
+                }
+                if (request.getParameter("blood_group") != null && !request.getParameter("blood_group").equals("")) {
+                    Blood_Group = request.getParameter("blood_group");
+                }
+                if (request.getParameter("gender") != null && !request.getParameter("gender").equals("")) {
+                    Gender = request.getParameter("gender");
+                }
+                if (request.getParameter("contact_number") != null && !request.getParameter("contact_number").equals("")) {
+                    Contact_Number = request.getParameter("contact_number");
+                }
                 if (request.getParameter("nic") != null && !request.getParameter("nic").equals("")) {
                     NIC = request.getParameter("nic");
                 }

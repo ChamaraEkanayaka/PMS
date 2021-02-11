@@ -168,10 +168,18 @@
                                                                                required="true" 
                                                                                id="name">
                                                                     </div>
-
                                                                     <!-- Birth Day -->
-                                                                    <div class="col-lg-6 col-md-5 col-sm-6 m-b-10">
-                                                                        <label class="col-lable f-w-700">Birth Day *</label>
+                                                                    <div class="col-lg-3 col-md-3 col-sm-3 m-b-10">
+                                                                        <label class="col-lable f-w-700">Age</label>
+                                                                        <input class="form-control"
+                                                                               type="number"
+                                                                               required="true" 
+                                                                               max=""
+                                                                               id="patient_age">
+                                                                    </div>
+                                                                    <!-- Birth Day -->
+                                                                    <div class="col-lg-3 col-md-3 col-sm-3 m-b-10">
+                                                                        <label class="col-lable f-w-700">Birth Day</label>
                                                                         <input class="form-control"
                                                                                type="date"
                                                                                required="true" 
@@ -189,7 +197,7 @@
 
                                                                     <!-- Blood Group -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-15">
-                                                                        <label class="col-lable f-w-700">Blood Group *</label>
+                                                                        <label class="col-lable f-w-700">Blood Group</label>
                                                                         <select class="form-control"
                                                                                 required="true"
                                                                                 id="blood_group">
@@ -206,7 +214,7 @@
 
                                                                     <!-- Gender -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-15">
-                                                                        <label class="col-lable f-w-700">Gender *</label>
+                                                                        <label class="col-lable f-w-700">Gender</label>
                                                                         <select class="form-control"
                                                                                 required="true"
                                                                                 id="gender">
@@ -231,7 +239,7 @@
                                                                     </div> 
                                                                     <!-- Contact Number -->
                                                                     <div class="col-lg-6 col-md-5 col-sm-6 m-b-20">
-                                                                        <label class="col-lable f-w-700">Contact Number *</label>
+                                                                        <label class="col-lable f-w-700">Contact Number</label>
                                                                         <input class="form-control"
                                                                                type="text"
                                                                                id="contact_number">
@@ -358,6 +366,7 @@
                                 "blood_group=" + document.getElementById("blood_group").value + "&" +
                                 "remark=" + document.getElementById("remark").value + "&" +
                                 "address=" + document.getElementById("address").value + "&" +
+                                "patient_age=" + document.getElementById("patient_age").value + "&" +
                                 "birth_day=" + document.getElementById("birth_day").value;
 
                         $.post("Patient_RegisterServlet", params, function (outputData) {
