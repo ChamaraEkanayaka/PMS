@@ -163,6 +163,7 @@
                                                             <div class="m-b-5">
                                                                 <hr class="m-t-0" style="border-top: 2px dashed rgba(248,249,250);">
                                                                 <button class="btn btn-light btn-round m-r-5" id="btn_Submit" onclick='show_PrescriptionPrvw_Modal(document.getElementById("patientID").value.split("*")[1]);'>View Prescription</button>
+                                                                <a class="btn btn-info btn-round" href="dispensary.jsp" >Refresh</a>
                                                             </div>
 
                                                         </div>
