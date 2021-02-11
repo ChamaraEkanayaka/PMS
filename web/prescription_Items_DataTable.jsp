@@ -65,7 +65,7 @@
                     <th>Medicine/ Item</th>
                     <th>Dosage</th>
                     <th>Use-Cycle</th>
-                    <th>Duration</th>
+                    <th>Quantity</th>
                     <th>Use-Method</th>
                     <th>Meal-Type</th>
                     <th>Remark</th>
@@ -82,9 +82,9 @@
                     <td>
                         <h6>#&nbsp;<%=PrescItems.getStock().getItems().getName()%></h6>
                     </td>
-                    <td><%=Utils.DecimalFormats.dfDoubleValue().format(PrescItems.getDosage()) + " " + PrescItems.getMedicineType().getName()%></td>
+                    <td><%=PrescItems.getDosage() + " " + PrescItems.getMedicineType().getName()%></td>
                     <td><%=PrescItems.getUseCycle().getName()%></td>
-                    <td><%=Utils.DecimalFormats.dfDoubleValue().format(PrescItems.getDuration())%></td>
+                    <td><%=Utils.DecimalFormats.dfDoubleValue().format(PrescItems.getQty())%></td>
                     <td><%=PrescItems.getUseMethod().getName()%></td>
                     <td><%=PrescItems.getMealType().getName()%></td>
                     <td><%=PrescItems.getRemark()%></td>

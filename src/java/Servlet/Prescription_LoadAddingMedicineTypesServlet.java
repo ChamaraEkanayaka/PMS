@@ -42,11 +42,14 @@ public class Prescription_LoadAddingMedicineTypesServlet extends HttpServlet {
 
             // param Data & Objects
             Session ssn = FactoryManager.getSessionFactory().openSession();
-            String param_OUTPUT = "<option value='x'>--Medicine Type--</option>";
+            String param_OUTPUT = "";
 
+            
+            // String param_OUTPUT = "<option value='x'>--Medicine Type--</option>";
+            
+            
             Criteria MdcnType_Crt = ssn.createCriteria(MedicineType.class);
             MdcnType_Crt.add(Restrictions.eq("status", 1));
-            MdcnType_Crt.addOrder(Order.asc(param_OUTPUT).asc("name"));
             List<MedicineType> MdcnList = MdcnType_Crt.list();
             for (MedicineType Mdcn_Objct : MdcnList) {
                 param_OUTPUT = param_OUTPUT + "<option value='" + Mdcn_Objct.getMedicineTypeId() + "'>" + Mdcn_Objct.getName() + "</option>";
