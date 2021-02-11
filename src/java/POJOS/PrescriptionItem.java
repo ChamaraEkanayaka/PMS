@@ -1,5 +1,5 @@
 package POJOS;
-// Generated Jan 30, 2021 12:28:20 PM by Hibernate Tools 4.3.1
+// Generated Feb 11, 2021 2:55:44 PM by Hibernate Tools 4.3.1
 
 
 
@@ -16,7 +16,7 @@ public class PrescriptionItem  implements java.io.Serializable {
      private Stock stock;
      private UseCycle useCycle;
      private UseMethod useMethod;
-     private Double dosage;
+     private String dosage;
      private Double duration;
      private Double qty;
      private Double unitCost;
@@ -38,7 +38,7 @@ public class PrescriptionItem  implements java.io.Serializable {
         this.useCycle = useCycle;
         this.useMethod = useMethod;
     }
-    public PrescriptionItem(MealType mealType, MedicineType medicineType, Prescription prescription, Stock stock, UseCycle useCycle, UseMethod useMethod, Double dosage, Double duration, Double qty, Double unitCost, Double totalCost, Double unitPrice, Double totalPrice, String remark, Integer status) {
+    public PrescriptionItem(MealType mealType, MedicineType medicineType, Prescription prescription, Stock stock, UseCycle useCycle, UseMethod useMethod, String dosage, Double duration, Double qty, Double unitCost, Double totalCost, Double unitPrice, Double totalPrice, String remark, Integer status) {
        this.mealType = mealType;
        this.medicineType = medicineType;
        this.prescription = prescription;
@@ -105,11 +105,11 @@ public class PrescriptionItem  implements java.io.Serializable {
     public void setUseMethod(UseMethod useMethod) {
         this.useMethod = useMethod;
     }
-    public Double getDosage() {
+    public String getDosage() {
         return this.dosage;
     }
     
-    public void setDosage(Double dosage) {
+    public void setDosage(String dosage) {
         this.dosage = dosage;
     }
     public Double getDuration() {

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jan 30, 2021 12:28:29 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Feb 11, 2021 2:55:50 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOS.PrescriptionItem" table="prescription_item" catalog="pms" optimistic-lock="version">
         <id name="idprescriptionItem" type="java.lang.Integer">
@@ -26,8 +26,8 @@
         <many-to-one name="useMethod" class="POJOS.UseMethod" fetch="select">
             <column name="use_method_iduse_method" not-null="true" />
         </many-to-one>
-        <property name="dosage" type="java.lang.Double">
-            <column name="dosage" precision="22" scale="0" />
+        <property name="dosage" type="string">
+            <column name="dosage" length="45" />
         </property>
         <property name="duration" type="java.lang.Double">
             <column name="duration" precision="22" scale="0" />

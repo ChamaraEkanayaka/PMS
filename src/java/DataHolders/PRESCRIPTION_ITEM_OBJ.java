@@ -18,7 +18,7 @@ import POJOS.UseMethod;
 public class PRESCRIPTION_ITEM_OBJ {
 
     private Stock stock;
-    private double dosage;
+    private String dosage;
     private double duration;
     private MedicineType medicineType;
     private UseCycle useCycle;
@@ -39,11 +39,11 @@ public class PRESCRIPTION_ITEM_OBJ {
         this.stock = stock;
     }
 
-    public double getDosage() {
+    public String getDosage() {
         return dosage;
     }
 
-    public void setDosage(double dosage) {
+    public void setDosage(String dosage) {
         this.dosage = dosage;
     }
 

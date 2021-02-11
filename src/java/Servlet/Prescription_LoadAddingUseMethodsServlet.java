@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -42,11 +41,13 @@ public class Prescription_LoadAddingUseMethodsServlet extends HttpServlet {
 
             // param Data & Objects
             Session ssn = FactoryManager.getSessionFactory().openSession();
-            String param_OUTPUT = "<option value='x'>Select Here</option>";
+            String param_OUTPUT = "";
+            
+            
+            // param_OUTPUT = "<option value='x'>Select Here</option>";
 
             Criteria UseMethod_Crt = ssn.createCriteria(UseMethod.class);
             UseMethod_Crt.add(Restrictions.eq("status", 1));
-          //  UseMethod_Crt.addOrder(Order.asc("status"));
             List<UseMethod> UseMethodList = UseMethod_Crt.list();
             for (UseMethod UseMethod_Objct : UseMethodList) {
                 param_OUTPUT = param_OUTPUT + "<option value='" + UseMethod_Objct.getIduseMethod() + "'>" + UseMethod_Objct.getName() + "</option>";

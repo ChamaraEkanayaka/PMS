@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -42,11 +41,14 @@ public class Prescription_LoadAddingMealTypesServlet extends HttpServlet {
 
             // param Data & Objects
             Session ssn = FactoryManager.getSessionFactory().openSession();
-            String param_OUTPUT = "<option value='x'>Select Here</option>";
+            String param_OUTPUT = "";
 
+            
+            //  String param_OUTPUT = "<option value='x'>Select Here</option>";
+            
+            
             Criteria MealType_Crt = ssn.createCriteria(MealType.class);
             MealType_Crt.add(Restrictions.eq("status", 1));
-           // MealType_Crt.addOrder(Order.asc("name"));
             List<MealType> MealTypesList = MealType_Crt.list();
             for (MealType MealType_Objct : MealTypesList) {
                 param_OUTPUT = param_OUTPUT + "<option value='" + MealType_Objct.getIdmealType() + "'>" + MealType_Objct.getName() + "</option>";

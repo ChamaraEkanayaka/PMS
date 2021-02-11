@@ -56,8 +56,8 @@ public class Prescription_AddItemServlet extends HttpServlet {
 
             // param Data
             Items param_ItemOBJC = (Items) sess.load(Items.class, Integer.valueOf(request.getParameter("addItem_Item")));
-            double param_Dosage = Double.valueOf(request.getParameter("addItem_Dosage"));
-            double param_Duration = Double.valueOf(request.getParameter("addItem_Duration"));
+            String param_Dosage = String.valueOf(request.getParameter("addItem_Dosage"));
+            double param_Qty = Double.valueOf(request.getParameter("addItem_Qty"));
             MedicineType param_MedicineType = (MedicineType) sess.load(MedicineType.class, Integer.valueOf(request.getParameter("addItem_MedicineType")));
             UseCycle param_UseCycle = (UseCycle) sess.load(UseCycle.class, Integer.valueOf(request.getParameter("addItem_UseCycle")));
             UseMethod param_UseMethod = (UseMethod) sess.load(UseMethod.class, Integer.valueOf(request.getParameter("addItem_UseMethod")));
@@ -76,7 +76,7 @@ public class Prescription_AddItemServlet extends HttpServlet {
                 Stock param_Stock = (Stock) StockList.get(0);
                 boolean flag_StockAvailable = false;
                 double AvlStockQty = param_Stock.getQty();
-                double param_RequestingQty = param_Dosage * param_UseCycle.getTabsPerDate() * param_Duration;
+                double param_Duration = 0.00;   //   OLD  >>>  (param_Qty / param_Dosage) / 3
 
                 // --- Check Already Existings on DH -------------------------------------------------------------------------------------------------
                 PRESCRIPTION_ITEM_OBJ existing_PrscpItem = null;
@@ -90,18 +90,18 @@ public class Prescription_AddItemServlet extends HttpServlet {
                 // UPDATE New-Data-Set  !! ( when Duplicate ITEM FOUND ) ++++++++++++++++++++++++++++++
                 if (existing_PrscpItem != null) {
 
-                    if (param_RequestingQty < AvlStockQty) {
+                    if (param_Qty < AvlStockQty) {
                         existing_PrscpItem.setDosage(param_Dosage);
                         existing_PrscpItem.setDuration(param_Duration);
                         existing_PrscpItem.setMedicineType(param_MedicineType);
                         existing_PrscpItem.setUseCycle(param_UseCycle);
                         existing_PrscpItem.setUseMethod(param_UseMethod);
                         existing_PrscpItem.setMealType(param_MealType);
-                        existing_PrscpItem.setQty(param_RequestingQty);
+                        existing_PrscpItem.setQty(param_Qty);
                         existing_PrscpItem.setUnitCost(param_Stock.getCost());
-                        existing_PrscpItem.setTotalCost(param_Stock.getCost() * param_RequestingQty);
+                        existing_PrscpItem.setTotalCost(param_Stock.getCost() * param_Qty);
                         existing_PrscpItem.setUnitPrice(param_Stock.getPrice());
-                        existing_PrscpItem.setTotalPrice(param_Stock.getPrice() * param_RequestingQty);
+                        existing_PrscpItem.setTotalPrice(param_Stock.getPrice() * param_Qty);
                         existing_PrscpItem.setRemark(param_Remark);
 
                         flag_StockAvailable = true;
@@ -111,7 +111,7 @@ public class Prescription_AddItemServlet extends HttpServlet {
 
                 } else { // ADD as NEW ITEM !! ++++++++++++++++++++++++++++++++++++++++
 
-                    if (param_RequestingQty < AvlStockQty) {
+                    if (param_Qty < AvlStockQty) {
 
                         PRESCRIPTION_ITEM_OBJ newPrscp_Item = new PRESCRIPTION_ITEM_OBJ();
                         newPrscp_Item.setStock(param_Stock);
@@ -121,11 +121,11 @@ public class Prescription_AddItemServlet extends HttpServlet {
                         newPrscp_Item.setUseCycle(param_UseCycle);
                         newPrscp_Item.setUseMethod(param_UseMethod);
                         newPrscp_Item.setMealType(param_MealType);
-                        newPrscp_Item.setQty(param_RequestingQty);
+                        newPrscp_Item.setQty(param_Qty);
                         newPrscp_Item.setUnitCost(param_Stock.getCost());
-                        newPrscp_Item.setTotalCost(param_Stock.getCost() * param_RequestingQty);
+                        newPrscp_Item.setTotalCost(param_Stock.getCost() * param_Qty);
                         newPrscp_Item.setUnitPrice(param_Stock.getPrice());
-                        newPrscp_Item.setTotalPrice(param_Stock.getPrice() * param_RequestingQty);
+                        newPrscp_Item.setTotalPrice(param_Stock.getPrice() * param_Qty);
                         newPrscp_Item.setRemark(param_Remark);
                         dtHolder.getHolder().add(newPrscp_Item);
                         flag_StockAvailable = true;

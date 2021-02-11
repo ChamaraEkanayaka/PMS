@@ -304,15 +304,12 @@
                                                                     <div class="col-lg-2 col-md-4 col-sm-6 m-b-10">
                                                                         <label class="col-lable f-w-700">Dosage</label>
                                                                         <input class="form-control"
-                                                                               type="number"
+                                                                               type="text"
                                                                                required="true" 
-                                                                               maxlength="9"
-                                                                               step="0.25"
-                                                                               min="0.00"
                                                                                id="addItem_Dosage" 
-                                                                               onblur='formatCurrencyValue(this); checkValidations_addItemToList();'
+                                                                               onblur='checkValidations_addItemToList();'
                                                                                onkeyup='checkValidations_addItemToList();'
-                                                                               onkeydown='setElementFocus_addItemToList(event, "addItem_MedicineType");'>
+                                                                               onkeydown='setElementFocus_addItemToList(event, "addItem_Qty");'>
                                                                     </div>
                                                                     <!-- Medicine-Type -->
                                                                     <div class="col-lg-4 col-md-4 col-sm-6 m-b-20">
@@ -322,8 +319,7 @@
                                                                                 id="addItem_MedicineType"
                                                                                 onchange='checkValidations_addItemToList();'
                                                                                 onclick='checkValidations_addItemToList();'
-                                                                                onkeydown='setElementFocus_addItemToList(event, "addItem_Duration");'>
-                                                                            <option value="x">--Medicine Type--</option>
+                                                                                onkeydown='setElementFocus_addItemToList(event, "addItem_UseCycle");'>
                                                                         </select>
                                                                     </div>
 
@@ -335,24 +331,23 @@
                                                                                 id="addItem_UseCycle"
                                                                                 onchange='checkValidations_addItemToList();'
                                                                                 onclick='checkValidations_addItemToList();'
-                                                                                onkeydown='setElementFocus_addItemToList(event, "addItem_UseMethod");'>
-                                                                            <option value="x">Select Here</option>
+                                                                                onkeydown='setElementFocus_addItemToList(event, "addItem_Qty");'>
                                                                         </select>
                                                                     </div>
 
-                                                                    <!-- Duration -->
+                                                                    <!-- Quantity -->
                                                                     <div class="col-lg-6 col-md-4 col-sm-6 m-b-15">
-                                                                        <label class="col-lable f-w-700">Duration (Days)</label>
+                                                                        <label class="col-lable f-w-700">Quantity</label>
                                                                         <input class="form-control"
                                                                                type="number"
                                                                                required="true" 
                                                                                maxlength="9"
                                                                                step="1"
                                                                                min="0.00"
-                                                                               id="addItem_Duration" 
+                                                                               id="addItem_Qty" 
                                                                                onblur='formatCurrencyValue(this); checkValidations_addItemToList();'
                                                                                onkeyup='checkValidations_addItemToList();'
-                                                                               onkeydown='setElementFocus_addItemToList(event, "addItem_UseCycle");'>
+                                                                               onkeydown='setElementFocus_addItemToList(event, "addItem_UseMethod");'>
                                                                     </div>    
 
                                                                     <!-- Use-Method -->
@@ -364,7 +359,6 @@
                                                                                 onchange='checkValidations_addItemToList();'
                                                                                 onclick='checkValidations_addItemToList();'
                                                                                 onkeydown='setElementFocus_addItemToList(event, "addItem_MealType");'>
-                                                                            <option value="x">Select Here</option>
                                                                         </select>
                                                                     </div>
 
@@ -377,7 +371,6 @@
                                                                                 onchange='checkValidations_addItemToList();'
                                                                                 onclick='checkValidations_addItemToList();'
                                                                                 onkeydown='setElementFocus_addItemToList(event, "addItem_Remark");'>
-                                                                            <option value="x">Select Here</option>
                                                                         </select>
                                                                     </div>
 
@@ -686,7 +679,7 @@
                 $('#addItem_Item').val("x");
                 $('#addItem_Item').select2().trigger('change');
                 document.getElementById("addItem_Dosage").value = "";
-                document.getElementById("addItem_Duration").value = "";
+                document.getElementById("addItem_Qty").value = "";
                 $('#addItem_MedicineType').val("x");
                 $('#addItem_MedicineType').select2().trigger('change');
                 $('#addItem_UseCycle').val("x");
@@ -718,19 +711,22 @@
                 // check Validations ----Dosage
                 else if (document.getElementById('addItem_Dosage').value.toString().trim().length == 0) {
                     flagSubmitSts = false;
-                } else if (document.getElementById('addItem_Dosage').value.toString().trim() == "NaN") {
-                    document.getElementById("addItem_Dosage").value = "";
-                    flagSubmitSts = false;
-                } else if (document.getElementById('addItem_Dosage').value < 0.01) {
-                    flagSubmitSts = false;
                 }
-                // check Validations ----Duration
-                else if (document.getElementById('addItem_Duration').value.toString().trim().length == 0) {
+
+//                else if (document.getElementById('addItem_Dosage').value.toString().trim() == "NaN") {
+//                    document.getElementById("addItem_Dosage").value = "";
+//                    flagSubmitSts = false;
+//                } else if (document.getElementById('addItem_Dosage').value < 0.01) {
+//                    flagSubmitSts = false;
+//                }
+
+                // check Validations ----Qty
+                else if (document.getElementById('addItem_Qty').value.toString().trim().length == 0) {
                     flagSubmitSts = false;
-                } else if (document.getElementById('addItem_Duration').value.toString().trim() == "NaN") {
-                    document.getElementById("addItem_Duration").value = "";
+                } else if (document.getElementById('addItem_Qty').value.toString().trim() == "NaN") {
+                    document.getElementById("addItem_Qty").value = "";
                     flagSubmitSts = false;
-                } else if (document.getElementById('addItem_Duration').value < 0.01) {
+                } else if (document.getElementById('addItem_Qty').value < 0.01) {
                     flagSubmitSts = false;
                 }
                 // check Validations ----MEDICINE-TYPE
@@ -769,6 +765,7 @@
                         if (outputData.split(":")[0] == 'success') {
                             if (outputData.split(":")[3] == 'true') {
                                 document.getElementById('button_addItemToList').disabled = false;  // enable submit
+                                document.getElementById("addItem_Dosage").focus();
                             } else {
                                 swal(outputData.split(":")[1], outputData.split(":")[2], outputData.split(":")[0]);
                                 document.getElementById('button_addItemToList').disabled = true;  // disable submit
@@ -792,7 +789,7 @@
                 var params =
                         "addItem_Item=" + document.getElementById("addItem_Item").value + "&" +
                         "addItem_Dosage=" + document.getElementById("addItem_Dosage").value + "&" +
-                        "addItem_Duration=" + document.getElementById("addItem_Duration").value + "&" +
+                        "addItem_Qty=" + document.getElementById("addItem_Qty").value + "&" +
                         "addItem_MedicineType=" + document.getElementById("addItem_MedicineType").value + "&" +
                         "addItem_UseCycle=" + document.getElementById("addItem_UseCycle").value + "&" +
                         "addItem_UseMethod=" + document.getElementById("addItem_UseMethod").value + "&" +
