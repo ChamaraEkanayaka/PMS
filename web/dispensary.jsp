@@ -27,7 +27,7 @@
             BRANCH_ID = LD.getBranch_id();
             if (!STAFF_NAME.equals("") && !USER_NAME.equals("") && !BRANCH_NAME.equals("") && USER_ID > 0 && BRANCH_ID > 0) {
                 //check access code
-                 Session sess_UserAccess = FactoryManager.getSessionFactory().openSession();
+                Session sess_UserAccess = FactoryManager.getSessionFactory().openSession();
                 User User_AccessOBJECT = (User) sess_UserAccess.load(User.class, USER_ID);
                 if (!User_AccessOBJECT.getAd().contains("N")) {
                     response.sendRedirect("index.jsp");
@@ -163,7 +163,7 @@
                                                             <div class="m-b-5">
                                                                 <hr class="m-t-0" style="border-top: 2px dashed rgba(248,249,250);">
                                                                 <button class="btn btn-light btn-round m-r-5" id="btn_Submit" onclick='show_PrescriptionPrvw_Modal(document.getElementById("patientID").value.split("*")[1]);'>View Prescription</button>
-                                                                <a class="btn btn-info btn-round" href="dispensary.jsp" >Refresh</a>
+                                                                <a class="btn btn-info btn-round" href="dispensary.jsp">Refresh</a>
                                                             </div>
 
                                                         </div>
@@ -236,7 +236,7 @@
         </script>
 
         <script type="text/javascript">
-            function show_PrescriptionPrvw_Modal(prescriptionNo){
+            function show_PrescriptionPrvw_Modal(prescriptionNo) {
                 $('#Prescription-Modal').modal('show');
                 $('#Prescription-Modal-Content').load('prescriptionPreview_Modal_Medicine.jsp?prescriptionNo=' + prescriptionNo);
             }

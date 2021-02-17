@@ -154,6 +154,16 @@
                                                     </div>
                                                 </div>
 
+                                                <!-- "Prescription-Corrections" Available List  -DATA.TABLE --------------------------------------------------------------------------------------------- -->
+                                                <div class="col-lg-12 m-b-10">
+                                                    <button class="btn btn-danger btn-mat waves-effect" id="btn_AvlPrecptnCrctnsList" onclick='load_PrescpCorrectionsList();'><span class="fa fa-edit"></span>&nbsp;&nbsp;PRESCRIPTION-CORRECTIONS</button>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div id="DataTable_Includer2">
+                                                        <div id="DataTable_Remover2"></div>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                         <!-- Page Content End ----------------------------------------------------------------------------------------------------------------- -->
@@ -276,14 +286,10 @@
                     }
                 });
             }
-        </script>
 
-
-        <script type="text/javascript">
             function load_SkippedTokensList() {
                 document.getElementById("DataTable_Remover").outerHTML = "";
                 $('#DataTable_Includer').load('tokenSelector_SkippedTokens_DataTable.jsp');
-
                 // Scroll-Down Page
                 setTimeout(function () {
                     var scrollDiv = document.getElementById("ScrollNFocusElem").offsetTop;
@@ -291,6 +297,20 @@
                 }, 600);
             }
         </script>
+
+
+        <script type="text/javascript">
+            function load_PrescpCorrectionsList() {
+                document.getElementById("DataTable_Remover2").outerHTML = "";
+                $('#DataTable_Includer2').load('tokenSelector_PrescpCorrections_DataTable.jsp');
+                // Scroll-Down Page
+                setTimeout(function () {
+                    var scrollDiv = document.getElementById("ScrollNFocusElem2").offsetTop;
+                    window.scrollTo({top: scrollDiv + 500, behavior: 'smooth'});
+                }, 600);
+            }
+        </script>
+
 
     </body>
 </html>

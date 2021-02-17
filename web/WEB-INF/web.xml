@@ -95,6 +95,10 @@
         <servlet-name>IssueMedicine_CompleatePrescriptionServlet</servlet-name>
         <servlet-class>Servlet.IssueMedicine_CompleatePrescriptionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Prescription_SaveCorrectionsServlet</servlet-name>
+        <servlet-class>Servlet.Prescription_SaveCorrectionsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Token_getNextTokenDetailsServlet</servlet-name>
         <url-pattern>/Token_getNextTokenDetailsServlet</url-pattern>
@@ -186,6 +190,10 @@
     <servlet-mapping>
         <servlet-name>IssueMedicine_CompleatePrescriptionServlet</servlet-name>
         <url-pattern>/IssueMedicine_CompleatePrescriptionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prescription_SaveCorrectionsServlet</servlet-name>
+        <url-pattern>/Prescription_SaveCorrectionsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

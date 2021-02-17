@@ -283,126 +283,144 @@
                                                     <div class="card">
                                                         <div class="card-block">
                                                             <div class="row invoive-info m-t-10">
-                                                                <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: -40px; display: contents;">
+                                                                <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: -40px;">
                                                                     <h6><span class="fa fa-plus-square-o"></span>&nbsp;&nbsp;Add Medicines</h6>
+                                                                    <div class="row">
 
-                                                                    <!-- Medicine-Item -->
-                                                                    <div class="col-lg-12 col-sm-12 m-b-10">
-                                                                        <label class="col-lable f-w-700">Medicine/ Item</label>
-                                                                        <select class="form-control"
-                                                                                required="true"
-                                                                                id="addItem_Item"
-                                                                                onchange='loadSelectedITEM_Details(); checkValidations_addItemToList();'
-                                                                                onclick='checkValidations_addItemToList(); loadSelectedITEM_Details();'
-                                                                                onkeydown='setElementFocus_addItemToList(event, "addItem_Dosage");'>
-                                                                            <option value="x">Select an Item</option>
-                                                                        </select>
-                                                                        <p id="addItem_ItemDesc" style="color: grey; margin-top: 5px;"></p>
-                                                                    </div>
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                            <!-- Medicine-Item -->
+                                                                            <div class="col-lg-12 col-md-12 col-sm-12 m-b-10">
+                                                                                <label class="col-lable f-w-700">Medicine/&nbsp;Item</label>
+                                                                                <select class="form-control"
+                                                                                        required
+                                                                                        autofocus
+                                                                                        id="addItem_Item"
+                                                                                        onchange='loadSelectedITEM_Details(); checkValidations_addItemToList();'
+                                                                                        onclick='checkValidations_addItemToList(); loadSelectedITEM_Details();'
+                                                                                        onkeydown='setNextElmntFocus_addItemToList(event, "addItem_Dosage");'>
+                                                                                    <option value="x">Select an Item</option>
+                                                                                </select>
+                                                                                <p id="addItem_ItemDesc" style="color: grey; margin-top: 5px;"></p>
+                                                                            </div>
 
-                                                                    <!-- Dosage -->
-                                                                    <div class="col-lg-2 col-md-4 col-sm-6 m-b-10">
-                                                                        <label class="col-lable f-w-700">Dosage</label>
-                                                                        <input class="form-control"
-                                                                               type="text"
-                                                                               required="true" 
-                                                                               id="addItem_Dosage" 
-                                                                               onblur='checkValidations_addItemToList();'
-                                                                               onkeyup='checkValidations_addItemToList();'
-                                                                               onkeydown='setElementFocus_addItemToList(event, "addItem_Qty");'>
-                                                                    </div>
-                                                                    <!-- Medicine-Type -->
-                                                                    <div class="col-lg-4 col-md-4 col-sm-6 m-b-20">
-                                                                        <label class="col-lable f-w-700">&nbsp;</label>
-                                                                        <select class="form-control"
-                                                                                required="true"
-                                                                                id="addItem_MedicineType"
-                                                                                onchange='checkValidations_addItemToList();'
-                                                                                onclick='checkValidations_addItemToList();'
-                                                                                onkeydown='setElementFocus_addItemToList(event, "addItem_UseCycle");'>
-                                                                        </select>
-                                                                    </div>
+                                                                            <!-- Dosage -->
+                                                                            <div class="col-lg-6 col-md-8 col-sm-6 m-b-10">
+                                                                                <label class="col-lable f-w-700">Dosage</label>
+                                                                                <input class="form-control"
+                                                                                       type="text"
+                                                                                       required
+                                                                                       autofocus
+                                                                                       id="addItem_Dosage" 
+                                                                                       onblur='checkValidations_addItemToList();'
+                                                                                       onkeyup='checkValidations_addItemToList();'
+                                                                                       onkeydown='setNextElmntFocus_addItemToList(event, "addItem_MedicineType");'>
+                                                                            </div>
 
-                                                                    <!-- Use-Cycle -->
-                                                                    <div class="col-lg-6 col-md-4 col-sm-6 m-b-20">
-                                                                        <label class="col-lable f-w-700">Use Cycle</label>
-                                                                        <select class="form-control"
-                                                                                required="true"
-                                                                                id="addItem_UseCycle"
-                                                                                onchange='checkValidations_addItemToList();'
-                                                                                onclick='checkValidations_addItemToList();'
-                                                                                onkeydown='setElementFocus_addItemToList(event, "addItem_Qty");'>
-                                                                        </select>
-                                                                    </div>
+                                                                            <!-- Medicine-Type -->
+                                                                            <div class="col-lg-6 col-md-8 col-sm-6 m-b-20">
+                                                                                <label class="col-lable f-w-700">Medicine&nbsp;Type</label>
+                                                                                <select class="form-control"
+                                                                                        required
+                                                                                        autofocus
+                                                                                        id="addItem_MedicineType"
+                                                                                        onchange='checkValidations_addItemToList();'
+                                                                                        onclick='checkValidations_addItemToList();'
+                                                                                        onkeydown='setNextElmntFocus_addItemToList(event, "addItem_UseCycle");'>
+                                                                                </select>
+                                                                            </div>
 
-                                                                    <!-- Quantity -->
-                                                                    <div class="col-lg-6 col-md-4 col-sm-6 m-b-15">
-                                                                        <label class="col-lable f-w-700">Quantity</label>
-                                                                        <input class="form-control"
-                                                                               type="number"
-                                                                               required="true" 
-                                                                               maxlength="9"
-                                                                               step="1"
-                                                                               min="0.00"
-                                                                               id="addItem_Qty" 
-                                                                               onblur='formatCurrencyValue(this); checkValidations_addItemToList();'
-                                                                               onkeyup='checkValidations_addItemToList();'
-                                                                               onkeydown='setElementFocus_addItemToList(event, "addItem_UseMethod");'>
-                                                                    </div>    
+                                                                            <!-- Use-Cycle -->
+                                                                            <div class="col-lg-6 col-md-8 col-sm-6 m-b-20">
+                                                                                <label class="col-lable f-w-700">Use&nbsp;Cycle</label>
+                                                                                <select class="form-control"
+                                                                                        required
+                                                                                        autofocus
+                                                                                        id="addItem_UseCycle"
+                                                                                        onchange='checkValidations_addItemToList();'
+                                                                                        onclick='checkValidations_addItemToList();'
+                                                                                        onkeydown='setNextElmntFocus_addItemToList(event, "addItem_Qty");'>
+                                                                                </select>
+                                                                            </div>
 
-                                                                    <!-- Use-Method -->
-                                                                    <div class="col-lg-6 col-md-4 col-sm-6 m-b-15">
-                                                                        <label class="col-lable f-w-700">Use Method</label>
-                                                                        <select class="form-control"
-                                                                                required="true"
-                                                                                id="addItem_UseMethod"
-                                                                                onchange='checkValidations_addItemToList();'
-                                                                                onclick='checkValidations_addItemToList();'
-                                                                                onkeydown='setElementFocus_addItemToList(event, "addItem_MealType");'>
-                                                                        </select>
-                                                                    </div>
+                                                                            <!-- Quantity -->
+                                                                            <div class="col-lg-6 col-md-8 col-sm-6 m-b-15">
+                                                                                <label class="col-lable f-w-700">Quantity</label>
+                                                                                <input class="form-control"
+                                                                                       type="number"
+                                                                                       required
+                                                                                       autofocus
+                                                                                       maxlength="9"
+                                                                                       step="1"
+                                                                                       min="0.00"
+                                                                                       id="addItem_Qty" 
+                                                                                       onblur='formatCurrencyValue(this); checkValidations_addItemToList();'
+                                                                                       onkeyup='checkValidations_addItemToList();'
+                                                                                       onkeydown='setNextElmntFocus_addItemToList(event, "addItem_UseMethod");'>
+                                                                            </div>    
+                                                                        </div>    
 
-                                                                    <!-- Meal-Type -->
-                                                                    <div class="col-lg-6 col-md-4 col-sm-6 m-b-20">
-                                                                        <label class="col-lable f-w-700">Meal Type</label>
-                                                                        <select class="form-control"
-                                                                                required="true"
-                                                                                id="addItem_MealType"
-                                                                                onchange='checkValidations_addItemToList();'
-                                                                                onclick='checkValidations_addItemToList();'
-                                                                                onkeydown='setElementFocus_addItemToList(event, "addItem_Remark");'>
-                                                                        </select>
-                                                                    </div>
 
-                                                                    <!-- Remark -->
-                                                                    <div class="col-lg-12 col-md-12 col-sm-12 m-b-10">
-                                                                        <label class="col-lable f-w-700">Remark</label>
-                                                                        <textarea rows="5" cols="5" class="form-control"
-                                                                                  placeholder="Optional"
-                                                                                  id="addItem_Remark">
-                                                                        </textarea>
-                                                                    </div>
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                            <!-- Use-Method -->
+                                                                            <br><br>
+                                                                            <div class="col-lg-6 col-md-8 col-sm-6 m-b-15 m-t-35">
+                                                                                <label class="col-lable f-w-700">Use&nbsp;Method</label>
+                                                                                <select class="form-control"
+                                                                                        required
+                                                                                        autofocus
+                                                                                        id="addItem_UseMethod"
+                                                                                        onchange='checkValidations_addItemToList();'
+                                                                                        onclick='checkValidations_addItemToList();'
+                                                                                        onkeydown='setNextElmntFocus_addItemToList(event, "addItem_MealType");'>
+                                                                                </select>
+                                                                            </div>
 
-                                                                    <div class="row col-lg-12 col-md-12 col-sm-12 text-right m-t-10 m-b-0">
-                                                                        <div class="col-lg-12 col-md-12 col-sm-6">&nbsp;</div>
-                                                                        <div class="col-lg-12 col-md-12 col-sm-6">
-                                                                            <button style="font-size: 14px;" class="btn btn-primary btn-sm btn-mat waves-effect"
-                                                                                    type="submit"
-                                                                                    disabled="true"
-                                                                                    id="button_addItemToList"
-                                                                                    onmouseover='checkValidations_addItemToList();'
-                                                                                    onclick='add_ItemToListFunc();'
-                                                                                    >ADD TO LIST
-                                                                            </button>
-                                                                            <label class="col-lable">&nbsp;</label>
-                                                                            <button style="font-size: 14px;" class="btn btn-danger btn-sm btn-mat waves-effect"
-                                                                                    type="submit"
-                                                                                    onclick='resetAll_addItemToList();'
-                                                                                    >RESET
-                                                                            </button>
+                                                                            <!-- Meal-Type -->
+                                                                            <div class="col-lg-6 col-md-8 col-sm-6 m-b-20">
+                                                                                <label class="col-lable f-w-700">Meal&nbsp;Type</label>
+                                                                                <select class="form-control"
+                                                                                        required
+                                                                                        autofocus
+                                                                                        id="addItem_MealType"
+                                                                                        onchange='checkValidations_addItemToList();'
+                                                                                        onclick='checkValidations_addItemToList();'
+                                                                                        onkeydown='setNextElmntFocus_addItemToList(event, "addItem_Remark");'>
+                                                                                </select>
+                                                                            </div>
+
+                                                                            <!-- Remark -->
+                                                                            <div class="col-lg-12 col-md-12 col-sm-12 m-b-10">
+                                                                                <label class="col-lable f-w-700">Remark</label>
+                                                                                <textarea rows="5" cols="5" class="form-control"
+                                                                                          placeholder="Optional"
+                                                                                          autofocus
+                                                                                          id="addItem_Remark"
+                                                                                          style="height: 118px;">
+                                                                                </textarea>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
+                                                                        <div class="row col-lg-12 col-md-12 col-sm-12 text-right m-t-10 m-b-0">
+                                                                            <div class="col-lg-12 col-md-12 col-sm-6">&nbsp;</div>
+                                                                            <div class="col-lg-12 col-md-12 col-sm-6">
+                                                                                <button style="font-size: 14px;" class="btn btn-primary btn-sm btn-mat waves-effect"
+                                                                                        type="submit"
+                                                                                        disabled="true"
+                                                                                        id="button_addItemToList"
+                                                                                        onmouseover='checkValidations_addItemToList();'
+                                                                                        onclick='add_ItemToListFunc();'
+                                                                                        >ADD TO LIST
+                                                                                </button>
+                                                                                <label class="col-lable">&nbsp;</label>
+                                                                                <button style="font-size: 14px;" class="btn btn-danger btn-sm btn-mat waves-effect"
+                                                                                        type="submit"
+                                                                                        onclick='resetAll_addItemToList();'
+                                                                                        >RESET
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -460,7 +478,7 @@
                                                         </div>    
 
                                                         <div class="card-footer">
-                                                            <!--  PRESCRIPTION-CHARGES ---------------------------------------------------------------------------------------------------------------------------------------------------- -->
+                                                            <!--  PRESCRIPTION-CHARGES, COST & AMOUNTS ---------------------------------------------------------------------------------------------------------------------------------------------------- -->
                                                             <div class="row">
                                                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                                                     <table class="table table-responsive invoice-table invoice-total" style="padding-bottom: 0px; margin-bottom: -5px;">
@@ -608,8 +626,46 @@
 
                 resetAll_addItemToList();
                 load_MEDICINEITEMS_DataTable();
-
                 document.getElementById('button_addItemToList').disabled = false; // enable submit
+
+
+                // +++./start  CUSTOMIZED FOCUSINGS  TO NEXT ELEMENT  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                // Medicine-Type
+                $("#addItem_MedicineType").on("change", function (e) {
+                    var keycode = (event.keyCode ? event.keyCode : event.which);
+                    if (keycode == 13) { // @Enter Key
+                        document.getElementById('addItem_UseCycle').focus();
+                        $('#addItem_UseCycle').select2('open');
+                    }
+                });
+                // Use-Cycle
+                $("#addItem_UseCycle").on("change", function (e) {
+                    var keycode = (event.keyCode ? event.keyCode : event.which);
+                    if (keycode == 13) { // @Enter Key
+                        setTimeout(function () {
+                            document.getElementById('addItem_Qty').focus();
+                        }, 300);
+                    }
+                });
+                // Use-Method
+                $("#addItem_UseMethod").on("change", function (e) {
+                    var keycode = (event.keyCode ? event.keyCode : event.which);
+                    if (keycode == 13) { // @Enter Key
+                        document.getElementById('addItem_MealType').focus();
+                        $('#addItem_MealType').select2('open');
+                    }
+                });
+                // Meal-Type
+                $("#addItem_MealType").on("change", function (e) {
+                    var keycode = (event.keyCode ? event.keyCode : event.which);
+                    if (keycode == 13) { // @Enter Key
+                        setTimeout(function () {
+                            document.getElementById('addItem_Remark').focus();
+                        }, 300);
+                    }
+                });
+                // +++++./ end CUSTOMIZED FOCUSINGS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
             });
         </script>
 
@@ -690,13 +746,19 @@
                 $('#addItem_MealType').select2().trigger('change');
                 document.getElementById("addItem_Remark").value = "";
                 document.getElementById("button_addItemToList").disabled = true; // disable submit --ADD_ITEMS
+
+                setTimeout(function () { // Auto-Focus
+                    document.getElementById('addItem_Item').focus();
+                    $('#addItem_Item').select2('open');
+                }, 500);
             }
 
             // SET FOCUS TO ELEMENT
-            function setElementFocus_addItemToList(event, fcsElement) {
+            function setNextElmntFocus_addItemToList(event, NxtFcsElement) {
                 if (event.keyCode == 13) { // @Enter Key
                     document.getElementById('button_addItemToList').disabled = true;  // disable submit
-                    document.getElementById(fcsElement).focus();
+                    document.getElementById(NxtFcsElement).focus();
+                    $('#' + NxtFcsElement).select2('open');
                     document.getElementById('button_addItemToList').disabled = false; // enable submit
                 }
             }
@@ -802,7 +864,6 @@
                         load_MEDICINEITEMS_DataTable();
                         calc_RECEIVABLEAMOUNT();
                         resetAll_addItemToList();
-                        document.getElementById("addItem_Item").focus();
                     } else {
                         swal(outputData.split(":")[1], outputData.split(":")[2], outputData.split(":")[0]);
                         document.getElementById("btn_SubmitForm").disabled = true; // disable submit-Form
@@ -908,8 +969,8 @@
             // SAVE THE-PRESCRIPTION FORM
             function submit_PrescriptionFORM() {
                 swal({
-                    title: "Are you sure?",
-                    text: "You want to submit this prescription now.",
+                    title: "Doctor Charges: " + document.getElementById("val_DoctorCharges").value + " Receivable Amount: " + document.getElementById("val_ReceivableAmount").value,
+                    text: "Are you sure, You want to submit this prescription now?",
                     type: "info",
                     showCancelButton: true,
                     confirmButtonClass: "btn-danger",

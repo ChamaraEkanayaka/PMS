@@ -273,7 +273,7 @@
                                             SumVALUE_RcvblAmount += prescp_Objct.getReceivableAmount();
                                 %>
                                 <tr>
-                                    <td><%=prescp_Objct.getIdprescription()%></td>
+                                    <td><%= new DecimalFormat("0000").format(prescp_Objct.getIdprescription())%></td>
                                     <td><%=prescp_Objct.getDate()%></td>
                                     <td><%=prescp_Objct.getTime()%></td>
                                     <td><%=prescp_Objct.getPatientToken().getTokenNumber()%></td>
