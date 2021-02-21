@@ -96,8 +96,12 @@
         <servlet-class>Servlet.IssueMedicine_CompleatePrescriptionServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Prescription_SaveCorrectionsServlet</servlet-name>
-        <servlet-class>Servlet.Prescription_SaveCorrectionsServlet</servlet-class>
+        <servlet-name>PrescriptionCorrections_SaveChangesServlet</servlet-name>
+        <servlet-class>Servlet.PrescriptionCorrections_SaveChangesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PrescriptionCorrections_LoadItemsToDHServlet</servlet-name>
+        <servlet-class>Servlet.PrescriptionCorrections_LoadItemsToDHServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Token_getNextTokenDetailsServlet</servlet-name>
@@ -192,8 +196,12 @@
         <url-pattern>/IssueMedicine_CompleatePrescriptionServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Prescription_SaveCorrectionsServlet</servlet-name>
-        <url-pattern>/Prescription_SaveCorrectionsServlet</url-pattern>
+        <servlet-name>PrescriptionCorrections_SaveChangesServlet</servlet-name>
+        <url-pattern>/PrescriptionCorrections_SaveChangesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrescriptionCorrections_LoadItemsToDHServlet</servlet-name>
+        <url-pattern>/PrescriptionCorrections_LoadItemsToDHServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
