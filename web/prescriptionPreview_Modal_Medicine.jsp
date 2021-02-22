@@ -262,7 +262,7 @@
         $('#msg_box').html('');
     }
     function save() {
-        var total = <%=Utils.DecimalFormats.dfPriceValue().format(prvwPRESC_OBJC.getReceivableAmount())%>;
+        var total = <%=prvwPRESC_OBJC.getReceivableAmount()%>;
         var id = <%=prvwPRESC_OBJC.getIdprescription()%>;
         var cash = $('#cash').val();
         var buttonTxt = $('#btn_comp').html();

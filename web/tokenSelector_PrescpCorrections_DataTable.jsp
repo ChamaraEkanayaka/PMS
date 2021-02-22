@@ -61,14 +61,14 @@
                                         Session ssn_PrcpCorrctn = FactoryManager.getSessionFactory().openSession();
                                         Criteria prcpCorrctn_Crt = ssn_PrcpCorrctn.createCriteria(PatientToken.class);
                                         prcpCorrctn_Crt.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
-                                        prcpCorrctn_Crt.add(Restrictions.eq("status", 1));
+                                        prcpCorrctn_Crt.add(Restrictions.ne("status", 1));
                                         prcpCorrctn_Crt.addOrder(Order.desc("tokenNumber"));
                                         List<PatientToken> prcpCorrctn_List = prcpCorrctn_Crt.list();
                                         for (PatientToken prcpCorrections_Objc : prcpCorrctn_List) {
                                             // Check on Prescription ( Availability )...
                                             Criteria tknPrescp_Crt = ssn_PrcpCorrctn.createCriteria(Prescription.class);
                                             tknPrescp_Crt.add(Restrictions.eq("patientToken", prcpCorrections_Objc));
-                                            tknPrescp_Crt.add(Restrictions.eq("status", 1));
+                                            //tknPrescp_Crt.add(Restrictions.eq("status", 1));
                                             List<Prescription> tknPrescp_List = tknPrescp_Crt.list();
                                             if (!tknPrescp_List.isEmpty()) {
                                                 Prescription tknPrescpOBJC = (Prescription) tknPrescp_List.get(0);
