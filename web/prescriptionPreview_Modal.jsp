@@ -196,11 +196,11 @@
                                                 <tbody>
                                                     <tr>
                                                         <th>Medicine Cost :</th>
-                                                        <td><input class="form-control text-right m-b-20" type="text" readonly="true" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(prvwPRESC_OBJC.getMedicineCost())%>"></td>
+                                                        <td><input class="form-control text-right m-b-20" type="text" readonly="true" style="width: 170px;" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(prvwPRESC_OBJC.getMedicineCost())%>"></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Doctor Charges :</th>
-                                                        <td><input class="form-control text-right m-b-20" type="text" readonly="true" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(prvwPRESC_OBJC.getDoctorCharge())%>"></td>
+                                                        <td><input class="form-control text-right m-b-20" type="text" readonly="true" style="width: 170px;" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(prvwPRESC_OBJC.getDoctorCharge())%>"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -209,11 +209,11 @@
                                                 <tbody>
                                                     <tr>
                                                         <th class="f-16">Total Amount :</th>
-                                                        <td><input class="form-control text-right m-b-20 f-w-700 f-18" type="text" readonly="true" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(prvwPRESC_OBJC.getTotalAmount())%>"></td>
+                                                        <td><input class="form-control text-right m-b-20 f-w-700 f-18" type="text" readonly="true" style="width: 170px;" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(prvwPRESC_OBJC.getTotalAmount())%>"></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Receivable Amount :</th>
-                                                        <td><input class="form-control text-right m-b-20" type="text" readonly="true" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(prvwPRESC_OBJC.getReceivableAmount())%>"></td>
+                                                        <td><input class="form-control text-right m-b-20" type="text" readonly="true" style="width: 170px;" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(prvwPRESC_OBJC.getReceivableAmount())%>"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

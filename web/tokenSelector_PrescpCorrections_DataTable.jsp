@@ -47,6 +47,7 @@
                                 <tr id="ScrollNFocusElem2">
                                     <th>#Prescription No</th>
                                     <th>#Token No</th>
+                                    <th>Customer</th>
                                     <th>Medicine Cost</th>
                                     <th>Doctor Charge</th>
                                     <th>Total Amount</th>
@@ -76,13 +77,14 @@
                                 <tr style="background-color: white;">
                                     <td><%= "# " + new DecimalFormat("0000").format(tknPrescpOBJC.getIdprescription())%></td>
                                     <td><%= "# " + prcpCorrections_Objc.getTokenNumber()%></td>
+                                    <td><%= prcpCorrections_Objc.getPatient().getName()%></td>
                                     <td><%= "Rs. " + Utils.DecimalFormats.dfPriceValue().format(tknPrescpOBJC.getMedicineCost())%></td>
                                     <td class="f-w-700"><%= "Rs. " + Utils.DecimalFormats.dfPriceValue().format(tknPrescpOBJC.getDoctorCharge())%></td>
                                     <td><%= "Rs. " + Utils.DecimalFormats.dfPriceValue().format(tknPrescpOBJC.getTotalAmount())%></td>
                                     <td class="f-w-700"><%= "Rs. " + Utils.DecimalFormats.dfPriceValue().format(tknPrescpOBJC.getReceivableAmount())%></td>
                                     <td>
                                         <button class="btn btn-primary btn-sm m-r-15" onclick='show_PrescriptionPrvw_Modal("<%=tknPrescpOBJC.getIdprescription()%>");'><span class="fa fa-file-text" style="display: inline; color: #ffffff;"></span>&nbsp;&nbsp;View Prescription</button>
-                                        <button class="btn btn-danger btn-sm" onclick='show_PrescriptionCorrections_Modal("<%=tknPrescpOBJC.getIdprescription()%>");'><span class="fa fa-edit" style="display: inline; color: #ffffff;"></span>&nbsp;&nbsp;Do Corrections</button>
+                                        <button class="btn btn-danger btn-sm" onclick='show_PrescriptionCorrections_Form("<%=tknPrescpOBJC.getIdprescription()%>");'><span class="fa fa-edit" style="display: inline; color: #ffffff;"></span>&nbsp;&nbsp;Do Corrections</button>
                                     </td>
                                 </tr>
                                 <% }
@@ -110,15 +112,6 @@
         </div>
     </div>
 
-    <!-- Prescription-Corrections _Modal -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="PrscpCorrections-Modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" id="PrscpCorrections-Modal-Content" style="background: #f6f7fb;">
-                <div class="loader-block"><svg id="loader2" viewBox="0 0 100 100"><circle id="circle-loader2" cx="50" cy="50" r="45"></circle></svg></div>
-            </div>
-        </div>
-    </div>
-
 
     <!--  Core Script Pugins -->   
     <script src="assets/js/script.min.js" type="text/javascript"></script>
@@ -135,9 +128,8 @@
     </script>
 
     <script type="text/javascript">
-        function show_PrescriptionCorrections_Modal(prescriptionNo) {
-            $('#PrscpCorrections-Modal').modal('show');
-            $('#PrscpCorrections-Modal-Content').load('prescriptionCorrections_Modal.jsp?prescriptionNo=' + prescriptionNo);
+        function show_PrescriptionCorrections_Form(prescriptionNo) {
+            location.replace('prescription_Corrections.jsp?prescriptionNo=' + prescriptionNo);
         }
     </script>
 
