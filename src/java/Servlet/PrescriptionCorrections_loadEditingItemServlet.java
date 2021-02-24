@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2021  APK HUB Software Solution (Pvt.) Ltd
  * All rights reserved.
- * 15 Jan 2021 07:52:22 PM By AKILA.
+ * 24 Feb 2021 10:06:56 PM By AKILA.
  */
 package Servlet;
 
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AKILA
  */
-public class Prescription_RemoveItemServlet extends HttpServlet {
+public class PrescriptionCorrections_loadEditingItemServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -39,21 +39,29 @@ public class Prescription_RemoveItemServlet extends HttpServlet {
 
             // param Data
             int param_StockID = Integer.valueOf(request.getParameter("StockID"));
+            String OUTPUT = "";
 
-            // Check & Select Removing-Item  -------------------------------------------------------------------------------------
-            PRESCRIPTION_ITEM_OBJ removing_PrscpItemOBJ = null;
+            // Check & Select Editing-Item  -------------------------------------------------------------------------------------
+            PRESCRIPTION_ITEM_OBJ edt_PrscpItemOBJ = null;
             for (PRESCRIPTION_ITEM_OBJ DH_PrscItem_OBJC : dtHolder.getHolder()) {
                 if (DH_PrscItem_OBJC.getStock().getStockId() == param_StockID) {
-                    removing_PrscpItemOBJ = DH_PrscItem_OBJC;
+                    edt_PrscpItemOBJ = DH_PrscItem_OBJC;
                     break;
                 }
             }
 
-            // Remove Item from Data-Holder... -----------------------------------------------------------------------------------
-            if (removing_PrscpItemOBJ != null) {
-                dtHolder.getHolder().remove(removing_PrscpItemOBJ);
-                request.getSession().setAttribute("PRESCRIPTION_Items", dtHolder);
-                out.print("success::Done!");
+            // Load Item-Details from Data-Holder... -----------------------------------------------------------------------------------
+            if (edt_PrscpItemOBJ != null) {
+                OUTPUT = "" + edt_PrscpItemOBJ.getStock().getItems().getItemId();
+                OUTPUT = OUTPUT + ":" + edt_PrscpItemOBJ.getDosage();
+                OUTPUT = OUTPUT + ":" + edt_PrscpItemOBJ.getMedicineType().getMedicineTypeId();
+                OUTPUT = OUTPUT + ":" + edt_PrscpItemOBJ.getUseCycle().getIduseCycle();
+                OUTPUT = OUTPUT + ":" + Utils.DecimalFormats.dfDoubleValue().format(edt_PrscpItemOBJ.getQty());
+                OUTPUT = OUTPUT + ":" + edt_PrscpItemOBJ.getUseMethod().getIduseMethod();
+                OUTPUT = OUTPUT + ":" + edt_PrscpItemOBJ.getMealType().getIdmealType();
+                OUTPUT = OUTPUT + ":" + edt_PrscpItemOBJ.getRemark();
+
+                out.print("success:" + OUTPUT);
             } else {
                 out.print("error:Sorry:Operation Faild!");
             }
@@ -62,7 +70,6 @@ public class Prescription_RemoveItemServlet extends HttpServlet {
             e.printStackTrace();
             out.print("error:Sorry:Operation Faild!");
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

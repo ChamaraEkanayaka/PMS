@@ -400,7 +400,7 @@
                                                         </div>
                                                         <div class="card-block">
                                                             <div id="DataTable_Includer">
-                                                                <%@include file="prescription_Items_DataTable.jsp"%>
+                                                                <%@include file="prescription_Corrections_Items_DataTable.jsp"%>
                                                             </div>
                                                         </div><br>
 
@@ -867,7 +867,7 @@
             // LOAD Medicine-Items-List   --DataTable
             function load_MEDICINEITEMS_DataTable() {
                 document.getElementById("DataTable_Remover").outerHTML = "";
-                $('#DataTable_Includer').load('prescription_Items_DataTable.jsp');
+                $('#DataTable_Includer').load('prescription_Corrections_Items_DataTable.jsp');
 
                 // Calc. MEDICINE-COST value of "Prescription-Medicine-Items"
                 setTimeout(function () {

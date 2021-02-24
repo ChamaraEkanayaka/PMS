@@ -103,6 +103,10 @@
         <servlet-name>PrescriptionCorrections_LoadItemsToDHServlet</servlet-name>
         <servlet-class>Servlet.PrescriptionCorrections_LoadItemsToDHServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PrescriptionCorrections_loadEditingItemServlet</servlet-name>
+        <servlet-class>Servlet.PrescriptionCorrections_loadEditingItemServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Token_getNextTokenDetailsServlet</servlet-name>
         <url-pattern>/Token_getNextTokenDetailsServlet</url-pattern>
@@ -202,6 +206,10 @@
     <servlet-mapping>
         <servlet-name>PrescriptionCorrections_LoadItemsToDHServlet</servlet-name>
         <url-pattern>/PrescriptionCorrections_LoadItemsToDHServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrescriptionCorrections_loadEditingItemServlet</servlet-name>
+        <url-pattern>/PrescriptionCorrections_loadEditingItemServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
