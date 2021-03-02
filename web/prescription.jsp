@@ -313,20 +313,7 @@
                                                                                        id="addItem_Dosage" 
                                                                                        onblur='checkValidations_addItemToList();'
                                                                                        onkeyup='checkValidations_addItemToList();'
-                                                                                       onkeydown='setNextElmntFocus_addItemToList(event, "addItem_MedicineType");'>
-                                                                            </div>
-
-                                                                            <!-- Medicine-Type -->
-                                                                            <div class="col-lg-6 col-md-8 col-sm-6 m-b-20">
-                                                                                <label class="col-lable f-w-700">Medicine&nbsp;Type</label>
-                                                                                <select class="form-control"
-                                                                                        required
-                                                                                        autofocus
-                                                                                        id="addItem_MedicineType"
-                                                                                        onchange='checkValidations_addItemToList();'
-                                                                                        onclick='checkValidations_addItemToList();'
-                                                                                        onkeydown='setNextElmntFocus_addItemToList(event, "addItem_UseCycle");'>
-                                                                                </select>
+                                                                                       onkeydown='setNextElmntFocus_addItemToList(event, "addItem_UseCycle");'>
                                                                             </div>
 
                                                                             <!-- Use-Cycle -->
@@ -355,15 +342,27 @@
                                                                                        id="addItem_Qty" 
                                                                                        onblur='formatCurrencyValue(this); checkValidations_addItemToList();'
                                                                                        onkeyup='checkValidations_addItemToList();'
-                                                                                       onkeydown='setNextElmntFocus_addItemToList(event, "addItem_UseMethod");'>
+                                                                                       onkeydown='pressBtn_AddToList(event);'>
                                                                             </div>    
                                                                         </div>    
 
 
                                                                         <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                            <!-- Medicine-Type -->
+                                                                            <div class="col-lg-6 col-md-8 col-sm-6 m-b-20">
+                                                                                <label class="col-lable f-w-700">Medicine&nbsp;Type</label>
+                                                                                <select class="form-control"
+                                                                                        required
+                                                                                        autofocus
+                                                                                        id="addItem_MedicineType"
+                                                                                        onchange='checkValidations_addItemToList();'
+                                                                                        onclick='checkValidations_addItemToList();'
+                                                                                        onkeydown='setNextElmntFocus_addItemToList(event, "addItem_UseMethod");'>
+                                                                                </select>
+                                                                            </div>
+
                                                                             <!-- Use-Method -->
-                                                                            <br><br>
-                                                                            <div class="col-lg-6 col-md-8 col-sm-6 m-b-15 m-t-35">
+                                                                            <div class="col-lg-6 col-md-8 col-sm-6 m-b-15">
                                                                                 <label class="col-lable f-w-700">Use&nbsp;Method</label>
                                                                                 <select class="form-control"
                                                                                         required
@@ -630,14 +629,6 @@
 
 
                 // +++./start  CUSTOMIZED FOCUSINGS  TO NEXT ELEMENT  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                // Medicine-Type
-                $("#addItem_MedicineType").on("change", function (e) {
-                    var keycode = (event.keyCode ? event.keyCode : event.which);
-                    if (keycode == 13) { // @Enter Key
-                        document.getElementById('addItem_UseCycle').focus();
-                        $('#addItem_UseCycle').select2('open');
-                    }
-                });
                 // Use-Cycle
                 $("#addItem_UseCycle").on("change", function (e) {
                     var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -645,6 +636,14 @@
                         setTimeout(function () {
                             document.getElementById('addItem_Qty').focus();
                         }, 300);
+                    }
+                });
+                // Medicine-Type
+                $("#addItem_MedicineType").on("change", function (e) {
+                    var keycode = (event.keyCode ? event.keyCode : event.which);
+                    if (keycode == 13) { // @Enter Key
+                        document.getElementById('addItem_UseMethod').focus();
+                        $('#addItem_UseMethod').select2('open');
                     }
                 });
                 // Use-Method
@@ -760,6 +759,15 @@
                     document.getElementById(NxtFcsElement).focus();
                     $('#' + NxtFcsElement).select2('open');
                     document.getElementById('button_addItemToList').disabled = false; // enable submit
+                }
+            }
+
+            function pressBtn_AddToList(event) {
+                if (event.keyCode == 13) { // @Enter Key
+                    checkValidations_addItemToList();
+                    if (!document.getElementById('button_addItemToList').disabled) {
+                        document.getElementById('button_addItemToList').click();
+                    }
                 }
             }
 
