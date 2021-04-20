@@ -234,6 +234,12 @@
                                                                 <button class="btn btn-warning btn-round m-r-5" onclick="save()" id="btn_comp">Complete Now</button>
                                                                 <br><span style="color: red;" id="msg_box"></span>
                                                             </div>
+                                                            <div class="m-b-5">
+                                                                <hr class="m-t-0" style="border-top: 2px dashed rgba(248,249,250);">
+                                                                <button class="btn btn-info btn-round m-r-5"  id="btn_comp">Not Paid</button>
+                                                                <br><span style="color: red;" id="msg_box"></span>
+                                                            </div>
+                                                            
                                                         </td>
                                                     </tr>
                                                 </tbody>
