@@ -160,7 +160,7 @@
                                                                 </div>
                                                             </div><br><br>
 
-                                                            <!-- Submit/ Refresh Buttons -->
+                                                            <!-- Submit/ Refresh/ UpdateDetails   Buttons -->
                                                             <div class="m-b-5">
                                                                 <hr class="m-t-0" style="border-top: 2px dashed rgba(248,249,250);">
                                                                 <button class="btn btn-light btn-round m-r-5" id="btn_Submit" onclick='issue_Token(document.getElementById("val_TokenNo").value, document.getElementById("patientID").value);'>Issue Token</button>
@@ -173,12 +173,18 @@
 
                                                 <!-- Issued Tokens List  -DATA.TABLE --------------------------------------------------------------------------------------------- -->
                                                 <div class="col-lg-12 m-b-10">
-                                                    <button class="btn btn-dark btn-mat waves-effect" onclick='load_IssuedTokensList();'><span class="fa fa-bookmark"></span>&nbsp;&nbsp;ISSUED TOKENS</button>
+                                                    <button class="btn btn-dark btn-mat waves-effect" onclick='load_IssuedTokensList();'><span class="fa fa-check">&nbsp;</span><span class="fa fa-bookmark"></span>&nbsp;&nbsp;ISSUED TOKENS</button>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div id="DataTable_Includer">
                                                         <div id="DataTable_Remover"></div>
                                                     </div>
+                                                </div>
+
+                                                <!-- Reset TokenNo. Counter --Button --------------------------------------------------------------------------------------------- -->
+                                                <div class="col-lg-12 m-b-10 m-t-50">
+                                                    <hr class="m-t-0" style="border-top: 2px dashed rgba(254,93,112);">
+                                                    <center><button class="btn btn-danger btn-round waves-effect" onclick='reset_TokenCount();'><span class="fa fa-undo"></span>&nbsp;&nbsp;RESET TOKEN COUNTING</button></center>
                                                 </div>
 
                                             </div>
@@ -343,6 +349,37 @@
                     }, 1000);
                 });
             }
+
+            function reset_TokenCount() {
+                swal({
+                    title: "Are you sure?",
+                    text: "You want to reset current Token Number Counting & beginning with #1?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes, Reset Now",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        // start >> Reset process.............................................................................................................................
+                        $.post("IssueToken_resetTokenNoCounterServlet", function (outputData) {
+                            swal(outputData.split(":")[1], outputData.split(":")[2], outputData.split(":")[0]);
+                            // Post Actions..
+                            setTimeout(function () {
+                                if (outputData.split(":")[0] == 'success') {
+                                    location.replace("issueToken.jsp");
+                                }
+                            }, 1000);
+                        });
+                        // end << Reset process.................................................................................................................................
+                    }
+                });
+            }
+
+
+
 
             //code by mayura
             function updateDetails(PatientID) {

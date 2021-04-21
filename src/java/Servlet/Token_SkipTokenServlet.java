@@ -9,15 +9,12 @@ import Connection.FactoryManager;
 import POJOS.PatientToken;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -40,18 +37,12 @@ public class Token_SkipTokenServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             // PARAMS & OBJECTS =======================================================================================
-            int skipping_TokenNo = Integer.valueOf(request.getParameter("tokenNo"));
             Session sess = FactoryManager.getSessionFactory().openSession();
             Transaction tr = sess.beginTransaction();
 
-            // +++ LOAD & SKIP SELECTED #TOKEN ++++++++++++++++++++++++++++++++++++++++++++++++
-            Criteria crt_token = sess.createCriteria(PatientToken.class);
-            crt_token.add(Restrictions.eq("tokenNumber", skipping_TokenNo));
-            crt_token.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
-            List<PatientToken> tokens_List = crt_token.list();
-
-            PatientToken patientToken_OBJC = (PatientToken) tokens_List.get(0);
-            patientToken_OBJC.setStatus(2);
+            // +++ LOAD & SKIP SELECTED TOKEN ++++++++++++++++++++++++++++++++++++++++++++++++
+            PatientToken patientToken_OBJC = (PatientToken) sess.load(PatientToken.class, Integer.valueOf(request.getParameter("idPatientToken")));
+            patientToken_OBJC.setStatus(2); // SKIPPED
             sess.update(patientToken_OBJC);
 
             // FINALIZE ================================================================================================

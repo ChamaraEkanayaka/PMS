@@ -1,12 +1,13 @@
 /*
  * Copyright (c) 2021  APK HUB Software Solution (Pvt.) Ltd
  * All rights reserved.
- * 11 Jan 2021 07:13:45 PM By AKILA.
+ * 20 Apr 2021 11:52:50 PM By AKILA.
  */
 package Servlet;
 
 import Connection.FactoryManager;
 import POJOS.PatientToken;
+import POJOS.PatientTokenMax;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -23,7 +24,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author AKILA
  */
-public class Token_SelectTokenServlet extends HttpServlet {
+public class IssueToken_resetTokenNoCounterServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,26 +41,34 @@ public class Token_SelectTokenServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             // PARAMS & OBJECTS =======================================================================================
-            int tokenNo = Integer.valueOf(request.getParameter("tokenNo"));
             Session sess = FactoryManager.getSessionFactory().openSession();
             Transaction tr = sess.beginTransaction();
 
-            // +++ LOAD SELECTED #TOKEN ++++++++++++++++++++++++++++++++++++++++++++++++
-            Criteria crt_token = sess.createCriteria(PatientToken.class);
-            crt_token.add(Restrictions.eq("tokenNumber", tokenNo));
-            crt_token.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
-            List<PatientToken> tokens_List = crt_token.list();
+            
+            
+            // UPDATE PatientToken -Info Status    >>>  all "Pending" tokens as "Cancelled" tokens
+            Criteria PendingTokens_Crt = sess.createCriteria(PatientToken.class);
+            PendingTokens_Crt.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
+            PendingTokens_Crt.add(Restrictions.eq("status", 0)); // pending
+            List<PatientToken> PendingTokens_LIST = PendingTokens_Crt.list();
+            for (PatientToken PendingTokens_OBJC : PendingTokens_LIST) {
+                PendingTokens_OBJC.setStatus(3);
+                sess.update(PendingTokens_OBJC);
+            }
 
-            PatientToken patientToken_OBJC = (PatientToken) tokens_List.get(0);
-            // System.out.println("ID: "+patientToken_OBJC.getIdpatientToken());
+            
+            // RESET current  MAX-PatientToken-No.  to Beginning ( start with #1 )
+            Criteria maxTokenNo_Crt = sess.createCriteria(PatientTokenMax.class);
+            maxTokenNo_Crt.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
+            List maxPrscNoList = maxTokenNo_Crt.list();
+            PatientTokenMax patientTokenMAX_OBJC = (PatientTokenMax) maxPrscNoList.get(0);
+            patientTokenMAX_OBJC.setTokenNumber(0);
+            sess.update(patientTokenMAX_OBJC);
 
-            
-            
-            
-            // FINALIZE ================================================================================================
+            // FINALIZE ===============================================================================================
             tr.commit();
             sess.close();
-            out.print("success:" + patientToken_OBJC.getIdpatientToken());
+            out.print("success::Done!");
 
         } catch (Exception e) {
             e.printStackTrace();

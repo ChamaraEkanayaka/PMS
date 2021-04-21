@@ -151,7 +151,7 @@
                         <div class="row">
 
                             <div class="col-lg-4">
-                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white" style="height: 142px;">
+                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white" style="height: 165px;">
                                     <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">TOKENS COUNT</code>
                                     <h4 class="text-sm-center f-40" id="RptSUM_TokensCount">0</h4>
                                 </div>
@@ -167,21 +167,31 @@
                                             <span style="color: #ffffff;font-size: medium;font-weight: 600;margin-left: 20px;" id="RptSUM_DocCharges">Rs. 0.00</span>
                                         </div>
                                         <div class="col-lg-6">
-                                            <code style="margin-left: -1px;margin-top: 0px;font-weight: 900;">TOTAL AMOUNT&nbsp;&nbsp;&nbsp;</code>
-                                            <span style="color: #ffffff;font-size: x-large;margin-left: 20px;" id="RptSUM_TotAmount">Rs. 0.00</span>
+                                            <code style="margin-left: -1px;margin-top: 0px;font-weight: 900;">TOTAL RECEIVABLE AMOUNT&nbsp;&nbsp;&nbsp;</code>
+                                            <span style="color: #ffffff;font-size: x-large;margin-left: 20px;" id="RptSUM_RcvblAmount">Rs. 0.00</span>
+
+                                            <code style="margin-left: -1px;margin-top: 5px;font-weight: 900;">TOTAL PAID AMOUNT&nbsp;&nbsp;&nbsp;</code>
+                                            <span style="color: #ffffff;font-size: x-large;margin-left: 20px;" id="RptSUM_PaidAmount">Rs. 0.00</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-4">
-                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white">
-                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">TOTAL RECEIVABLE AMOUNT</code>
-                                    <h4 class="text-sm-center" id="RptSUM_RcvblAmount">Rs. 0.00</h4>
+                                <div class="p-0 z-depth-bottom-1 waves-effect bg-c-blue text-white">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <code style="margin-left: -1px;margin-top: 0px;font-weight: 900; width: 160px;">TOTAL PENDING AMOUNT</code>
+                                            <span style="color: #ffffff;font-size: medium;font-weight: 600;margin-left: 20px;" id="RptSUM_Pending">Rs. 0.00</span>
+
+                                            <code style="margin-left: -1px;margin-top: 5px;font-weight: 900; width: 160px;">TOTAL NOT-PAID AMOUNT</code>
+                                            <span style="color: #ffffff;font-size: medium;font-weight: 600;margin-left: 20px;" id="RptSUM_NotPaid">Rs. 0.00</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white">
-                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">LOST AMOUNT</code>
+                                <div class="p-20 z-depth-bottom-1 waves-effect bg-c-blue text-white" style="height: 142px;">
+                                    <code style="margin-left: -21px;margin-top: 0px;font-weight: 900;">PROFIT/ LOST AMOUNT</code>
                                     <h4 class="text-sm-center" id="RptSUM_Balance">Rs. 0.00</h4>
                                 </div>
                             </div>
@@ -223,8 +233,10 @@
                                     int SumVALUE_TokensCount = 0;
                                     double SumVALUE_MedCost = 0.00;
                                     double SumVALUE_DocCharges = 0.00;
-                                    double SumVALUE_TotAmount = 0.00;
                                     double SumVALUE_RcvblAmount = 0.00;
+                                    double SumVALUE_PaidAmount = 0.00;
+                                    double SumVALUE_Pending = 0.00;
+                                    double SumVALUE_NotPaid = 0.00;
 
                                     Criteria prescp_Crt = ssn_TrmntReport.createCriteria(Prescription.class);
                                     // set CUSTOMIZED SEARCHING FILTERS....
@@ -269,7 +281,6 @@
                                             SumVALUE_TokensCount += 1;
                                             SumVALUE_MedCost += prescp_Objct.getMedicineCost();
                                             SumVALUE_DocCharges += prescp_Objct.getDoctorCharge();
-                                            SumVALUE_TotAmount += prescp_Objct.getTotalAmount();
                                             SumVALUE_RcvblAmount += prescp_Objct.getReceivableAmount();
                                 %>
                                 <tr>
@@ -286,8 +297,16 @@
                                     <td>
                                         <% if (prescp_Objct.getStatus() == 0) { %>
                                         <span class="label label-success">&nbsp;COMPLETED&nbsp;</span>
-                                        <% } else { %>
+                                        <%  SumVALUE_PaidAmount += prescp_Objct.getReceivableAmount(); %>
+
+                                        <% } else if (prescp_Objct.getStatus() == 1) { %>
                                         <span class="label label-danger">&nbsp;PENDING&nbsp;</span>      
+                                        <%  SumVALUE_Pending += prescp_Objct.getReceivableAmount(); %>
+
+                                        <% } else { %>
+                                        <span class="label label-warning">&nbsp;NOT PAID&nbsp;</span>
+                                        <%  SumVALUE_NotPaid += prescp_Objct.getReceivableAmount(); %>
+
                                         <% }%>
                                     </td>
                                     <td>
@@ -314,9 +333,11 @@
                     <input type="hidden" id="VALSUM_TokensCount" value="<%= SumVALUE_TokensCount%>">      
                     <input type="hidden" id="VALSUM_MedCost" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_MedCost)%>">      
                     <input type="hidden" id="VALSUM_DocCharges" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_DocCharges)%>">      
-                    <input type="hidden" id="VALSUM_TotAmount" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_TotAmount)%>">      
                     <input type="hidden" id="VALSUM_RcvblAmount" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_RcvblAmount)%>">      
-                    <input type="hidden" id="VALSUM_Balance" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_RcvblAmount - SumVALUE_TotAmount)%>">      
+                    <input type="hidden" id="VALSUM_PaidAmount" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_PaidAmount)%>">
+                    <input type="hidden" id="VALSUM_Pending" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_Pending)%>">      
+                    <input type="hidden" id="VALSUM_NotPaid" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_NotPaid)%>">      
+                    <input type="hidden" id="VALSUM_Balance" value="<%="Rs. " + Utils.DecimalFormats.dfPriceValue().format(SumVALUE_PaidAmount - SumVALUE_RcvblAmount)%>">      
 
                 </div>
             </div>
@@ -351,8 +372,10 @@
                 document.getElementById("RptSUM_TokensCount").innerHTML = document.getElementById("VALSUM_TokensCount").value;
                 document.getElementById("RptSUM_MedCost").innerHTML = document.getElementById("VALSUM_MedCost").value;
                 document.getElementById("RptSUM_DocCharges").innerHTML = document.getElementById("VALSUM_DocCharges").value;
-                document.getElementById("RptSUM_TotAmount").innerHTML = document.getElementById("VALSUM_TotAmount").value;
                 document.getElementById("RptSUM_RcvblAmount").innerHTML = document.getElementById("VALSUM_RcvblAmount").value;
+                document.getElementById("RptSUM_PaidAmount").innerHTML = document.getElementById("VALSUM_PaidAmount").value;
+                document.getElementById("RptSUM_Pending").innerHTML = document.getElementById("VALSUM_Pending").value;
+                document.getElementById("RptSUM_NotPaid").innerHTML = document.getElementById("VALSUM_NotPaid").value;
                 document.getElementById("RptSUM_Balance").innerHTML = document.getElementById("VALSUM_Balance").value;
             }, 800);
         });

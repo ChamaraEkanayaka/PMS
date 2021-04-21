@@ -66,7 +66,7 @@
                                         <span class="subDescText">Gender<span style="margin-left: 0px;">&nbsp;:&nbsp;</span><%=skpToken_Objc.getPatient().getGender()%></span><br>          
                                         <span class="subDescText">Age<span style="margin-left: 20px;">&nbsp;:&nbsp;</span><%= Utils.CurrentDateNTime.getAge(skpToken_Objc.getPatient().getBirthDay()) + " Years"%></span>
                                     </td>
-                                    <td><button class="btn btn-info btn-round m-r-5" onclick='select_Token(<%=skpToken_Objc.getTokenNumber()%>);'>Select</button></td>
+                                    <td><button class="btn btn-info btn-round m-r-5" onclick='select_Token(<%=skpToken_Objc.getIdpatientToken()%>);'>Select</button></td>
                                 </tr>
                                 <% }
                                     } catch (Exception e) {

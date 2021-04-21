@@ -65,7 +65,8 @@
                                         <span class="subDescText">Name<span style="margin-left: 19px;">&nbsp;:&nbsp;</span><%=issuedToken_Objc.getPatient().getName()%></span><br>          
                                         <span class="subDescText">Gender<span style="margin-left: 11px;">&nbsp;:&nbsp;</span><%=issuedToken_Objc.getPatient().getGender()%></span><br>          
                                         <span class="subDescText">Age<span style="margin-left: 34px;">&nbsp;:&nbsp;</span><%= Utils.CurrentDateNTime.getAge(issuedToken_Objc.getPatient().getBirthDay()) + " Years"%></span><br>          
-                                        <span class="subDescText">#Contact<span style="margin-left: 0px;">&nbsp;:&nbsp;</span><%=issuedToken_Objc.getPatient().getContactNo()%></span>          
+                                        <span class="subDescText">#Contact<span style="margin-left: 0px;">&nbsp;:&nbsp;</span><%=issuedToken_Objc.getPatient().getContactNo()%></span><br>          
+                                        <span class="subDescText">@<span style="margin-left: 45px;">&nbsp;:&nbsp;</span><%=issuedToken_Objc.getDate() + " _ " + issuedToken_Objc.getTime()%></span>          
                                     </td>
                                     <td><button class="btn btn-danger btn-round m-r-5" onclick='cancel_IssuedToken("<%=issuedToken_Objc.getIdpatientToken()%>");'>Cancel</button></td>
                                 </tr>
@@ -96,7 +97,7 @@
         function cancel_IssuedToken(param_PatientTokenID) {
             swal({
                 title: "Are you sure?",
-                text: "You want to cancel this token.",
+                text: "You want to cancel this token permanently.",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-danger",

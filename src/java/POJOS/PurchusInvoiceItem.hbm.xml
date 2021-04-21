@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Feb 11, 2021 2:55:50 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 20, 2021 10:27:13 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOS.PurchusInvoiceItem" table="purchus_invoice_item" catalog="pms" optimistic-lock="version">
         <id name="idpurchusInvoiceItem" type="java.lang.Integer">

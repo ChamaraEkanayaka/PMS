@@ -6,7 +6,7 @@
 package Servlet;
 
 import Connection.FactoryManager;
-import POJOS.PatientToken;
+import POJOS.PatientTokenMax;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -41,16 +42,24 @@ public class IssueToken_getNextIssuingTokenNoServlet extends HttpServlet {
         try {
             // PARAMS & OBJECTS =======================================================================================
             Session sess = FactoryManager.getSessionFactory().openSession();
+            Transaction tr = sess.beginTransaction();
             int param_NextTOKEN_NO = 0;
 
-            Criteria maxTokenNo_Crt = sess.createCriteria(PatientToken.class);
+            Criteria maxTokenNo_Crt = sess.createCriteria(PatientTokenMax.class);
             maxTokenNo_Crt.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
             maxTokenNo_Crt.setProjection(Projections.max("tokenNumber"));
             List maxPrscNoList = maxTokenNo_Crt.list();
             if (maxPrscNoList.get(0) != null) {
                 param_NextTOKEN_NO = Integer.valueOf(maxPrscNoList.get(0).toString()) + 1;
+
             } else {
                 param_NextTOKEN_NO = 1;
+                // Save only one-time , each day >> MAX-PatientToken No..
+                PatientTokenMax patientTokenMAX_OBJC = new PatientTokenMax();
+                patientTokenMAX_OBJC.setTokenNumber(0);
+                patientTokenMAX_OBJC.setDate(Utils.CurrentDateNTime.getCurrentDate());
+                sess.save(patientTokenMAX_OBJC);
+                tr.commit();
             }
 
             // FINALIZE ================================================================================================

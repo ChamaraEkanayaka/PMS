@@ -119,6 +119,7 @@
                                                         <div class="card-block text-center">
 
                                                             <input type="hidden" id="val_TokenNo" value="1">
+                                                            <input type="hidden" id="val_IDPatientToken" value="1">
 
                                                             <button class="btn btn-light btn-round btn-sm" style="float: left; margin-top: 10px;" id="btn_Backward" onclick='load_NextToken(0);'><span class="fa fa-chevron-left f-30 text-c-green"></span></button>
                                                             <span style="text-align: center; font-size: 50px; margin-left: 10px; margin-right: 10px;" id="lbl_TokenNo">#</span>
@@ -136,8 +137,8 @@
 
                                                             <div class="m-b-5">
                                                                 <hr class="m-t-0" style="border-top: 2px dashed rgba(248,249,250);">
-                                                                <button class="btn btn-light btn-round m-r-5" id="btn_Select" onclick='select_Token(document.getElementById("val_TokenNo").value);'>Select</button>
-                                                                <button class="btn btn-danger btn-round m-r-5" id="btn_Skip" onclick='skip_Token(document.getElementById("val_TokenNo").value);'>&nbsp;&nbsp;Skip&nbsp;&nbsp;</button>
+                                                                <button class="btn btn-light btn-round m-r-5" id="btn_Select" onclick='select_Token(document.getElementById("val_IDPatientToken").value);'>Select</button>
+                                                                <button class="btn btn-danger btn-round m-r-5" id="btn_Skip" onclick='skip_Token(document.getElementById("val_IDPatientToken").value);'>&nbsp;&nbsp;Skip&nbsp;&nbsp;</button>
                                                                 <button class="btn btn-warning btn-round" id="btn_Refresh" onclick='load_NextToken(2);'>Refresh</button>
                                                             </div>
                                                         </div>
@@ -146,7 +147,7 @@
 
                                                 <!-- Skipped Tokens List  -DATA.TABLE --------------------------------------------------------------------------------------------- -->
                                                 <div class="col-lg-12 m-b-10">
-                                                    <button class="btn btn-dark btn-mat waves-effect" id="btn_SkippedList" onclick='load_SkippedTokensList();'><span class="fa fa-bookmark-o"></span>&nbsp;&nbsp;SKIPPED TOKENS</button>
+                                                    <button class="btn btn-dark btn-mat waves-effect" id="btn_SkippedList" onclick='load_SkippedTokensList();'><span class="fa fa-level-up"></span>&nbsp;<span class="fa fa-bookmark-o"></span>&nbsp;&nbsp;SKIPPED TOKENS</button>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div id="DataTable_Includer">
@@ -218,6 +219,7 @@
                         document.getElementById("lbl_Name").innerHTML = outputData.split(":")[7];
                         document.getElementById("lbl_Gender").innerHTML = outputData.split(":")[8];
                         document.getElementById("lbl_Age").innerHTML = outputData.split(":")[9] + " Years";
+                        document.getElementById("val_IDPatientToken").value = outputData.split(":")[10];
 
                         document.getElementById("btn_Select").disabled = false;
                         document.getElementById("btn_Skip").disabled = false;
@@ -256,8 +258,8 @@
 
 
         <script type="text/javascript">
-            function skip_Token(tokenNo) {
-                $.post("Token_SkipTokenServlet", "tokenNo=" + tokenNo, function (outputData) {
+            function skip_Token(idPatientToken) {
+                $.post("Token_SkipTokenServlet", "idPatientToken=" + idPatientToken, function (outputData) {
                     // Post Actions..
                     if (outputData.split(":")[0] == 'success') {
                         if (document.getElementById("btn_Forward").disabled) {
@@ -276,17 +278,13 @@
                 });
             }
 
-            function select_Token(tokenNo) {
-                $.post("Token_SelectTokenServlet", "tokenNo=" + tokenNo, function (outputData) {
-                    // Post Actions..
-                    if (outputData.split(":")[0] == 'success') {
-                        location.replace('prescription.jsp?tokenID=' + outputData.split(":")[1]);
-                    } else {
-                        swal(outputData.split(":")[1], outputData.split(":")[2], outputData.split(":")[0]);
-                    }
-                });
+            function select_Token(idPatientToken) {
+                location.replace('prescription.jsp?tokenID=' + idPatientToken);
             }
+        </script>
 
+
+        <script type="text/javascript">
             function load_SkippedTokensList() {
                 document.getElementById("DataTable_Remover").outerHTML = "";
                 $('#DataTable_Includer').load('tokenSelector_SkippedTokens_DataTable.jsp');
@@ -296,10 +294,7 @@
                     window.scrollTo({top: scrollDiv + 500, behavior: 'smooth'});
                 }, 600);
             }
-        </script>
 
-
-        <script type="text/javascript">
             function load_PrescpCorrectionsList() {
                 document.getElementById("DataTable_Remover2").outerHTML = "";
                 $('#DataTable_Includer2').load('tokenSelector_PrescpCorrections_DataTable.jsp');

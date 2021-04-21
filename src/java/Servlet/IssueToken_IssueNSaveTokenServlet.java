@@ -8,14 +8,18 @@ package Servlet;
 import Connection.FactoryManager;
 import POJOS.Patient;
 import POJOS.PatientToken;
+import POJOS.PatientTokenMax;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -43,6 +47,7 @@ public class IssueToken_IssueNSaveTokenServlet extends HttpServlet {
 
             Patient param_patient = (Patient) sess.load(Patient.class, Integer.valueOf(request.getParameter("patientID")));
 
+            // Save PatientToken Info..
             PatientToken patientToken_OBJC = new PatientToken();
             patientToken_OBJC.setTokenNumber(Integer.valueOf(request.getParameter("tokenNo")));
             patientToken_OBJC.setDate(Utils.CurrentDateNTime.getCurrentDate());
@@ -50,6 +55,14 @@ public class IssueToken_IssueNSaveTokenServlet extends HttpServlet {
             patientToken_OBJC.setPatient(param_patient);
             patientToken_OBJC.setStatus(0);
             sess.save(patientToken_OBJC);
+
+            // UPDATE current  "MAX" PatientToken No..
+            Criteria maxTokenNo_Crt = sess.createCriteria(PatientTokenMax.class);
+            maxTokenNo_Crt.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
+            List maxPrscNoList = maxTokenNo_Crt.list();
+            PatientTokenMax patientTokenMAX_OBJC = (PatientTokenMax) maxPrscNoList.get(0);
+            patientTokenMAX_OBJC.setTokenNumber(Integer.valueOf(request.getParameter("tokenNo")));
+            sess.update(patientTokenMAX_OBJC);
 
             // FINALIZE ================================================================================================
             tr.commit();

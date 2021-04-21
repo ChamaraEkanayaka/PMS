@@ -70,8 +70,6 @@ public class Token_getNextTokenDetailsServlet extends HttpServlet {
                 param_OnlyHaveSingleRESULT = true;
             }
 
-            
-            
             // +++ BASIC CHECKING & LOAD SELECTED #TOKEN DETAILS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             Criteria crt_token = sess.createCriteria(PatientToken.class);
             if (FwdBkwd_Status != 2) { // when "Forward" or "Backward"  #Token
@@ -89,12 +87,11 @@ public class Token_getNextTokenDetailsServlet extends HttpServlet {
                 param_OUTPUT += ":" + patientToken_OBJC.getPatient().getName();
                 param_OUTPUT += ":" + patientToken_OBJC.getPatient().getGender();
                 param_OUTPUT += ":" + Utils.CurrentDateNTime.getAge(patientToken_OBJC.getPatient().getBirthDay());
+                param_OUTPUT += ":" + patientToken_OBJC.getIdpatientToken();
                 param_haveRESULTS = true;
                 break;
             }
 
-            
-            
             // SECONDARY CHECK ANY LAST RESULT EXISTINGS.... ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             if (tokens_List.isEmpty()) {
                 if (FwdBkwd_Status == 2) { // when  "Next-Available" #Token
@@ -143,6 +140,7 @@ public class Token_getNextTokenDetailsServlet extends HttpServlet {
                                 param_OUTPUT += ":" + patientTokenScndCheck_OBJC.getPatient().getName();
                                 param_OUTPUT += ":" + patientTokenScndCheck_OBJC.getPatient().getGender();
                                 param_OUTPUT += ":" + Utils.CurrentDateNTime.getAge(patientTokenScndCheck_OBJC.getPatient().getBirthDay());
+                                param_OUTPUT += ":" + patientTokenScndCheck_OBJC.getIdpatientToken();
                                 param_haveRESULTS = true;
                                 break;
                             } else {

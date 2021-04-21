@@ -12,10 +12,6 @@
         <servlet-class>Servlet.Token_SkipTokenServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Token_SelectTokenServlet</servlet-name>
-        <servlet-class>Servlet.Token_SelectTokenServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Prescription_LoadAddingItemsServlet</servlet-name>
         <servlet-class>Servlet.Prescription_LoadAddingItemsServlet</servlet-class>
     </servlet>
@@ -107,6 +103,10 @@
         <servlet-name>PrescriptionCorrections_loadEditingItemServlet</servlet-name>
         <servlet-class>Servlet.PrescriptionCorrections_loadEditingItemServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IssueToken_resetTokenNoCounterServlet</servlet-name>
+        <servlet-class>Servlet.IssueToken_resetTokenNoCounterServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Token_getNextTokenDetailsServlet</servlet-name>
         <url-pattern>/Token_getNextTokenDetailsServlet</url-pattern>
@@ -114,10 +114,6 @@
     <servlet-mapping>
         <servlet-name>Token_SkipTokenServlet</servlet-name>
         <url-pattern>/Token_SkipTokenServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Token_SelectTokenServlet</servlet-name>
-        <url-pattern>/Token_SelectTokenServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Prescription_LoadAddingItemsServlet</servlet-name>
@@ -210,6 +206,10 @@
     <servlet-mapping>
         <servlet-name>PrescriptionCorrections_loadEditingItemServlet</servlet-name>
         <url-pattern>/PrescriptionCorrections_loadEditingItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IssueToken_resetTokenNoCounterServlet</servlet-name>
+        <url-pattern>/IssueToken_resetTokenNoCounterServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

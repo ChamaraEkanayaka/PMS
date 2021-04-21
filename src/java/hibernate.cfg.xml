@@ -88,6 +88,7 @@ Contributor(s):
     <mapping resource="POJOS/ItemThird.hbm.xml"/>
     <mapping resource="POJOS/SaleInvoice.hbm.xml"/>
     <mapping resource="POJOS/CustomerBranch.hbm.xml"/>
+    <mapping resource="POJOS/PatientTokenMax.hbm.xml"/>
     <mapping resource="POJOS/PatientToken.hbm.xml"/>
     <mapping resource="POJOS/Vehicle.hbm.xml"/>
     <mapping resource="POJOS/SalesReturn.hbm.xml"/>
