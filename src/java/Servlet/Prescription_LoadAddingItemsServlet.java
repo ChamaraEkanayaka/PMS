@@ -6,7 +6,10 @@
 package Servlet;
 
 import Connection.FactoryManager;
+import DataHolders.USER_LOGIN_DATA;
+import POJOS.Branch;
 import POJOS.Items;
+import POJOS.Stock;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -42,14 +45,29 @@ public class Prescription_LoadAddingItemsServlet extends HttpServlet {
 
             // param Data & Objects
             Session ssn = FactoryManager.getSessionFactory().openSession();
+            USER_LOGIN_DATA userLOGDATA = (USER_LOGIN_DATA) request.getSession().getAttribute("LOGIN_DATA");
+            Branch branchOBJC = (Branch) ssn.load(Branch.class, Integer.valueOf(userLOGDATA.getBranch_id()));
+
             String param_OUTPUT = "<option value='x'>Select an Item</option>";
 
+            // Collect Available ITEMS set...
             Criteria Items_Crt = ssn.createCriteria(Items.class);
             Items_Crt.add(Restrictions.eq("status", 1));
             Items_Crt.addOrder(Order.asc("name"));
             List<Items> ItemsList = Items_Crt.list();
             for (Items Item_Objct : ItemsList) {
-                param_OUTPUT = param_OUTPUT + "<option value='" + Item_Objct.getItemId() + "'>" + Item_Objct.getName() + "</option>";
+
+                // Check ITEM's Stock Availability.. 
+                Criteria stock_Crt = ssn.createCriteria(Stock.class);
+                stock_Crt.add(Restrictions.eq("items", Item_Objct));
+                stock_Crt.add(Restrictions.eq("branch", branchOBJC));
+                stock_Crt.add(Restrictions.eq("status", 1));
+                stock_Crt.add(Restrictions.gt("qty", 0.00));
+                List<Stock> StockList = stock_Crt.list();
+
+                if (!StockList.isEmpty()) {
+                    param_OUTPUT = param_OUTPUT + "<option value='" + Item_Objct.getItemId() + "'>" + Item_Objct.getName() + "</option>";
+                }
             }
 
             out.print("success::Done!:" + param_OUTPUT);
