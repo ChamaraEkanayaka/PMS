@@ -52,9 +52,9 @@
                                 <%  try {
                                         Session ssn_IssuedTokens = FactoryManager.getSessionFactory().openSession();
                                         Criteria issuedTokens_Crt = ssn_IssuedTokens.createCriteria(PatientToken.class);
-                                        issuedTokens_Crt.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
+                                        //  issuedTokens_Crt.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
                                         issuedTokens_Crt.add(Restrictions.or(Restrictions.eq("status", 0), Restrictions.eq("status", 2))); // 0-Pending  &  2-Skipped
-                                        issuedTokens_Crt.addOrder(Order.asc("tokenNumber"));
+                                        issuedTokens_Crt.addOrder(Order.desc("idpatientToken"));
                                         List<PatientToken> issuedTokens_List = issuedTokens_Crt.list();
                                         for (PatientToken issuedToken_Objc : issuedTokens_List) {
                                 %>

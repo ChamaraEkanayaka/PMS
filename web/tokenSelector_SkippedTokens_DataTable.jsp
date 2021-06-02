@@ -52,9 +52,9 @@
                                 <%  try {
                                         Session ssn_SkpTokens = FactoryManager.getSessionFactory().openSession();
                                         Criteria skpTokens_Crt = ssn_SkpTokens.createCriteria(PatientToken.class);
-                                        skpTokens_Crt.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
+                                        // skpTokens_Crt.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
                                         skpTokens_Crt.add(Restrictions.eq("status", 2));
-                                        skpTokens_Crt.addOrder(Order.asc("tokenNumber"));
+                                        skpTokens_Crt.addOrder(Order.desc("idpatientToken"));
                                         List<PatientToken> skpTokens_List = skpTokens_Crt.list();
                                         for (PatientToken skpToken_Objc : skpTokens_List) {
                                 %>

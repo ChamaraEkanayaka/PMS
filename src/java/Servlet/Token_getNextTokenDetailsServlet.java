@@ -62,7 +62,7 @@ public class Token_getNextTokenDetailsServlet extends HttpServlet {
 
             //  get COUNT for "Only-Have-Single-Result" param ****************************************
             Criteria crt_ALLTokensCOUNT = sess.createCriteria(PatientToken.class);
-            crt_ALLTokensCOUNT.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
+            //    crt_ALLTokensCOUNT.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
             crt_ALLTokensCOUNT.add(Restrictions.eq("status", 0)); // pending
             crt_ALLTokensCOUNT.addOrder(Order.asc("tokenNumber"));
             List<PatientToken> ALLTokensCOUNT_List = crt_ALLTokensCOUNT.list();
@@ -75,7 +75,7 @@ public class Token_getNextTokenDetailsServlet extends HttpServlet {
             if (FwdBkwd_Status != 2) { // when "Forward" or "Backward"  #Token
                 crt_token.add(Restrictions.eq("tokenNumber", Next_TokenNo));
             }
-            crt_token.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
+            //    crt_token.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
             crt_token.add(Restrictions.eq("status", 0)); // pending
             crt_token.addOrder(Order.asc("tokenNumber"));
             List<PatientToken> tokens_List = crt_token.list();
@@ -107,7 +107,7 @@ public class Token_getNextTokenDetailsServlet extends HttpServlet {
                     } else if (FwdBkwd_Status == 0) {
                         crt_AvlTokensCOUNT.add(Restrictions.lt("tokenNumber", Next_TokenNo));
                     }
-                    crt_AvlTokensCOUNT.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
+                    //    crt_AvlTokensCOUNT.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
                     crt_AvlTokensCOUNT.add(Restrictions.eq("status", 0)); // pending
                     if (FwdBkwd_Status == 0) {
                         crt_AvlTokensCOUNT.addOrder(Order.desc("tokenNumber"));
@@ -127,7 +127,7 @@ public class Token_getNextTokenDetailsServlet extends HttpServlet {
 
                             Criteria crt_TknScndCheck = sess.createCriteria(PatientToken.class);
                             crt_TknScndCheck.add(Restrictions.eq("tokenNumber", Next_TokenNo));
-                            crt_TknScndCheck.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
+                            //    crt_TknScndCheck.add(Restrictions.eq("date", Utils.CurrentDateNTime.getCurrentDate()));
                             crt_TknScndCheck.add(Restrictions.eq("status", 0)); // pending
                             crt_TknScndCheck.addOrder(Order.asc("tokenNumber"));
                             List<PatientToken> tokensScndCheck_List = crt_TknScndCheck.list();
@@ -161,7 +161,7 @@ public class Token_getNextTokenDetailsServlet extends HttpServlet {
                 param_OUTPUT += ":" + "N/A";
             }
 
-            // FINALIZE ================================================================================================
+            // FINALIZE =================================================================================================
             sess.close();
             out.print("success::" + param_haveRESULTS + ":" + param_OnlyHaveSingleRESULT + ":" + param_OUTPUT);
 
