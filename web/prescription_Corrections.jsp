@@ -127,13 +127,11 @@
                 <!-- Header Start-->
                 <%@include file="includes/header.jsp"%>
                 <!-- Header End -->
-
                 <div class="pcoded-main-container">
                     <div class="pcoded-wrapper">
                         <!-- Sidebar Start -->
                         <%@include file="includes/sidebar.jsp"%>
                         <!-- Sidebar End -->
-
                         <!-- Page Content Start -->
                         <div class="pcoded-content">
                             <div class="pcoded-inner-content">
@@ -163,7 +161,6 @@
                                             </div>
                                         </div>
                                         <!-- Page Header End -->
-
                                         <!-- Page Body Start -->
                                         <div class="page-body">
                                             <div class="row">
@@ -225,8 +222,6 @@
                                             </div>
                                         </div>
                                         <!-- Page Body End --> 
-
-
                                         <!-- ADD MEDICINE-ITEMS ---------------------------------------------------------------------------------------------------------------------------------------------------- -->
                                         <div class="page-body">
                                             <div class="row">
@@ -519,8 +514,6 @@
                 </div>
             </div>
         </div>
-
-
         <!--  Core Script Pugins -->
         <script src="assets/vendor/jquery/js/jquery.min.js" type="text/javascript"></script>
         <script src="assets/vendor/jquery-ui/js/jquery-ui.min.js" type="text/javascript"></script>
@@ -541,20 +534,17 @@
         <script src="assets/vendor/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js" type="text/javascript"></script>
         <!-- Select2  Script Plugins -->
         <script src="assets/vendor/select2/js/select2.full.min.js" type="text/javascript"></script>
-
         <script>
         </script>
         <!-- === UTILITY SCRIPTS ==================================================================================================== -->
         <script type="text/javascript">
             $(document).ready(function () {
-
                 // Load Selected Prescription-Items to  DH-SESSION @Page-Load
                 $.post("PrescriptionCorrections_LoadItemsToDHServlet", "prescriptionNo=<%=modifPRESC_OBJC.getIdprescription()%>", function (outputData) {
                     if (outputData.split(":")[0] == 'error') {
                         swal(outputData.split(":")[1], outputData.split(":")[2], outputData.split(":")[0]);
                     }
                 });
-
                 // Initialize Select2
                 $('#addItem_Item').select2();
                 $('#addItem_MedicineType').select2();
@@ -565,7 +555,6 @@
                 resetAll_addItemToList();
                 load_MEDICINEITEMS_DataTable();
                 document.getElementById('button_addItemToList').disabled = false; // enable submit
-
                 // Reset-Form  -Amount.Fields
                 setTimeout(function () { // Auto-Focus
                     document.getElementById("val_MedicineCost").value = '<%=Utils.DecimalFormats.dfDoubleValue().format(modifPRESC_OBJC.getMedicineCost())%>';
@@ -953,7 +942,7 @@
             }
 
             // CLOSE PRESCRIPTION-CORRECTIONS FORM
-            function close_PrescriptionFORM() {
+            function close_PrescriptionFORM(){
                 swal({
                     title: "Are you sure?",
                     text: "You want to cancel this prescription-corrections.",

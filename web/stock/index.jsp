@@ -4,6 +4,9 @@
     Author     : Mayura Lakshan
 --%>
 
+<%@page import="POJOS.User"%>
+<%@page import="Connection.FactoryManager"%>
+<%@page import="org.hibernate.Session"%>
 <%@page import="DataHolders.USER_LOGIN_DATA"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -91,9 +94,9 @@
         </style>
     </head>
     <body>
-        <!-- Preloader Start -->
+        <!-- Preloader Start-->
         <%@include file="includes/preloader.jsp"%>
-        <!-- Preloader End   -->
+        <!-- Preloader End -->
 
         <div id="pcoded" class="pcoded">
             <div class="pcoded-overlay-box"></div>
